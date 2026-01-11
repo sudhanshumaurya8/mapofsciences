@@ -94,50 +94,18 @@ function findNodePath(node, targetId, path = []) {
    SVG DRAWING
 ========================= */
 
-function drawNode(x, y, node) {
-  const paddingX = 20;
-  const paddingY = 12;
-
+function drawNode(x, y, text, onClick) {
   const group = document.createElementNS(NS, "g");
-  group.setAttribute("transform", `translate(${x}, ${y})`);
-  g.appendChild(group);
-
-  const text = document.createElementNS(NS, "text");
-  text.setAttribute("text-anchor", "middle");
-  text.setAttribute("dominant-baseline", "middle");
-  text.setAttribute("font-size", "14");
-  text.setAttribute("font-family", "Arial");
-  text.textContent = node.title;
-
-  group.appendChild(text);
-
-  // 🔑 Measure text
-  const bbox = text.getBBox();
-  const width = bbox.width + paddingX * 2;
-  const height = bbox.height + paddingY * 2;
 
   const rect = document.createElementNS(NS, "rect");
-  rect.setAttribute("x", -width / 2);
-  rect.setAttribute("y", -height / 2);
-  rect.setAttribute("width", width);
-  rect.setAttribute("height", height);
+  rect.setAttribute("x", x - 60);
+  rect.setAttribute("y", y - 22);
+  rect.setAttribute("width", 120);
+  rect.setAttribute("height", 44);
   rect.setAttribute("rx", 10);
-  rect.setAttribute("ry", 10);
-  rect.setAttribute("fill", "#f0f9ff");
+  rect.setAttribute("fill", "#eef6ff");
   rect.setAttribute("stroke", "#2563eb");
-  rect.setAttribute("stroke-width", "2");
-
-  // Put box behind text
-  group.insertBefore(rect, text);
-
-  group.style.cursor = "pointer";
-  group.addEventListener("click", () => {
-    if (node.children && node.children.length) {
-      window.location.href = `topic.html?id=${node.id}`;
-    }
-  });
-}
-
+  rect.setAttribute("stroke-width", 3);
 
   const label = document.createElementNS(NS, "text");
   label.setAttribute("x", x);
