@@ -1,16 +1,87 @@
 {
-  "title": "things to do",
+  "id": "map-of-science",
+  "title": "Map of Science",
+  "type": "root",
   "children": [
     {
-      "title": "phd",
+      "id": "engineering",
+      "title": "Engineering",
       "children": [
         {
-          "title": "paper completion",
-          "page": "pages/paper-completion.html"
+          "id": "civil-engineering",
+          "title": "Civil Engineering"
         },
         {
-          "title": "simulation",
-          "page": "pages/simulation.html"
+          "id": "mechanical-engineering",
+          "title": "Mechanical Engineering"
+        },
+        {
+          "id": "electrical-engineering",
+          "title": "Electrical Engineering"
+        },
+        {
+          "id": "electronics-communication-engineering",
+          "title": "Electronics and Communication Engineering"
+        },
+        {
+          "id": "computer-science-engineering",
+          "title": "Computer Science and Engineering"
+        },
+        {
+          "id": "information-technology",
+          "title": "Information Technology"
+        },
+        {
+          "id": "chemical-engineering",
+          "title": "Chemical Engineering"
+        },
+        {
+          "id": "aerospace-engineering",
+          "title": "Aerospace Engineering"
+        },
+        {
+          "id": "automobile-engineering",
+          "title": "Automobile Engineering"
+        },
+        {
+          "id": "biomedical-engineering",
+          "title": "Biomedical Engineering"
+        },
+        {
+          "id": "biotechnology-engineering",
+          "title": "Biotechnology Engineering"
+        },
+        {
+          "id": "environmental-engineering",
+          "title": "Environmental Engineering"
+        },
+        {
+          "id": "materials-metallurgical-engineering",
+          "title": "Materials and Metallurgical Engineering"
+        },
+        {
+          "id": "industrial-production-engineering",
+          "title": "Industrial and Production Engineering"
+        },
+        {
+          "id": "mining-engineering",
+          "title": "Mining Engineering"
+        },
+        {
+          "id": "petroleum-engineering",
+          "title": "Petroleum Engineering"
+        },
+        {
+          "id": "textile-engineering",
+          "title": "Textile Engineering"
+        },
+        {
+          "id": "agricultural-engineering",
+          "title": "Agricultural Engineering"
+        },
+        {
+          "id": "naval-architecture-marine-engineering",
+          "title": "Naval Architecture and Marine Engineering"
         }
       ]
     }
