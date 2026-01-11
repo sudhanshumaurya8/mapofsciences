@@ -1,0 +1,28 @@
+#breadcrumb {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 10px 16px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.crumb {
+  color: #2563eb;
+}
+
+.crumb.clickable {
+  cursor: pointer;
+}
+
+.crumb.clickable:hover {
+  text-decoration: underline;
+}
+
+.crumb.current {
+  color: #111827;
+  font-weight: 600;
+}
+
+.arrow {
+  color: #6b7280;
+}

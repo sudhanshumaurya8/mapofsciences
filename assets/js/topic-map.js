@@ -137,3 +137,61 @@ function drawConnection(x1, y1, x2, y2) {
 
   g.appendChild(path);
 }
+enableZoomPan(svg, g);
+
+function enableZoomPan(svg, group) {
+  let scale = 1;
+  let translateX = 0;
+  let translateY = 0;
+
+  let isPanning = false;
+  let startX, startY;
+
+  // Apply transform
+  function updateTransform() {
+    group.setAttribute(
+      "transform",
+      `translate(${translateX}, ${translateY}) scale(${scale})`
+    );
+  }
+
+  // Zoom with mouse wheel
+  svg.addEventListener("wheel", (e) => {
+    e.preventDefault();
+
+    const zoomSpeed = 0.1;
+    const direction = e.deltaY > 0 ? -1 : 1;
+    const factor = 1 + zoomSpeed * direction;
+
+    scale *= factor;
+    scale = Math.min(Math.max(scale, 0.4), 3); // limits
+
+    updateTransform();
+  });
+
+  // Start panning
+  svg.addEventListener("mousedown", (e) => {
+    isPanning = true;
+    startX = e.clientX - translateX;
+    startY = e.clientY - translateY;
+    svg.style.cursor = "grabbing";
+  });
+
+  // Pan movement
+  svg.addEventListener("mousemove", (e) => {
+    if (!isPanning) return;
+
+    translateX = e.clientX - startX;
+    translateY = e.clientY - startY;
+    updateTransform();
+  });
+
+  // Stop panning
+  svg.addEventListener("mouseup", stopPan);
+  svg.addEventListener("mouseleave", stopPan);
+
+  function stopPan() {
+    isPanning = false;
+    svg.style.cursor = "default";
+  }
+}
