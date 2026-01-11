@@ -1,21 +1,7 @@
-const params = new URLSearchParams(window.location.search);
-const nodeId = params.get("id");
-const node = findNodeById(tree, nodeId);
+<body>
 
-// center = clicked node
-drawNode(centerX, centerY, node);
+<div id="breadcrumb"></div>
+<svg id="mindmap" width="1200" height="800"></svg>
 
-// right side = its children
-node.children?.forEach(...)
-const centerX = width * 0.25;
-const rightX  = width * 0.65;
-const GAP     = 80;
-startY = centerY - (children.length * GAP) / 2;
-svg.call(
-  d3.zoom().on("zoom", (event) => {
-    g.setAttribute(
-      "transform",
-      event.transform
-    );
-  })
-);
+<script src="assets/js/topic-map.js"></script>
+</body>
