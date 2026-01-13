@@ -24,1227 +24,1739 @@
           "title": "Electronics and Communication Engineering"
         },
         {
-  "id": "computer-science",
-  "title": "Computer Science",
-  "children": [
-    {
-  "id": "algorithms-data-structures",
-  "title": "Algorithms and Data Structure",
-  "children": [
-    {
-      "id": "algorithms",
-      "title": "Algorithms",
-      "children": [
-        {
-          "id": "key-properties",
-          "title": "Key Properties",
-          "children": [
-            { "id": "correctness", "title": "Correctness" },
-            { "id": "efficiency", "title": "Efficiency" },
-            { "id": "deterministic", "title": "Deterministic" },
-            { "id": "finiteness", "title": "Finiteness" }
-          ]
-        },
-        {
-          "id": "types-of-algorithms",
-          "title": "Types of Algorithms",
+          "id": "computer-science",
+          "title": "Computer Science",
           "children": [
             {
-  "id": "greedy",
-  "title": "Greedy Algorithms",
-  "count": 35,
-  "children": [
-    {
-      "id": "greedy-key-characteristics",
-      "title": "Key Characteristics",
-      "children": [
-        { "id": "greedy-choice-property", "title": "Greedy Choice Property" },
-        { "id": "optimal-substructure", "title": "Optimal Substructure" },
-        { "id": "irreversible-decisions", "title": "Irreversible Decisions" },
-        { "id": "greedy-efficiency", "title": "Efficiency" }
-      ]
-    },
-    {
-      "id": "steps-greedy-design",
-      "title": "Steps in Designing a Greedy Algorithm",
-      "children": [
-        { "id": "define-problem", "title": "Define the Problem and Identify Choices" },
-        { "id": "determine-greedy-choice", "title": "Determine the Greedy Choice" },
-        { "id": "prove-greedy-property", "title": "Prove Greedy Choice Property" },
-        { "id": "check-optimal-substructure", "title": "Check Optimal Substructure" },
-        { "id": "implement-algorithm", "title": "Implement the Algorithm" }
-      ]
-    },
-    {
-      "id": "greedy-examples",
-      "title": "Examples",
-      "children": [
-        { "id": "fractional-knapsack", "title": "Fractional Knapsack Problem" },
-        { "id": "activity-selection", "title": "Activity Selection Problem" },
-        { "id": "huffman-coding", "title": "Huffman Coding" },
-        {
-          "id": "mst-greedy",
-          "title": "Prim’s and Kruskal’s Algorithms for Minimum Spanning Tree"
-        },
-        {
-          "id": "dijkstra",
-          "title": "Dijkstra’s Algorithm for Shortest Path"
-        }
-      ]
-    },
-    {
-      "id": "greedy-complexity",
-      "title": "Complexity Analysis",
-      "children": [
-        { "id": "sorting-requirement", "title": "Sorting Requirement" },
-        { "id": "min-max-selection", "title": "Selection of Minimum / Maximum" },
-        { "id": "overall-complexity", "title": "Overall Complexity" }
-      ]
-    },
-    {
-      "id": "when-to-use-greedy",
-      "title": "When to Use Greedy Algorithm",
-      "children": [
-        { "id": "greedy-choice-condition", "title": "Greedy Choice Property" },
-        { "id": "optimal-substructure-condition", "title": "Optimal Substructure" },
-        { "id": "efficiency-requirement", "title": "Efficiency Requirement" },
-        {
-          "id": "tradeoff",
-          "title": "Trade-off Between Optimality and Complexity"
-        }
-      ]
-    },
-    {
-      "id": "greedy-advantages-disadvantages",
-      "title": "Advantages / Disadvantages",
-      "children": [
-        {
-          "id": "greedy-advantages",
-          "title": "Advantages",
-          "children": [
-            { "id": "simplicity", "title": "Simplicity" },
-            { "id": "fast-execution", "title": "Fast Execution" },
-            { "id": "high-efficiency", "title": "Efficiency" }
-          ]
-        },
-        {
-          "id": "greedy-disadvantages",
-          "title": "Disadvantages",
-          "children": [
-            { "id": "lack-global-optimality", "title": "Lack of Global Optimality" },
-            { "id": "problem-specific", "title": "Problem Specific" },
-            { "id": "irreversibility", "title": "Irreversibility" }
-          ]
-        }
-      ]
-    }
-  ]
-},
-
-            {
-  "id": "divide-conquer",
-  "title": "Divide and Conquer Algorithms",
-  "count": 31,
-  "children": [
-    {
-      "id": "dc-key-characteristics",
-      "title": "Key Characteristics",
-      "children": [
-        { "id": "problem-decomposition", "title": "Problem Decomposition" },
-        { "id": "recursive-solving", "title": "Recursive Problem Solving" },
-        { "id": "combination-results", "title": "Combination of Results" },
-        { "id": "dc-efficiency", "title": "Efficiency" },
-        { "id": "dc-optimal-substructure", "title": "Optimal Substructure" }
-      ]
-    },
-    {
-      "id": "dc-structure",
-      "title": "Structure of Divide and Conquer",
-      "children": [
-        { "id": "divide", "title": "Divide" },
-        { "id": "conquer", "title": "Conquer" },
-        { "id": "combine", "title": "Combine" }
-      ]
-    },
-    {
-      "id": "dc-examples",
-      "title": "Algorithm Examples",
-      "children": [
-        { "id": "merge-sort", "title": "Merge Sort" },
-        { "id": "quick-sort", "title": "Quick Sort" },
-        { "id": "binary-search", "title": "Binary Search" },
-        { "id": "matrix-multiplication", "title": "Matrix Multiplication" },
-        { "id": "closest-pair", "title": "Closest Pair of Points" }
-      ]
-    },
-    {
-      "id": "dc-complexity",
-      "title": "Complexity Analysis"
-    },
-    {
-      "id": "dc-advantages-disadvantages",
-      "title": "Advantages / Disadvantages",
-      "children": [
-        {
-          "id": "dc-advantages",
-          "title": "Advantages",
-          "children": [
-            { "id": "dc-efficiency-adv", "title": "Efficiency" },
-            { "id": "dc-parallelism", "title": "Parallelism" },
-            { "id": "dc-simplicity", "title": "Simplifies Complex Problems" }
-          ]
-        },
-        {
-          "id": "dc-disadvantages",
-          "title": "Disadvantages",
-          "children": [
-            { "id": "recursion-overhead", "title": "Overhead of Recursion" },
-            { "id": "redundant-computation", "title": "Redundant Computation" },
-            {
-              "id": "dc-decomposition-difficulty",
-              "title": "Difficulty in Problem Decomposition"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "dc-applications",
-      "title": "Applications",
-      "children": [
-        { "id": "dc-sorting", "title": "Sorting Algorithms" },
-        { "id": "dc-searching", "title": "Searching Algorithms" },
-        { "id": "dc-geometry", "title": "Computational Geometry" },
-        { "id": "dc-parallel-computing", "title": "Parallel Computing" }
-      ]
-    }
-  ]
-},
-
-            {
-  "id": "dynamic-programming",
-  "title": "Dynamic Programming",
-  "count": 38,
-  "children": [
-    {
-      "id": "dp-key-characteristics",
-      "title": "Key Characteristics",
-      "children": [
-        { "id": "dp-optimal-substructure", "title": "Optimal Substructure" },
-        { "id": "overlapping-subproblems", "title": "Overlapping Subproblems" },
-        {
-          "id": "memoization-tabulation",
-          "title": "Memoization or Tabulation"
-        }
-      ]
-    },
-    {
-      "id": "dp-steps-design",
-      "title": "Steps to Design",
-      "children": [
-        { "id": "define-state", "title": "Define the State" },
-        {
-          "id": "recurrence-relation",
-          "title": "Formulate the Recurrence Relation"
-        },
-        { "id": "base-cases", "title": "Identify the Base Cases" },
-        {
-          "id": "choose-approach",
-          "title": "Choose a Memoization or Tabulation Approach"
-        },
-        { "id": "construct-solution", "title": "Construct" }
-      ]
-    },
-    {
-      "id": "dp-types",
-      "title": "Types",
-      "children": [
-        {
-          "id": "memoization",
-          "title": "Memoization (Top-Down Approach)"
-        },
-        {
-          "id": "tabulation",
-          "title": "Tabulation (Bottom-Up Approach)"
-        }
-      ]
-    },
-    {
-      "id": "dp-examples",
-      "title": "Examples",
-      "children": [
-        { "id": "fibonacci", "title": "Fibonacci Sequence" },
-        { "id": "dp-knapsack", "title": "Knapsack Problem" },
-        {
-          "id": "lcs",
-          "title": "Longest Common Subsequence (LCS)"
-        },
-        { "id": "coin-change", "title": "Coin Change Problem" },
-        {
-          "id": "edit-distance",
-          "title": "Edit Distance (Levenshtein Distance)"
-        },
-        { "id": "subset-sum", "title": "Subset Sum Problem" }
-      ]
-    },
-    {
-      "id": "dp-complexity",
-      "title": "Complexity Analysis",
-      "children": [
-        { "id": "dp-time", "title": "Time Complexity" },
-        { "id": "dp-space", "title": "Space Complexity" },
-        {
-          "id": "overlap-vs-no-overlap",
-          "title": "Overlapping Subproblems vs No Overlapping Subproblems"
-        }
-      ]
-    },
-    {
-      "id": "dp-advantages-disadvantages",
-      "title": "Advantages / Disadvantages",
-      "children": [
-        {
-          "id": "dp-advantages",
-          "title": "Advantages",
-          "children": [
-            { "id": "dp-efficiency", "title": "Efficiency" },
-            { "id": "optimal-solutions", "title": "Optimal Solutions" },
-            { "id": "dp-applicability", "title": "Applicability" }
-          ]
-        },
-        {
-          "id": "dp-disadvantages",
-          "title": "Disadvantages",
-          "children": [
-            { "id": "memory-usage", "title": "Memory Usage" },
-            { "id": "dp-complexity", "title": "Complexity" },
-            {
-              "id": "dp-limitations",
-              "title": "Applicability Limitations"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "dp-applications",
-      "title": "Applications",
-      "children": [
-        {
-          "id": "operations-research",
-          "title": "Operations Research and Economics"
-        },
-        { "id": "bioinformatics", "title": "Bioinformatics" },
-        {
-          "id": "cs-algorithms",
-          "title": "Computer Science Algorithms"
-        },
-        { "id": "machine-learning", "title": "Machine Learning" }
-      ]
-    }
-  ]
-},
-
-            {
-  "id": "backtracking",
-  "title": "Backtracking",
-  "count": 34,
-  "children": [
-    {
-      "id": "backtracking-key-characteristics",
-      "title": "Key Characteristics",
-      "children": [
-        { "id": "incremental-construction", "title": "Incremental Construction" },
-        { "id": "constraint-satisfaction", "title": "Constraints Satisfaction" },
-        { "id": "recursive-exploration", "title": "Recursive Exploration" },
-        { "id": "pruning-search-space", "title": "Pruning of Search Space" },
-        {
-          "id": "exhaustive-search-constraints",
-          "title": "Exhaustive Search with Constraints"
-        }
-      ]
-    },
-    {
-      "id": "backtracking-steps",
-      "title": "Steps in Designing a Backtracking Solution",
-      "children": [
-        { "id": "define-problem", "title": "Define the Problem" },
-        {
-          "id": "identify-decision-points",
-          "title": "Identify the Decision Points"
-        },
-        {
-          "id": "recursive-backtracking",
-          "title": "Implement Recursive Backtracking with Constraints"
-        },
-        {
-          "id": "collect-solutions",
-          "title": "Return or Collect Valid Solutions"
-        }
-      ]
-    },
-    {
-      "id": "backtracking-examples",
-      "title": "Examples",
-      "children": [
-        { "id": "n-queen", "title": "N-Queen Problem" },
-        { "id": "sudoku", "title": "Sudoku Solver" },
-        {
-          "id": "permutations",
-          "title": "Permutations of a Set"
-        },
-        { "id": "subset-sum-bt", "title": "Subset Sum Problem" }
-      ]
-    },
-    {
-      "id": "backtracking-complexity",
-      "title": "Complexity Analysis",
-      "children": [
-        {
-          "id": "worst-case-complexity",
-          "title": "Worst Case Complexity"
-        },
-        { "id": "bt-space-complexity", "title": "Space Complexity" },
-        {
-          "id": "pruning-optimization",
-          "title": "Optimization through Pruning"
-        }
-      ]
-    },
-    {
-      "id": "backtracking-advantages-disadvantages",
-      "title": "Advantages / Disadvantages",
-      "children": [
-        {
-          "id": "bt-advantages",
-          "title": "Advantages",
-          "children": [
-            {
-              "id": "constraint-effectiveness",
-              "title": "Effective for Constraint Satisfaction"
-            },
-            { "id": "bt-flexibility", "title": "Flexibility" },
-            {
-              "id": "optimal-solution-bt",
-              "title": "Optimal Solution"
-            }
-          ]
-        },
-        {
-          "id": "bt-disadvantages",
-          "title": "Disadvantages",
-          "children": [
-            {
-              "id": "high-computation",
-              "title": "High Computational Cost"
-            },
-            {
-              "id": "limited-applicability",
-              "title": "Limited Applicability"
-            },
-            { "id": "bt-memory", "title": "Memory Usage" }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "when-to-use-backtracking",
-      "title": "When to Use Backtracking",
-      "children": [
-        {
-          "id": "constraint-problems",
-          "title": "Constraint Satisfaction"
-        },
-        {
-          "id": "combinatorial-explosion",
-          "title": "Combinatorial Explosion"
-        },
-        { "id": "recursive-nature", "title": "Recursive Nature" },
-        {
-          "id": "valid-solutions",
-          "title": "Finding All or Any Valid Solutions"
-        }
-      ]
-    },
-    {
-      "id": "backtracking-applications",
-      "title": "Applications",
-      "children": [
-        { "id": "puzzle-solving", "title": "Puzzle Solving" },
-        { "id": "graph-coloring", "title": "Graph Coloring" },
-        {
-          "id": "combinatorial-generation",
-          "title": "Combinatorial Generation"
-        },
-        {
-          "id": "csp",
-          "title": "Constraint Satisfaction Problems"
-        },
-        { "id": "pathfinding", "title": "Pathfinding" }
-      ]
-    }
-  ]
-},
-
-            {
-  "id": "brute-force",
-  "title": "Brute Force",
-  "count": 28,
-  "children": [
-    {
-      "id": "bruteforce-key-characteristics",
-      "title": "Key Characteristics",
-      "children": [
-        { "id": "exhaustive-search", "title": "Exhaustive Search" },
-        { "id": "bruteforce-simplicity", "title": "Simplicity" },
-        {
-          "id": "high-computational-cost",
-          "title": "High Computational Cost"
-        },
-        { "id": "guaranteed-solution", "title": "Guaranteed Solution" },
-        { "id": "lack-of-efficiency", "title": "Lack of Efficiency" }
-      ]
-    },
-    {
-      "id": "bruteforce-types",
-      "title": "Types",
-      "children": [
-        {
-          "id": "complete-enumeration",
-          "title": "Complete Enumeration"
-        },
-        { "id": "trial-and-error", "title": "Trial and Error" },
-        {
-          "id": "optimization-exhaustive-search",
-          "title": "Exhaustive Search for Optimization"
-        }
-      ]
-    },
-    {
-      "id": "bruteforce-examples",
-      "title": "Examples",
-      "children": [
-        { "id": "string-matching", "title": "String Matching" },
-        {
-          "id": "travelling-salesman",
-          "title": "Travelling Salesman Problem"
-        },
-        {
-          "id": "subset-sum-bruteforce",
-          "title": "Subset Sum Problem"
-        },
-        {
-          "id": "all-permutations",
-          "title": "Generating All Permutations"
-        }
-      ]
-    },
-    {
-      "id": "bruteforce-complexity",
-      "title": "Complexity Analysis",
-      "children": [
-        { "id": "bf-time-complexity", "title": "Time Complexity" },
-        { "id": "bf-space-complexity", "title": "Space Complexity" },
-        {
-          "id": "scalability-issues",
-          "title": "Scalability Issues"
-        }
-      ]
-    },
-    {
-      "id": "bruteforce-advantages-disadvantages",
-      "title": "Advantages / Disadvantages",
-      "children": [
-        {
-          "id": "bf-advantages",
-          "title": "Advantages",
-          "children": [
-            { "id": "bf-simple", "title": "Simplicity" },
-            {
-              "id": "bf-guaranteed",
-              "title": "Guaranteed Solution"
-            },
-            {
-              "id": "baseline-approach",
-              "title": "Useful as Baseline"
-            }
-          ]
-        },
-        {
-          "id": "bf-disadvantages",
-          "title": "Disadvantages",
-          "children": [
-            { "id": "bf-inefficiency", "title": "Inefficiency" },
-            {
-              "id": "redundant-computation",
-              "title": "Redundant Computation"
-            },
-            {
-              "id": "limited-scalability",
-              "title": "Limited Scalability"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "when-to-use-bruteforce",
-      "title": "When to Use Brute Force",
-      "children": [
-        { "id": "small-input-size", "title": "Input Size is Small" },
-        {
-          "id": "no-optimized-solution",
-          "title": "No Optimized Solution Exists"
-        },
-        {
-          "id": "all-solutions-required",
-          "title": "All Solutions Must Be Found"
-        },
-        {
-          "id": "exact-solution",
-          "title": "Exact Solution is Required"
-        }
-      ]
-    },
-    {
-      "id": "bruteforce-applications",
-      "title": "Applications of Brute Force",
-      "children": [
-        { "id": "cryptanalysis", "title": "Cryptanalysis" },
-        {
-          "id": "exhaustive-combinatorial",
-          "title": "Exhaustive Combinatorial Generation"
-        },
-        {
-          "id": "bruteforce-search",
-          "title": "Search Algorithms"
-        },
-        {
-          "id": "puzzle-game-solving",
-          "title": "Puzzle and Game Solving"
-        }
-      ]
-    }
-  ]
-},
-
-            {
-  "id": "recursion",
-  "title": "Recursion",
-  "count": 32,
-  "children": [
-    {
-      "id": "recursion-key-characteristics",
-      "title": "Key Characteristics",
-      "children": [
-        {
-          "id": "self-referential-call",
-          "title": "Self Referential Function Call"
-        },
-        { "id": "base-case", "title": "Base Case" },
-        { "id": "recursive-case", "title": "Recursive Case" },
-        { "id": "stack-frame", "title": "Stack Frame" },
-        {
-          "id": "recursion-divide-conquer",
-          "title": "Divide and Conquer"
-        }
-      ]
-    },
-    {
-      "id": "types-of-recursion",
-      "title": "Types of Recursion",
-      "children": [
-        { "id": "direct-recursion", "title": "Direct Recursion" },
-        {
-          "id": "indirect-recursion",
-          "title": "Indirect Recursion"
-        },
-        { "id": "tail-recursion", "title": "Tail Recursion" },
-        {
-          "id": "non-tail-recursion",
-          "title": "Non-tail Recursion"
-        },
-        { "id": "tree-recursion", "title": "Tree Recursion" }
-      ]
-    },
-    {
-      "id": "recursion-examples",
-      "title": "Examples",
-      "children": [
-        {
-          "id": "fibonacci-recursion",
-          "title": "Fibonacci Sequence"
-        },
-        {
-          "id": "binary-search-recursion",
-          "title": "Binary Search"
-        },
-        { "id": "merge-sort", "title": "Merge Sort" },
-        { "id": "n-queen", "title": "N-Queen Problem" }
-      ]
-    },
-    {
-      "id": "recursion-complexity",
-      "title": "Complexity Analysis",
-      "children": [
-        { "id": "rec-time", "title": "Time Complexity" },
-        { "id": "rec-space", "title": "Space Complexity" },
-        {
-          "id": "optimization-techniques",
-          "title": "Optimization Techniques"
-        }
-      ]
-    },
-    {
-      "id": "recursion-advantages-disadvantages",
-      "title": "Advantages / Disadvantages",
-      "children": [
-        {
-          "id": "recursion-advantages",
-          "title": "Advantages",
-          "children": [
-            {
-              "id": "simplifies-problems",
-              "title": "Simplifies Complex Problems"
-            },
-            { "id": "readability", "title": "Readability" },
-            {
-              "id": "powerful-divide-conquer",
-              "title": "Powerful for Divide and Conquer"
-            }
-          ]
-        },
-        {
-          "id": "recursion-disadvantages",
-          "title": "Disadvantages",
-          "children": [
-            {
-              "id": "high-memory-usage",
-              "title": "High Memory Usage"
-            },
-            {
-              "id": "redundant-computation",
-              "title": "Inefficiency Due to Redundant Computations"
-            },
-            {
-              "id": "difficult-debug",
-              "title": "Difficult to Debug"
-            },
-            {
-              "id": "stack-size-dependence",
-              "title": "Dependence on Stack Size"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "recursion-applications",
-      "title": "Applications of Recursion",
-      "children": [
-        { "id": "ds-recursion", "title": "Data Structures" },
-        {
-          "id": "rec-divide-conquer",
-          "title": "Divide and Conquer"
-        },
-        {
-          "id": "rec-dynamic-programming",
-          "title": "Dynamic Programming"
-        },
-        {
-          "id": "combinatorial-problems",
-          "title": "Combinatorial Problems"
-        },
-        { "id": "puzzle-solving", "title": "Puzzle Solving" }
-      ]
-    }
-  ]
-},
-            {
-  "id": "search-algorithms",
-  "title": "Search Algorithms",
-  "count": 28,
-  "children": [
-    {
-      "id": "types-of-search-algorithms",
-      "title": "Types of Search Algorithms",
-      "children": [
-        {
-          "id": "uninformed-search",
-          "title": "Uninformed Search Algorithms"
-        },
-        {
-          "id": "informed-search",
-          "title": "Informed (Heuristic) Search Algorithms"
-        }
-      ]
-    },
-    {
-      "id": "key-search-algorithms",
-      "title": "Key Search Algorithms",
-      "children": [
-        {
-          "id": "linear-search",
-          "title": "Linear Search"
-        },
-        {
-          "id": "binary-search",
-          "title": "Binary Search"
-        },
-        {
-          "id": "dfs",
-          "title": "Depth First Search (DFS)"
-        },
-        {
-          "id": "bfs",
-          "title": "Breadth First Search (BFS)"
-        },
-        {
-          "id": "interpolation-search",
-          "title": "Interpolation Search"
-        }
-      ]
-    },
-    {
-      "id": "factors-choosing-search",
-      "title": "Factors to Consider While Choosing Search Algorithms",
-      "children": [
-        {
-          "id": "data-structure-size",
-          "title": "Data Structure and Size"
-        },
-        {
-          "id": "data-organization",
-          "title": "Data Organization"
-        },
-        {
-          "id": "memory-constraints",
-          "title": "Memory Constraints"
-        },
-        {
-          "id": "heuristic-information",
-          "title": "Heuristic Information"
-        },
-        {
-          "id": "required-output",
-          "title": "Required Output"
-        }
-      ]
-    },
-    {
-      "id": "search-applications",
-      "title": "Applications",
-      "children": [
-        {
-          "id": "database-retrieval",
-          "title": "Data Retrieval in Databases"
-        },
-        {
-          "id": "file-system-search",
-          "title": "File System"
-        },
-        {
-          "id": "ai-ml-search",
-          "title": "Artificial Intelligence and Machine Learning"
-        },
-        {
-          "id": "web-crawlers",
-          "title": "Network and Web Crawlers"
-        },
-        {
-          "id": "puzzle-solving-search",
-          "title": "Puzzle Solving"
-        }
-      ]
-    }
-  ]
-},
-            {
-  "id": "sorting-algorithms",
-  "title": "Sorting Algorithms",
-  "count": 26,
-  "children": [
-    {
-      "id": "categories-of-sorting",
-      "title": "Categories of Sorting",
-      "children": [
-        {
-          "id": "comparison-based-sorting",
-          "title": "Comparison Based Sorting"
-        },
-        {
-          "id": "non-comparison-based-sorting",
-          "title": "Non Comparison Based Sorting"
-        },
-        {
-          "id": "internal-external-sorting",
-          "title": "Internal vs External Sorting"
-        },
-        {
-          "id": "stable-unstable-sorting",
-          "title": "Stable vs Unstable Sorting"
-        }
-      ]
-    },
-    {
-      "id": "key-sorting-algorithms",
-      "title": "Key Sorting Algorithms",
-      "children": [
-        {
-          "id": "bubble-sort",
-          "title": "Bubble Sort"
-        },
-        {
-          "id": "selection-sort",
-          "title": "Selection Sort"
-        },
-        {
-          "id": "insertion-sort",
-          "title": "Insertion Sort"
-        },
-        {
-          "id": "merge-sort",
-          "title": "Merge Sort"
-        },
-        {
-          "id": "quick-sort",
-          "title": "Quick Sort"
-        },
-        {
-          "id": "heap-sort",
-          "title": "Heap Sort"
-        },
-        {
-          "id": "counting-sort",
-          "title": "Counting Sort"
-        }
-      ]
-    },
-    {
-      "id": "choosing-right-sorting-algorithm",
-      "title": "Choosing the Right Sorting Algorithm",
-      "children": [
-        {
-          "id": "data-size",
-          "title": "Data Size"
-        },
-        {
-          "id": "data-characteristics",
-          "title": "Data Characteristics"
-        },
-        {
-          "id": "memory-constraints-sorting",
-          "title": "Memory Constraints"
-        },
-        {
-          "id": "stability-requirement",
-          "title": "Stability Requirement"
-        },
-        {
-          "id": "time-constraint",
-          "title": "Time Constraint"
-        }
-      ]
-    }
-  ]
-},
-          ]
-        },
-        {
-          "id": "time-space-complexity",
-          "title": "Time and Space Complexity",
-          "children": [
-            { "id": "time-complexity", "title": "Time Complexity" },
-            { "id": "space-complexity", "title": "Space Complexity" }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "data-structures",
-      "title": "Data Structures",
-      "children": [
-        {
-          "id": "types-of-data-structures",
-          "title": "Types of Data Structure",
-          "children": [
-            { "id": "primitive-ds", "title": "Primitive Data Structure" },
-            {
-              "id": "non-primitive-ds",
-              "title": "Non-Primitive Data Structures",
+              "id": "algorithms-data-structures",
+              "title": "Algorithms and Data Structure",
               "children": [
                 {
-                  "id": "linear-ds",
-                  "title": "Linear Data Structures",
+                  "id": "algorithms",
+                  "title": "Algorithms",
                   "children": [
-                    { "id": "arrays", "title": "Arrays" },
-                    { "id": "linked-lists", "title": "Linked Lists" },
-                    { "id": "stacks", "title": "Stacks" },
-                    { "id": "queues", "title": "Queues" }
+                    {
+                      "id": "key-properties",
+                      "title": "Key Properties",
+                      "children": [
+                        {
+                          "id": "correctness",
+                          "title": "Correctness"
+                        },
+                        {
+                          "id": "efficiency",
+                          "title": "Efficiency"
+                        },
+                        {
+                          "id": "deterministic",
+                          "title": "Deterministic"
+                        },
+                        {
+                          "id": "finiteness",
+                          "title": "Finiteness"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "types-of-algorithms",
+                      "title": "Types of Algorithms",
+                      "children": [
+                        {
+                          "id": "greedy",
+                          "title": "Greedy Algorithms",
+                          "count": 35,
+                          "children": [
+                            {
+                              "id": "greedy-key-characteristics",
+                              "title": "Key Characteristics",
+                              "children": [
+                                {
+                                  "id": "greedy-choice-property",
+                                  "title": "Greedy Choice Property"
+                                },
+                                {
+                                  "id": "optimal-substructure",
+                                  "title": "Optimal Substructure"
+                                },
+                                {
+                                  "id": "irreversible-decisions",
+                                  "title": "Irreversible Decisions"
+                                },
+                                {
+                                  "id": "greedy-efficiency",
+                                  "title": "Efficiency"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "steps-greedy-design",
+                              "title": "Steps in Designing a Greedy Algorithm",
+                              "children": [
+                                {
+                                  "id": "define-problem",
+                                  "title": "Define the Problem and Identify Choices"
+                                },
+                                {
+                                  "id": "determine-greedy-choice",
+                                  "title": "Determine the Greedy Choice"
+                                },
+                                {
+                                  "id": "prove-greedy-property",
+                                  "title": "Prove Greedy Choice Property"
+                                },
+                                {
+                                  "id": "check-optimal-substructure",
+                                  "title": "Check Optimal Substructure"
+                                },
+                                {
+                                  "id": "implement-algorithm",
+                                  "title": "Implement the Algorithm"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "greedy-examples",
+                              "title": "Examples",
+                              "children": [
+                                {
+                                  "id": "fractional-knapsack",
+                                  "title": "Fractional Knapsack Problem"
+                                },
+                                {
+                                  "id": "activity-selection",
+                                  "title": "Activity Selection Problem"
+                                },
+                                {
+                                  "id": "huffman-coding",
+                                  "title": "Huffman Coding"
+                                },
+                                {
+                                  "id": "mst-greedy",
+                                  "title": "Prim’s and Kruskal’s Algorithms for Minimum Spanning Tree"
+                                },
+                                {
+                                  "id": "dijkstra",
+                                  "title": "Dijkstra’s Algorithm for Shortest Path"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "greedy-complexity",
+                              "title": "Complexity Analysis",
+                              "children": [
+                                {
+                                  "id": "sorting-requirement",
+                                  "title": "Sorting Requirement"
+                                },
+                                {
+                                  "id": "min-max-selection",
+                                  "title": "Selection of Minimum / Maximum"
+                                },
+                                {
+                                  "id": "overall-complexity",
+                                  "title": "Overall Complexity"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "when-to-use-greedy",
+                              "title": "When to Use Greedy Algorithm",
+                              "children": [
+                                {
+                                  "id": "greedy-choice-condition",
+                                  "title": "Greedy Choice Property"
+                                },
+                                {
+                                  "id": "optimal-substructure-condition",
+                                  "title": "Optimal Substructure"
+                                },
+                                {
+                                  "id": "efficiency-requirement",
+                                  "title": "Efficiency Requirement"
+                                },
+                                {
+                                  "id": "tradeoff",
+                                  "title": "Trade-off Between Optimality and Complexity"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "greedy-advantages-disadvantages",
+                              "title": "Advantages / Disadvantages",
+                              "children": [
+                                {
+                                  "id": "greedy-advantages",
+                                  "title": "Advantages",
+                                  "children": [
+                                    {
+                                      "id": "simplicity",
+                                      "title": "Simplicity"
+                                    },
+                                    {
+                                      "id": "fast-execution",
+                                      "title": "Fast Execution"
+                                    },
+                                    {
+                                      "id": "high-efficiency",
+                                      "title": "Efficiency"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "greedy-disadvantages",
+                                  "title": "Disadvantages",
+                                  "children": [
+                                    {
+                                      "id": "lack-global-optimality",
+                                      "title": "Lack of Global Optimality"
+                                    },
+                                    {
+                                      "id": "problem-specific",
+                                      "title": "Problem Specific"
+                                    },
+                                    {
+                                      "id": "irreversibility",
+                                      "title": "Irreversibility"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "divide-conquer",
+                          "title": "Divide and Conquer Algorithms",
+                          "count": 31,
+                          "children": [
+                            {
+                              "id": "dc-key-characteristics",
+                              "title": "Key Characteristics",
+                              "children": [
+                                {
+                                  "id": "problem-decomposition",
+                                  "title": "Problem Decomposition"
+                                },
+                                {
+                                  "id": "recursive-solving",
+                                  "title": "Recursive Problem Solving"
+                                },
+                                {
+                                  "id": "combination-results",
+                                  "title": "Combination of Results"
+                                },
+                                {
+                                  "id": "dc-efficiency",
+                                  "title": "Efficiency"
+                                },
+                                {
+                                  "id": "dc-optimal-substructure",
+                                  "title": "Optimal Substructure"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "dc-structure",
+                              "title": "Structure of Divide and Conquer",
+                              "children": [
+                                {
+                                  "id": "divide",
+                                  "title": "Divide"
+                                },
+                                {
+                                  "id": "conquer",
+                                  "title": "Conquer"
+                                },
+                                {
+                                  "id": "combine",
+                                  "title": "Combine"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "dc-examples",
+                              "title": "Algorithm Examples",
+                              "children": [
+                                {
+                                  "id": "merge-sort",
+                                  "title": "Merge Sort"
+                                },
+                                {
+                                  "id": "quick-sort",
+                                  "title": "Quick Sort"
+                                },
+                                {
+                                  "id": "binary-search",
+                                  "title": "Binary Search"
+                                },
+                                {
+                                  "id": "matrix-multiplication",
+                                  "title": "Matrix Multiplication"
+                                },
+                                {
+                                  "id": "closest-pair",
+                                  "title": "Closest Pair of Points"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "dc-complexity",
+                              "title": "Complexity Analysis"
+                            },
+                            {
+                              "id": "dc-advantages-disadvantages",
+                              "title": "Advantages / Disadvantages",
+                              "children": [
+                                {
+                                  "id": "dc-advantages",
+                                  "title": "Advantages",
+                                  "children": [
+                                    {
+                                      "id": "dc-efficiency-adv",
+                                      "title": "Efficiency"
+                                    },
+                                    {
+                                      "id": "dc-parallelism",
+                                      "title": "Parallelism"
+                                    },
+                                    {
+                                      "id": "dc-simplicity",
+                                      "title": "Simplifies Complex Problems"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "dc-disadvantages",
+                                  "title": "Disadvantages",
+                                  "children": [
+                                    {
+                                      "id": "recursion-overhead",
+                                      "title": "Overhead of Recursion"
+                                    },
+                                    {
+                                      "id": "redundant-computation",
+                                      "title": "Redundant Computation"
+                                    },
+                                    {
+                                      "id": "dc-decomposition-difficulty",
+                                      "title": "Difficulty in Problem Decomposition"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "dc-applications",
+                              "title": "Applications",
+                              "children": [
+                                {
+                                  "id": "dc-sorting",
+                                  "title": "Sorting Algorithms"
+                                },
+                                {
+                                  "id": "dc-searching",
+                                  "title": "Searching Algorithms"
+                                },
+                                {
+                                  "id": "dc-geometry",
+                                  "title": "Computational Geometry"
+                                },
+                                {
+                                  "id": "dc-parallel-computing",
+                                  "title": "Parallel Computing"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "dynamic-programming",
+                          "title": "Dynamic Programming",
+                          "count": 38,
+                          "children": [
+                            {
+                              "id": "dp-key-characteristics",
+                              "title": "Key Characteristics",
+                              "children": [
+                                {
+                                  "id": "dp-optimal-substructure",
+                                  "title": "Optimal Substructure"
+                                },
+                                {
+                                  "id": "overlapping-subproblems",
+                                  "title": "Overlapping Subproblems"
+                                },
+                                {
+                                  "id": "memoization-tabulation",
+                                  "title": "Memoization or Tabulation"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "dp-steps-design",
+                              "title": "Steps to Design",
+                              "children": [
+                                {
+                                  "id": "define-state",
+                                  "title": "Define the State"
+                                },
+                                {
+                                  "id": "recurrence-relation",
+                                  "title": "Formulate the Recurrence Relation"
+                                },
+                                {
+                                  "id": "base-cases",
+                                  "title": "Identify the Base Cases"
+                                },
+                                {
+                                  "id": "choose-approach",
+                                  "title": "Choose a Memoization or Tabulation Approach"
+                                },
+                                {
+                                  "id": "construct-solution",
+                                  "title": "Construct"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "dp-types",
+                              "title": "Types",
+                              "children": [
+                                {
+                                  "id": "memoization",
+                                  "title": "Memoization (Top-Down Approach)"
+                                },
+                                {
+                                  "id": "tabulation",
+                                  "title": "Tabulation (Bottom-Up Approach)"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "dp-examples",
+                              "title": "Examples",
+                              "children": [
+                                {
+                                  "id": "fibonacci",
+                                  "title": "Fibonacci Sequence"
+                                },
+                                {
+                                  "id": "dp-knapsack",
+                                  "title": "Knapsack Problem"
+                                },
+                                {
+                                  "id": "lcs",
+                                  "title": "Longest Common Subsequence (LCS)"
+                                },
+                                {
+                                  "id": "coin-change",
+                                  "title": "Coin Change Problem"
+                                },
+                                {
+                                  "id": "edit-distance",
+                                  "title": "Edit Distance (Levenshtein Distance)"
+                                },
+                                {
+                                  "id": "subset-sum",
+                                  "title": "Subset Sum Problem"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "dp-complexity",
+                              "title": "Complexity Analysis",
+                              "children": [
+                                {
+                                  "id": "dp-time",
+                                  "title": "Time Complexity"
+                                },
+                                {
+                                  "id": "dp-space",
+                                  "title": "Space Complexity"
+                                },
+                                {
+                                  "id": "overlap-vs-no-overlap",
+                                  "title": "Overlapping Subproblems vs No Overlapping Subproblems"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "dp-advantages-disadvantages",
+                              "title": "Advantages / Disadvantages",
+                              "children": [
+                                {
+                                  "id": "dp-advantages",
+                                  "title": "Advantages",
+                                  "children": [
+                                    {
+                                      "id": "dp-efficiency",
+                                      "title": "Efficiency"
+                                    },
+                                    {
+                                      "id": "optimal-solutions",
+                                      "title": "Optimal Solutions"
+                                    },
+                                    {
+                                      "id": "dp-applicability",
+                                      "title": "Applicability"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "dp-disadvantages",
+                                  "title": "Disadvantages",
+                                  "children": [
+                                    {
+                                      "id": "memory-usage",
+                                      "title": "Memory Usage"
+                                    },
+                                    {
+                                      "id": "dp-complexity",
+                                      "title": "Complexity"
+                                    },
+                                    {
+                                      "id": "dp-limitations",
+                                      "title": "Applicability Limitations"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "dp-applications",
+                              "title": "Applications",
+                              "children": [
+                                {
+                                  "id": "operations-research",
+                                  "title": "Operations Research and Economics"
+                                },
+                                {
+                                  "id": "bioinformatics",
+                                  "title": "Bioinformatics"
+                                },
+                                {
+                                  "id": "cs-algorithms",
+                                  "title": "Computer Science Algorithms"
+                                },
+                                {
+                                  "id": "machine-learning",
+                                  "title": "Machine Learning"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "backtracking",
+                          "title": "Backtracking",
+                          "count": 34,
+                          "children": [
+                            {
+                              "id": "backtracking-key-characteristics",
+                              "title": "Key Characteristics",
+                              "children": [
+                                {
+                                  "id": "incremental-construction",
+                                  "title": "Incremental Construction"
+                                },
+                                {
+                                  "id": "constraint-satisfaction",
+                                  "title": "Constraints Satisfaction"
+                                },
+                                {
+                                  "id": "recursive-exploration",
+                                  "title": "Recursive Exploration"
+                                },
+                                {
+                                  "id": "pruning-search-space",
+                                  "title": "Pruning of Search Space"
+                                },
+                                {
+                                  "id": "exhaustive-search-constraints",
+                                  "title": "Exhaustive Search with Constraints"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "backtracking-steps",
+                              "title": "Steps in Designing a Backtracking Solution",
+                              "children": [
+                                {
+                                  "id": "define-problem",
+                                  "title": "Define the Problem"
+                                },
+                                {
+                                  "id": "identify-decision-points",
+                                  "title": "Identify the Decision Points"
+                                },
+                                {
+                                  "id": "recursive-backtracking",
+                                  "title": "Implement Recursive Backtracking with Constraints"
+                                },
+                                {
+                                  "id": "collect-solutions",
+                                  "title": "Return or Collect Valid Solutions"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "backtracking-examples",
+                              "title": "Examples",
+                              "children": [
+                                {
+                                  "id": "n-queen",
+                                  "title": "N-Queen Problem"
+                                },
+                                {
+                                  "id": "sudoku",
+                                  "title": "Sudoku Solver"
+                                },
+                                {
+                                  "id": "permutations",
+                                  "title": "Permutations of a Set"
+                                },
+                                {
+                                  "id": "subset-sum-bt",
+                                  "title": "Subset Sum Problem"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "backtracking-complexity",
+                              "title": "Complexity Analysis",
+                              "children": [
+                                {
+                                  "id": "worst-case-complexity",
+                                  "title": "Worst Case Complexity"
+                                },
+                                {
+                                  "id": "bt-space-complexity",
+                                  "title": "Space Complexity"
+                                },
+                                {
+                                  "id": "pruning-optimization",
+                                  "title": "Optimization through Pruning"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "backtracking-advantages-disadvantages",
+                              "title": "Advantages / Disadvantages",
+                              "children": [
+                                {
+                                  "id": "bt-advantages",
+                                  "title": "Advantages",
+                                  "children": [
+                                    {
+                                      "id": "constraint-effectiveness",
+                                      "title": "Effective for Constraint Satisfaction"
+                                    },
+                                    {
+                                      "id": "bt-flexibility",
+                                      "title": "Flexibility"
+                                    },
+                                    {
+                                      "id": "optimal-solution-bt",
+                                      "title": "Optimal Solution"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "bt-disadvantages",
+                                  "title": "Disadvantages",
+                                  "children": [
+                                    {
+                                      "id": "high-computation",
+                                      "title": "High Computational Cost"
+                                    },
+                                    {
+                                      "id": "limited-applicability",
+                                      "title": "Limited Applicability"
+                                    },
+                                    {
+                                      "id": "bt-memory",
+                                      "title": "Memory Usage"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "when-to-use-backtracking",
+                              "title": "When to Use Backtracking",
+                              "children": [
+                                {
+                                  "id": "constraint-problems",
+                                  "title": "Constraint Satisfaction"
+                                },
+                                {
+                                  "id": "combinatorial-explosion",
+                                  "title": "Combinatorial Explosion"
+                                },
+                                {
+                                  "id": "recursive-nature",
+                                  "title": "Recursive Nature"
+                                },
+                                {
+                                  "id": "valid-solutions",
+                                  "title": "Finding All or Any Valid Solutions"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "backtracking-applications",
+                              "title": "Applications",
+                              "children": [
+                                {
+                                  "id": "puzzle-solving",
+                                  "title": "Puzzle Solving"
+                                },
+                                {
+                                  "id": "graph-coloring",
+                                  "title": "Graph Coloring"
+                                },
+                                {
+                                  "id": "combinatorial-generation",
+                                  "title": "Combinatorial Generation"
+                                },
+                                {
+                                  "id": "csp",
+                                  "title": "Constraint Satisfaction Problems"
+                                },
+                                {
+                                  "id": "pathfinding",
+                                  "title": "Pathfinding"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "brute-force",
+                          "title": "Brute Force",
+                          "count": 28,
+                          "children": [
+                            {
+                              "id": "bruteforce-key-characteristics",
+                              "title": "Key Characteristics",
+                              "children": [
+                                {
+                                  "id": "exhaustive-search",
+                                  "title": "Exhaustive Search"
+                                },
+                                {
+                                  "id": "bruteforce-simplicity",
+                                  "title": "Simplicity"
+                                },
+                                {
+                                  "id": "high-computational-cost",
+                                  "title": "High Computational Cost"
+                                },
+                                {
+                                  "id": "guaranteed-solution",
+                                  "title": "Guaranteed Solution"
+                                },
+                                {
+                                  "id": "lack-of-efficiency",
+                                  "title": "Lack of Efficiency"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "bruteforce-types",
+                              "title": "Types",
+                              "children": [
+                                {
+                                  "id": "complete-enumeration",
+                                  "title": "Complete Enumeration"
+                                },
+                                {
+                                  "id": "trial-and-error",
+                                  "title": "Trial and Error"
+                                },
+                                {
+                                  "id": "optimization-exhaustive-search",
+                                  "title": "Exhaustive Search for Optimization"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "bruteforce-examples",
+                              "title": "Examples",
+                              "children": [
+                                {
+                                  "id": "string-matching",
+                                  "title": "String Matching"
+                                },
+                                {
+                                  "id": "travelling-salesman",
+                                  "title": "Travelling Salesman Problem"
+                                },
+                                {
+                                  "id": "subset-sum-bruteforce",
+                                  "title": "Subset Sum Problem"
+                                },
+                                {
+                                  "id": "all-permutations",
+                                  "title": "Generating All Permutations"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "bruteforce-complexity",
+                              "title": "Complexity Analysis",
+                              "children": [
+                                {
+                                  "id": "bf-time-complexity",
+                                  "title": "Time Complexity"
+                                },
+                                {
+                                  "id": "bf-space-complexity",
+                                  "title": "Space Complexity"
+                                },
+                                {
+                                  "id": "scalability-issues",
+                                  "title": "Scalability Issues"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "bruteforce-advantages-disadvantages",
+                              "title": "Advantages / Disadvantages",
+                              "children": [
+                                {
+                                  "id": "bf-advantages",
+                                  "title": "Advantages",
+                                  "children": [
+                                    {
+                                      "id": "bf-simple",
+                                      "title": "Simplicity"
+                                    },
+                                    {
+                                      "id": "bf-guaranteed",
+                                      "title": "Guaranteed Solution"
+                                    },
+                                    {
+                                      "id": "baseline-approach",
+                                      "title": "Useful as Baseline"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "bf-disadvantages",
+                                  "title": "Disadvantages",
+                                  "children": [
+                                    {
+                                      "id": "bf-inefficiency",
+                                      "title": "Inefficiency"
+                                    },
+                                    {
+                                      "id": "redundant-computation",
+                                      "title": "Redundant Computation"
+                                    },
+                                    {
+                                      "id": "limited-scalability",
+                                      "title": "Limited Scalability"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "when-to-use-bruteforce",
+                              "title": "When to Use Brute Force",
+                              "children": [
+                                {
+                                  "id": "small-input-size",
+                                  "title": "Input Size is Small"
+                                },
+                                {
+                                  "id": "no-optimized-solution",
+                                  "title": "No Optimized Solution Exists"
+                                },
+                                {
+                                  "id": "all-solutions-required",
+                                  "title": "All Solutions Must Be Found"
+                                },
+                                {
+                                  "id": "exact-solution",
+                                  "title": "Exact Solution is Required"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "bruteforce-applications",
+                              "title": "Applications of Brute Force",
+                              "children": [
+                                {
+                                  "id": "cryptanalysis",
+                                  "title": "Cryptanalysis"
+                                },
+                                {
+                                  "id": "exhaustive-combinatorial",
+                                  "title": "Exhaustive Combinatorial Generation"
+                                },
+                                {
+                                  "id": "bruteforce-search",
+                                  "title": "Search Algorithms"
+                                },
+                                {
+                                  "id": "puzzle-game-solving",
+                                  "title": "Puzzle and Game Solving"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "recursion",
+                          "title": "Recursion",
+                          "count": 32,
+                          "children": [
+                            {
+                              "id": "recursion-key-characteristics",
+                              "title": "Key Characteristics",
+                              "children": [
+                                {
+                                  "id": "self-referential-call",
+                                  "title": "Self Referential Function Call"
+                                },
+                                {
+                                  "id": "base-case",
+                                  "title": "Base Case"
+                                },
+                                {
+                                  "id": "recursive-case",
+                                  "title": "Recursive Case"
+                                },
+                                {
+                                  "id": "stack-frame",
+                                  "title": "Stack Frame"
+                                },
+                                {
+                                  "id": "recursion-divide-conquer",
+                                  "title": "Divide and Conquer"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "types-of-recursion",
+                              "title": "Types of Recursion",
+                              "children": [
+                                {
+                                  "id": "direct-recursion",
+                                  "title": "Direct Recursion"
+                                },
+                                {
+                                  "id": "indirect-recursion",
+                                  "title": "Indirect Recursion"
+                                },
+                                {
+                                  "id": "tail-recursion",
+                                  "title": "Tail Recursion"
+                                },
+                                {
+                                  "id": "non-tail-recursion",
+                                  "title": "Non-tail Recursion"
+                                },
+                                {
+                                  "id": "tree-recursion",
+                                  "title": "Tree Recursion"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "recursion-examples",
+                              "title": "Examples",
+                              "children": [
+                                {
+                                  "id": "fibonacci-recursion",
+                                  "title": "Fibonacci Sequence"
+                                },
+                                {
+                                  "id": "binary-search-recursion",
+                                  "title": "Binary Search"
+                                },
+                                {
+                                  "id": "merge-sort",
+                                  "title": "Merge Sort"
+                                },
+                                {
+                                  "id": "n-queen",
+                                  "title": "N-Queen Problem"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "recursion-complexity",
+                              "title": "Complexity Analysis",
+                              "children": [
+                                {
+                                  "id": "rec-time",
+                                  "title": "Time Complexity"
+                                },
+                                {
+                                  "id": "rec-space",
+                                  "title": "Space Complexity"
+                                },
+                                {
+                                  "id": "optimization-techniques",
+                                  "title": "Optimization Techniques"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "recursion-advantages-disadvantages",
+                              "title": "Advantages / Disadvantages",
+                              "children": [
+                                {
+                                  "id": "recursion-advantages",
+                                  "title": "Advantages",
+                                  "children": [
+                                    {
+                                      "id": "simplifies-problems",
+                                      "title": "Simplifies Complex Problems"
+                                    },
+                                    {
+                                      "id": "readability",
+                                      "title": "Readability"
+                                    },
+                                    {
+                                      "id": "powerful-divide-conquer",
+                                      "title": "Powerful for Divide and Conquer"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "id": "recursion-disadvantages",
+                                  "title": "Disadvantages",
+                                  "children": [
+                                    {
+                                      "id": "high-memory-usage",
+                                      "title": "High Memory Usage"
+                                    },
+                                    {
+                                      "id": "redundant-computation",
+                                      "title": "Inefficiency Due to Redundant Computations"
+                                    },
+                                    {
+                                      "id": "difficult-debug",
+                                      "title": "Difficult to Debug"
+                                    },
+                                    {
+                                      "id": "stack-size-dependence",
+                                      "title": "Dependence on Stack Size"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "id": "recursion-applications",
+                              "title": "Applications of Recursion",
+                              "children": [
+                                {
+                                  "id": "ds-recursion",
+                                  "title": "Data Structures"
+                                },
+                                {
+                                  "id": "rec-divide-conquer",
+                                  "title": "Divide and Conquer"
+                                },
+                                {
+                                  "id": "rec-dynamic-programming",
+                                  "title": "Dynamic Programming"
+                                },
+                                {
+                                  "id": "combinatorial-problems",
+                                  "title": "Combinatorial Problems"
+                                },
+                                {
+                                  "id": "puzzle-solving",
+                                  "title": "Puzzle Solving"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "search-algorithms",
+                          "title": "Search Algorithms",
+                          "count": 28,
+                          "children": [
+                            {
+                              "id": "types-of-search-algorithms",
+                              "title": "Types of Search Algorithms",
+                              "children": [
+                                {
+                                  "id": "uninformed-search",
+                                  "title": "Uninformed Search Algorithms"
+                                },
+                                {
+                                  "id": "informed-search",
+                                  "title": "Informed (Heuristic) Search Algorithms"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "key-search-algorithms",
+                              "title": "Key Search Algorithms",
+                              "children": [
+                                {
+                                  "id": "linear-search",
+                                  "title": "Linear Search"
+                                },
+                                {
+                                  "id": "binary-search",
+                                  "title": "Binary Search"
+                                },
+                                {
+                                  "id": "dfs",
+                                  "title": "Depth First Search (DFS)"
+                                },
+                                {
+                                  "id": "bfs",
+                                  "title": "Breadth First Search (BFS)"
+                                },
+                                {
+                                  "id": "interpolation-search",
+                                  "title": "Interpolation Search"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "factors-choosing-search",
+                              "title": "Factors to Consider While Choosing Search Algorithms",
+                              "children": [
+                                {
+                                  "id": "data-structure-size",
+                                  "title": "Data Structure and Size"
+                                },
+                                {
+                                  "id": "data-organization",
+                                  "title": "Data Organization"
+                                },
+                                {
+                                  "id": "memory-constraints",
+                                  "title": "Memory Constraints"
+                                },
+                                {
+                                  "id": "heuristic-information",
+                                  "title": "Heuristic Information"
+                                },
+                                {
+                                  "id": "required-output",
+                                  "title": "Required Output"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "search-applications",
+                              "title": "Applications",
+                              "children": [
+                                {
+                                  "id": "database-retrieval",
+                                  "title": "Data Retrieval in Databases"
+                                },
+                                {
+                                  "id": "file-system-search",
+                                  "title": "File System"
+                                },
+                                {
+                                  "id": "ai-ml-search",
+                                  "title": "Artificial Intelligence and Machine Learning"
+                                },
+                                {
+                                  "id": "web-crawlers",
+                                  "title": "Network and Web Crawlers"
+                                },
+                                {
+                                  "id": "puzzle-solving-search",
+                                  "title": "Puzzle Solving"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "id": "sorting-algorithms",
+                          "title": "Sorting Algorithms",
+                          "count": 26,
+                          "children": [
+                            {
+                              "id": "categories-of-sorting",
+                              "title": "Categories of Sorting",
+                              "children": [
+                                {
+                                  "id": "comparison-based-sorting",
+                                  "title": "Comparison Based Sorting"
+                                },
+                                {
+                                  "id": "non-comparison-based-sorting",
+                                  "title": "Non Comparison Based Sorting"
+                                },
+                                {
+                                  "id": "internal-external-sorting",
+                                  "title": "Internal vs External Sorting"
+                                },
+                                {
+                                  "id": "stable-unstable-sorting",
+                                  "title": "Stable vs Unstable Sorting"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "key-sorting-algorithms",
+                              "title": "Key Sorting Algorithms",
+                              "children": [
+                                {
+                                  "id": "bubble-sort",
+                                  "title": "Bubble Sort"
+                                },
+                                {
+                                  "id": "selection-sort",
+                                  "title": "Selection Sort"
+                                },
+                                {
+                                  "id": "insertion-sort",
+                                  "title": "Insertion Sort"
+                                },
+                                {
+                                  "id": "merge-sort",
+                                  "title": "Merge Sort"
+                                },
+                                {
+                                  "id": "quick-sort",
+                                  "title": "Quick Sort"
+                                },
+                                {
+                                  "id": "heap-sort",
+                                  "title": "Heap Sort"
+                                },
+                                {
+                                  "id": "counting-sort",
+                                  "title": "Counting Sort"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "choosing-right-sorting-algorithm",
+                              "title": "Choosing the Right Sorting Algorithm",
+                              "children": [
+                                {
+                                  "id": "data-size",
+                                  "title": "Data Size"
+                                },
+                                {
+                                  "id": "data-characteristics",
+                                  "title": "Data Characteristics"
+                                },
+                                {
+                                  "id": "memory-constraints-sorting",
+                                  "title": "Memory Constraints"
+                                },
+                                {
+                                  "id": "stability-requirement",
+                                  "title": "Stability Requirement"
+                                },
+                                {
+                                  "id": "time-constraint",
+                                  "title": "Time Constraint"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "time-space-complexity",
+                      "title": "Time and Space Complexity",
+                      "children": [
+                        {
+                          "id": "time-complexity",
+                          "title": "Time Complexity"
+                        },
+                        {
+                          "id": "space-complexity",
+                          "title": "Space Complexity"
+                        }
+                      ]
+                    }
                   ]
                 },
                 {
-                  "id": "non-linear-ds",
-                  "title": "Non-Linear Data Structures",
+                  "id": "data-structures",
+                  "title": "Data Structures",
                   "children": [
-                    { "id": "trees", "title": "Trees" },
-                    { "id": "graphs", "title": "Graphs" }
-                  ]
-                },
-                {
-                  "id": "other-ds",
-                  "title": "Other Important Data Structures",
-                  "children": [
-                    { "id": "hash-tables", "title": "Hash Tables" },
-                    { "id": "heaps", "title": "Heaps" }
+                    {
+                      "id": "types-of-data-structures",
+                      "title": "Types of Data Structure",
+                      "children": [
+                        {
+                          "id": "primitive-ds",
+                          "title": "Primitive Data Structure"
+                        },
+                        {
+                          "id": "non-primitive-ds",
+                          "title": "Non-Primitive Data Structures",
+                          "children": [
+                            {
+                              "id": "linear-ds",
+                              "title": "Linear Data Structures",
+                              "children": [
+                                {
+                                  "id": "arrays",
+                                  "title": "Arrays"
+                                },
+                                {
+                                  "id": "linked-lists",
+                                  "title": "Linked Lists"
+                                },
+                                {
+                                  "id": "stacks",
+                                  "title": "Stacks"
+                                },
+                                {
+                                  "id": "queues",
+                                  "title": "Queues"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "non-linear-ds",
+                              "title": "Non-Linear Data Structures",
+                              "children": [
+                                {
+                                  "id": "trees",
+                                  "title": "Trees"
+                                },
+                                {
+                                  "id": "graphs",
+                                  "title": "Graphs"
+                                }
+                              ]
+                            },
+                            {
+                              "id": "other-ds",
+                              "title": "Other Important Data Structures",
+                              "children": [
+                                {
+                                  "id": "hash-tables",
+                                  "title": "Hash Tables"
+                                },
+                                {
+                                  "id": "heaps",
+                                  "title": "Heaps"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "id": "choosing-ds",
+                      "title": "Choosing the Right Data Structure"
+                    }
                   ]
                 }
               ]
+            },
+            {
+              "id": "popular-programming-languages",
+              "title": "Popular Programming Languages and Their Applications",
+              "children": [
+                {
+                  "id": "python",
+                  "title": "Python",
+                  "count": 0,
+                  "children": [
+                    {
+                      "id": "python-data-science",
+                      "title": "Data Science & Machine Learning"
+                    },
+                    {
+                      "id": "python-web",
+                      "title": "Web Development"
+                    },
+                    {
+                      "id": "python-automation",
+                      "title": "Automation & Scripting"
+                    },
+                    {
+                      "id": "python-scientific",
+                      "title": "Scientific Computing"
+                    }
+                  ]
+                },
+                {
+                  "id": "java-details",
+                  "title": "Java",
+                  "children": [
+                    {
+                      "id": "java-key-features",
+                      "title": "Key Features",
+                      "children": [
+                        {
+                          "id": "java-oop",
+                          "title": "Object Oriented Programming (OOP)"
+                        },
+                        {
+                          "id": "java-platform-independent",
+                          "title": "Platform Independence"
+                        },
+                        {
+                          "id": "java-memory",
+                          "title": "Robust Memory Management"
+                        },
+                        {
+                          "id": "java-multithreading",
+                          "title": "Multithreading Support"
+                        },
+                        {
+                          "id": "java-security",
+                          "title": "Security"
+                        },
+                        {
+                          "id": "java-performance",
+                          "title": "High Performance"
+                        },
+                        {
+                          "id": "java-distributed",
+                          "title": "Distributed Computing"
+                        },
+                        {
+                          "id": "java-library",
+                          "title": "Rich Standard Library"
+                        },
+                        {
+                          "id": "java-scalability",
+                          "title": "Scalability"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "java-components",
+                      "title": "Components",
+                      "children": [
+                        {
+                          "id": "jdk",
+                          "title": "Java Development Kit (JDK)"
+                        },
+                        {
+                          "id": "jvm",
+                          "title": "Java Virtual Machine (JVM)"
+                        },
+                        {
+                          "id": "jre",
+                          "title": "Java Runtime Environment (JRE)"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "java-syntax",
+                      "title": "Java Syntax and Language Constructs",
+                      "children": [
+                        {
+                          "id": "java-data-types",
+                          "title": "Data Types"
+                        },
+                        {
+                          "id": "java-control-structures",
+                          "title": "Control Structures"
+                        },
+                        {
+                          "id": "java-classes-objects",
+                          "title": "Classes and Objects"
+                        },
+                        {
+                          "id": "java-methods",
+                          "title": "Methods"
+                        },
+                        {
+                          "id": "java-constructors",
+                          "title": "Constructors"
+                        },
+                        {
+                          "id": "java-inheritance",
+                          "title": "Inheritance"
+                        },
+                        {
+                          "id": "java-polymorphism",
+                          "title": "Polymorphism"
+                        },
+                        {
+                          "id": "java-abstraction",
+                          "title": "Abstraction and Interfaces"
+                        },
+                        {
+                          "id": "java-encapsulation",
+                          "title": "Encapsulation"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "java-libraries-frameworks",
+                      "title": "Popular Libraries and Frameworks",
+                      "children": [
+                        {
+                          "id": "java-web",
+                          "title": "Web Development"
+                        },
+                        {
+                          "id": "java-enterprise",
+                          "title": "Enterprise Applications"
+                        },
+                        {
+                          "id": "java-android",
+                          "title": "Android Development"
+                        },
+                        {
+                          "id": "java-ml",
+                          "title": "Data Science and Machine Learning"
+                        },
+                        {
+                          "id": "java-networking",
+                          "title": "Networking and Multithreading"
+                        },
+                        {
+                          "id": "java-testing",
+                          "title": "Testing Frameworks"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "java-adv-dis",
+                      "title": "Advantages and Disadvantages"
+                    }
+                  ]
+                },
+                {
+                  "id": "c-language",
+                  "title": "C",
+                  "count": 31,
+                  "children": [
+                    {
+                      "id": "c-system-programming",
+                      "title": "System Programming"
+                    },
+                    {
+                      "id": "c-embedded",
+                      "title": "Embedded Systems"
+                    },
+                    {
+                      "id": "c-operating-systems",
+                      "title": "Operating Systems"
+                    }
+                  ]
+                },
+                {
+                  "id": "cpp",
+                  "title": "C++",
+                  "count": 42,
+                  "children": [
+                    {
+                      "id": "cpp-game-dev",
+                      "title": "Game Development"
+                    },
+                    {
+                      "id": "cpp-high-performance",
+                      "title": "High Performance Computing"
+                    },
+                    {
+                      "id": "cpp-system-software",
+                      "title": "System Software"
+                    }
+                  ]
+                },
+                {
+                  "id": "javascript",
+                  "title": "JavaScript",
+                  "count": 55,
+                  "children": [
+                    {
+                      "id": "js-web",
+                      "title": "Web Development"
+                    },
+                    {
+                      "id": "js-frontend",
+                      "title": "Frontend Frameworks"
+                    },
+                    {
+                      "id": "js-backend",
+                      "title": "Backend (Node.js)"
+                    }
+                  ]
+                },
+                {
+                  "id": "swift",
+                  "title": "Swift",
+                  "count": 34,
+                  "children": [
+                    {
+                      "id": "swift-ios",
+                      "title": "iOS App Development"
+                    },
+                    {
+                      "id": "swift-macos",
+                      "title": "macOS Applications"
+                    }
+                  ]
+                },
+                {
+                  "id": "rust",
+                  "title": "Rust",
+                  "count": 28,
+                  "children": [
+                    {
+                      "id": "rust-systems",
+                      "title": "System Programming"
+                    },
+                    {
+                      "id": "rust-security",
+                      "title": "Memory-Safe Software"
+                    },
+                    {
+                      "id": "rust-blockchain",
+                      "title": "Blockchain Development"
+                    }
+                  ]
+                },
+                {
+                  "id": "go",
+                  "title": "Go",
+                  "children": [
+                    {
+                      "id": "go-cloud",
+                      "title": "Cloud Services"
+                    },
+                    {
+                      "id": "go-microservices",
+                      "title": "Microservices"
+                    },
+                    {
+                      "id": "go-networking",
+                      "title": "Networking Tools"
+                    }
+                  ]
+                },
+                {
+                  "id": "r-language",
+                  "title": "R",
+                  "count": 50,
+                  "children": [
+                    {
+                      "id": "r-statistics",
+                      "title": "Statistical Analysis"
+                    },
+                    {
+                      "id": "r-data-visualization",
+                      "title": "Data Visualization"
+                    },
+                    {
+                      "id": "r-research",
+                      "title": "Academic Research"
+                    }
+                  ]
+                },
+                {
+                  "id": "sql",
+                  "title": "SQL",
+                  "count": 35,
+                  "children": [
+                    {
+                      "id": "sql-databases",
+                      "title": "Database Management"
+                    },
+                    {
+                      "id": "sql-data-analysis",
+                      "title": "Data Analysis"
+                    },
+                    {
+                      "id": "sql-reporting",
+                      "title": "Business Reporting"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "software-engineering",
+              "title": "Software Engineering",
+              "count": 62
+            },
+            {
+              "id": "computer-architecture",
+              "title": "Computer Architecture",
+              "count": "99+"
+            },
+            {
+              "id": "operating-systems",
+              "title": "Operating Systems",
+              "count": 58
+            },
+            {
+              "id": "databases",
+              "title": "Databases",
+              "count": 30
+            },
+            {
+              "id": "ai-ml",
+              "title": "Artificial Intelligence (AI) and Machine Learning (ML)",
+              "count": "99+"
+            },
+            {
+              "id": "computer-networks",
+              "title": "Computer Networks",
+              "count": "99+"
+            },
+            {
+              "id": "theory-of-computation",
+              "title": "Theory of Computation",
+              "count": 27
+            },
+            {
+              "id": "cybersecurity",
+              "title": "Cybersecurity",
+              "count": "99+"
+            },
+            {
+              "id": "hci",
+              "title": "Human Computer Interaction (HCI)",
+              "count": 60
+            },
+            {
+              "id": "graphics-visualization",
+              "title": "Graphics and Visualization",
+              "count": 51
+            },
+            {
+              "id": "quantum-computing",
+              "title": "Quantum Computing"
+            },
+            {
+              "id": "distributed-cloud",
+              "title": "Distributed Systems and Cloud",
+              "count": "99+"
+            },
+            {
+              "id": "big-data-data-science",
+              "title": "Big Data and Data Science",
+              "count": 52
+            },
+            {
+              "id": "embedded-systems",
+              "title": "Embedded Systems",
+              "count": "99+"
+            },
+            {
+              "id": "applications-of-cs",
+              "title": "Applications of Computer Science",
+              "count": "99+"
             }
           ]
         },
-        {
-          "id": "choosing-ds",
-          "title": "Choosing the Right Data Structure"
-        }
-      ]
-    }
-  ]
-},
-
-    {
-  "id": "popular-programming-languages",
-  "title": "Popular Programming Languages and Their Applications",
-  "children": [
-    {
-      "id": "python",
-      "title": "Python",
-      "count": 0,
-      "children": [
-        { "id": "python-data-science", "title": "Data Science & Machine Learning" },
-        { "id": "python-web", "title": "Web Development" },
-        { "id": "python-automation", "title": "Automation & Scripting" },
-        { "id": "python-scientific", "title": "Scientific Computing" }
-      ]
-    },
-    {
-  "id": "java-details",
-  "title": "Java",
-  "children": [
-    {
-      "id": "java-key-features",
-      "title": "Key Features",
-      "children": [
-        { "id": "java-oop", "title": "Object Oriented Programming (OOP)" },
-        { "id": "java-platform-independent", "title": "Platform Independence" },
-        { "id": "java-memory", "title": "Robust Memory Management" },
-        { "id": "java-multithreading", "title": "Multithreading Support" },
-        { "id": "java-security", "title": "Security" },
-        { "id": "java-performance", "title": "High Performance" },
-        { "id": "java-distributed", "title": "Distributed Computing" },
-        { "id": "java-library", "title": "Rich Standard Library" },
-        { "id": "java-scalability", "title": "Scalability" }
-      ]
-    },
-    {
-      "id": "java-components",
-      "title": "Components",
-      "children": [
-        { "id": "jdk", "title": "Java Development Kit (JDK)" },
-        { "id": "jvm", "title": "Java Virtual Machine (JVM)" },
-        { "id": "jre", "title": "Java Runtime Environment (JRE)" }
-      ]
-    },
-    {
-      "id": "java-syntax",
-      "title": "Java Syntax and Language Constructs",
-      "children": [
-        { "id": "java-data-types", "title": "Data Types" },
-        { "id": "java-control-structures", "title": "Control Structures" },
-        { "id": "java-classes-objects", "title": "Classes and Objects" },
-        { "id": "java-methods", "title": "Methods" },
-        { "id": "java-constructors", "title": "Constructors" },
-        { "id": "java-inheritance", "title": "Inheritance" },
-        { "id": "java-polymorphism", "title": "Polymorphism" },
-        { "id": "java-abstraction", "title": "Abstraction and Interfaces" },
-        { "id": "java-encapsulation", "title": "Encapsulation" }
-      ]
-    },
-    {
-      "id": "java-libraries-frameworks",
-      "title": "Popular Libraries and Frameworks",
-      "children": [
-        { "id": "java-web", "title": "Web Development" },
-        { "id": "java-enterprise", "title": "Enterprise Applications" },
-        { "id": "java-android", "title": "Android Development" },
-        { "id": "java-ml", "title": "Data Science and Machine Learning" },
-        { "id": "java-networking", "title": "Networking and Multithreading" },
-        { "id": "java-testing", "title": "Testing Frameworks" }
-      ]
-    },
-    {
-      "id": "java-adv-dis",
-      "title": "Advantages and Disadvantages"
-    }
-  ]
-},
-    {
-      "id": "c-language",
-      "title": "C",
-      "count": 31,
-      "children": [
-        { "id": "c-system-programming", "title": "System Programming" },
-        { "id": "c-embedded", "title": "Embedded Systems" },
-        { "id": "c-operating-systems", "title": "Operating Systems" }
-      ]
-    },
-    {
-      "id": "cpp",
-      "title": "C++",
-      "count": 42,
-      "children": [
-        { "id": "cpp-game-dev", "title": "Game Development" },
-        { "id": "cpp-high-performance", "title": "High Performance Computing" },
-        { "id": "cpp-system-software", "title": "System Software" }
-      ]
-    },
-    {
-      "id": "javascript",
-      "title": "JavaScript",
-      "count": 55,
-      "children": [
-        { "id": "js-web", "title": "Web Development" },
-        { "id": "js-frontend", "title": "Frontend Frameworks" },
-        { "id": "js-backend", "title": "Backend (Node.js)" }
-      ]
-    },
-    {
-      "id": "swift",
-      "title": "Swift",
-      "count": 34,
-      "children": [
-        { "id": "swift-ios", "title": "iOS App Development" },
-        { "id": "swift-macos", "title": "macOS Applications" }
-      ]
-    },
-    {
-      "id": "rust",
-      "title": "Rust",
-      "count": 28,
-      "children": [
-        { "id": "rust-systems", "title": "System Programming" },
-        { "id": "rust-security", "title": "Memory-Safe Software" },
-        { "id": "rust-blockchain", "title": "Blockchain Development" }
-      ]
-    },
-    {
-      "id": "go",
-      "title": "Go",
-      "children": [
-        { "id": "go-cloud", "title": "Cloud Services" },
-        { "id": "go-microservices", "title": "Microservices" },
-        { "id": "go-networking", "title": "Networking Tools" }
-      ]
-    },
-    {
-      "id": "r-language",
-      "title": "R",
-      "count": 50,
-      "children": [
-        { "id": "r-statistics", "title": "Statistical Analysis" },
-        { "id": "r-data-visualization", "title": "Data Visualization" },
-        { "id": "r-research", "title": "Academic Research" }
-      ]
-    },
-    {
-      "id": "sql",
-      "title": "SQL",
-      "count": 35,
-      "children": [
-        { "id": "sql-databases", "title": "Database Management" },
-        { "id": "sql-data-analysis", "title": "Data Analysis" },
-        { "id": "sql-reporting", "title": "Business Reporting" }
-      ]
-    }
-  ]
-},
-    {
-      "id": "software-engineering",
-      "title": "Software Engineering",
-      "count": 62
-    },
-    {
-      "id": "computer-architecture",
-      "title": "Computer Architecture",
-      "count": "99+"
-    },
-    {
-      "id": "operating-systems",
-      "title": "Operating Systems",
-      "count": 58
-    },
-    {
-      "id": "databases",
-      "title": "Databases",
-      "count": 30
-    },
-    {
-      "id": "ai-ml",
-      "title": "Artificial Intelligence (AI) and Machine Learning (ML)",
-      "count": "99+"
-    },
-    {
-      "id": "computer-networks",
-      "title": "Computer Networks",
-      "count": "99+"
-    },
-    {
-      "id": "theory-of-computation",
-      "title": "Theory of Computation",
-      "count": 27
-    },
-    {
-      "id": "cybersecurity",
-      "title": "Cybersecurity",
-      "count": "99+"
-    },
-    {
-      "id": "hci",
-      "title": "Human Computer Interaction (HCI)",
-      "count": 60
-    },
-    {
-      "id": "graphics-visualization",
-      "title": "Graphics and Visualization",
-      "count": 51
-    },
-    {
-      "id": "quantum-computing",
-      "title": "Quantum Computing"
-    },
-    {
-      "id": "distributed-cloud",
-      "title": "Distributed Systems and Cloud",
-      "count": "99+"
-    },
-    {
-      "id": "big-data-data-science",
-      "title": "Big Data and Data Science",
-      "count": 52
-    },
-    {
-      "id": "embedded-systems",
-      "title": "Embedded Systems",
-      "count": "99+"
-    },
-    {
-      "id": "applications-of-cs",
-      "title": "Applications of Computer Science",
-      "count": "99+"
-    }
-  ]
-},
-
         {
           "id": "information-technology",
           "title": "Information Technology"
