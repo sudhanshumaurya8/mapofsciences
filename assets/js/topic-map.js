@@ -23,9 +23,10 @@ fetch("data/tree.json")
     }
 
     const node = path[path.length - 1];
+const parentNode = path.length > 1 ? path[path.length - 2] : null;
 
     renderBreadcrumb(path);
-    renderTopic(node);
+    renderTopic(node, parentNode);
   })
   .catch(err => {
     console.error("Failed to load tree.json", err);
@@ -35,14 +36,14 @@ fetch("data/tree.json")
    Rendering
 -------------------------------- */
 
-function renderTopic(node) {
+function renderTopic(node, parentNode) {
   const width = svg.clientWidth;
   const height = svg.clientHeight;
 
   const centerX = width * 0.3;
   const centerY = height / 2;
 
-  drawNode(centerX, centerY, node);
+  drawNode(centerX, centerY, node, parentNode);
 
   if (!node.children) return;
 
@@ -64,7 +65,7 @@ function renderTopic(node) {
    Node drawing (auto size)
 -------------------------------- */
 
-function drawNode(x, y, node) {
+function drawNode(x, y, node, parentNode = null) {
   const paddingX = 20;
   const paddingY = 12;
 
@@ -99,12 +100,22 @@ function drawNode(x, y, node) {
   group.insertBefore(rect, text);
 
   group.style.cursor = "pointer";
-  group.addEventListener("click", () => {
-    if (node.children && node.children.length) {
-      window.location.href = `topic.html?id=${node.id}`;
-    }
-  });
-}
+group.addEventListener("click", () => {
+
+  // CASE 1: Center node → go UP
+  if (parentNode) {
+    window.location.href =
+      parentNode.id === "map-of-science"
+        ? "index.html"
+        : `topic.html?id=${parentNode.id}`;
+    return;
+  }
+
+  // CASE 2: Child node → go DOWN
+  if (node.children && node.children.length) {
+    window.location.href = `topic.html?id=${node.id}`;
+  }
+});
 
 /* -----------------------------
    Links
