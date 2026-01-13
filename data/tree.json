@@ -141,7 +141,86 @@
   ]
 },
 
-            { "id": "divide-conquer", "title": "Divide and Conquer Algorithms", "count": 31 },
+            {
+  "id": "divide-conquer",
+  "title": "Divide and Conquer Algorithms",
+  "count": 31,
+  "children": [
+    {
+      "id": "dc-key-characteristics",
+      "title": "Key Characteristics",
+      "children": [
+        { "id": "problem-decomposition", "title": "Problem Decomposition" },
+        { "id": "recursive-solving", "title": "Recursive Problem Solving" },
+        { "id": "combination-results", "title": "Combination of Results" },
+        { "id": "dc-efficiency", "title": "Efficiency" },
+        { "id": "dc-optimal-substructure", "title": "Optimal Substructure" }
+      ]
+    },
+    {
+      "id": "dc-structure",
+      "title": "Structure of Divide and Conquer",
+      "children": [
+        { "id": "divide", "title": "Divide" },
+        { "id": "conquer", "title": "Conquer" },
+        { "id": "combine", "title": "Combine" }
+      ]
+    },
+    {
+      "id": "dc-examples",
+      "title": "Algorithm Examples",
+      "children": [
+        { "id": "merge-sort", "title": "Merge Sort" },
+        { "id": "quick-sort", "title": "Quick Sort" },
+        { "id": "binary-search", "title": "Binary Search" },
+        { "id": "matrix-multiplication", "title": "Matrix Multiplication" },
+        { "id": "closest-pair", "title": "Closest Pair of Points" }
+      ]
+    },
+    {
+      "id": "dc-complexity",
+      "title": "Complexity Analysis"
+    },
+    {
+      "id": "dc-advantages-disadvantages",
+      "title": "Advantages / Disadvantages",
+      "children": [
+        {
+          "id": "dc-advantages",
+          "title": "Advantages",
+          "children": [
+            { "id": "dc-efficiency-adv", "title": "Efficiency" },
+            { "id": "dc-parallelism", "title": "Parallelism" },
+            { "id": "dc-simplicity", "title": "Simplifies Complex Problems" }
+          ]
+        },
+        {
+          "id": "dc-disadvantages",
+          "title": "Disadvantages",
+          "children": [
+            { "id": "recursion-overhead", "title": "Overhead of Recursion" },
+            { "id": "redundant-computation", "title": "Redundant Computation" },
+            {
+              "id": "dc-decomposition-difficulty",
+              "title": "Difficulty in Problem Decomposition"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dc-applications",
+      "title": "Applications",
+      "children": [
+        { "id": "dc-sorting", "title": "Sorting Algorithms" },
+        { "id": "dc-searching", "title": "Searching Algorithms" },
+        { "id": "dc-geometry", "title": "Computational Geometry" },
+        { "id": "dc-parallel-computing", "title": "Parallel Computing" }
+      ]
+    }
+  ]
+},
+
             { "id": "dynamic-programming", "title": "Dynamic Programming", "count": 38 },
             { "id": "backtracking", "title": "Backtracking", "count": 40 },
             { "id": "brute-force", "title": "Brute Force", "count": 38 },
