@@ -49,7 +49,98 @@
           "id": "types-of-algorithms",
           "title": "Types of Algorithms",
           "children": [
-            { "id": "greedy", "title": "Greedy Algorithms", "count": 35 },
+            {
+  "id": "greedy",
+  "title": "Greedy Algorithms",
+  "count": 35,
+  "children": [
+    {
+      "id": "greedy-key-characteristics",
+      "title": "Key Characteristics",
+      "children": [
+        { "id": "greedy-choice-property", "title": "Greedy Choice Property" },
+        { "id": "optimal-substructure", "title": "Optimal Substructure" },
+        { "id": "irreversible-decisions", "title": "Irreversible Decisions" },
+        { "id": "greedy-efficiency", "title": "Efficiency" }
+      ]
+    },
+    {
+      "id": "steps-greedy-design",
+      "title": "Steps in Designing a Greedy Algorithm",
+      "children": [
+        { "id": "define-problem", "title": "Define the Problem and Identify Choices" },
+        { "id": "determine-greedy-choice", "title": "Determine the Greedy Choice" },
+        { "id": "prove-greedy-property", "title": "Prove Greedy Choice Property" },
+        { "id": "check-optimal-substructure", "title": "Check Optimal Substructure" },
+        { "id": "implement-algorithm", "title": "Implement the Algorithm" }
+      ]
+    },
+    {
+      "id": "greedy-examples",
+      "title": "Examples",
+      "children": [
+        { "id": "fractional-knapsack", "title": "Fractional Knapsack Problem" },
+        { "id": "activity-selection", "title": "Activity Selection Problem" },
+        { "id": "huffman-coding", "title": "Huffman Coding" },
+        {
+          "id": "mst-greedy",
+          "title": "Prim’s and Kruskal’s Algorithms for Minimum Spanning Tree"
+        },
+        {
+          "id": "dijkstra",
+          "title": "Dijkstra’s Algorithm for Shortest Path"
+        }
+      ]
+    },
+    {
+      "id": "greedy-complexity",
+      "title": "Complexity Analysis",
+      "children": [
+        { "id": "sorting-requirement", "title": "Sorting Requirement" },
+        { "id": "min-max-selection", "title": "Selection of Minimum / Maximum" },
+        { "id": "overall-complexity", "title": "Overall Complexity" }
+      ]
+    },
+    {
+      "id": "when-to-use-greedy",
+      "title": "When to Use Greedy Algorithm",
+      "children": [
+        { "id": "greedy-choice-condition", "title": "Greedy Choice Property" },
+        { "id": "optimal-substructure-condition", "title": "Optimal Substructure" },
+        { "id": "efficiency-requirement", "title": "Efficiency Requirement" },
+        {
+          "id": "tradeoff",
+          "title": "Trade-off Between Optimality and Complexity"
+        }
+      ]
+    },
+    {
+      "id": "greedy-advantages-disadvantages",
+      "title": "Advantages / Disadvantages",
+      "children": [
+        {
+          "id": "greedy-advantages",
+          "title": "Advantages",
+          "children": [
+            { "id": "simplicity", "title": "Simplicity" },
+            { "id": "fast-execution", "title": "Fast Execution" },
+            { "id": "high-efficiency", "title": "Efficiency" }
+          ]
+        },
+        {
+          "id": "greedy-disadvantages",
+          "title": "Disadvantages",
+          "children": [
+            { "id": "lack-global-optimality", "title": "Lack of Global Optimality" },
+            { "id": "problem-specific", "title": "Problem Specific" },
+            { "id": "irreversibility", "title": "Irreversibility" }
+          ]
+        }
+      ]
+    }
+  ]
+},
+
             { "id": "divide-conquer", "title": "Divide and Conquer Algorithms", "count": 31 },
             { "id": "dynamic-programming", "title": "Dynamic Programming", "count": 38 },
             { "id": "backtracking", "title": "Backtracking", "count": 40 },
