@@ -10,7 +10,11 @@ svg.appendChild(g);
 // Read topic id
 const params = new URLSearchParams(window.location.search);
 const topicId = params.get("id");
+console.log("URL id:", topicId);
+console.log("Tree loaded:", tree);
 
+const path = findNodePath(tree, topicId);
+console.log("Found path:", path);
 // Load JSON
 fetch("data/tree.json")
   .then(res => res.json())
