@@ -144,11 +144,13 @@ function drawConnection(x1, y1, x2, y2) {
 
   path.setAttribute("d", d);
   path.setAttribute("fill", "none");
-  path.setAttribute("stroke", "#2563eb");
-  path.setAttribute("stroke-width", 3);
+  path.setAttribute("stroke", "#9ca3af");
+  path.setAttribute("stroke-width", 2);
+  path.setAttribute("stroke-linecap", "round");
 
   g.appendChild(path);
 }
+
 enableZoomPan(svg, g);
 
 function enableZoomPan(svg, group) {
