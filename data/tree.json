@@ -760,7 +760,105 @@
     }
   ]
 },
-            { "id": "search-algorithms", "title": "Search Algorithms", "count": 21 },
+            {
+  "id": "search-algorithms",
+  "title": "Search Algorithms",
+  "count": 28,
+  "children": [
+    {
+      "id": "types-of-search-algorithms",
+      "title": "Types of Search Algorithms",
+      "children": [
+        {
+          "id": "uninformed-search",
+          "title": "Uninformed Search Algorithms"
+        },
+        {
+          "id": "informed-search",
+          "title": "Informed (Heuristic) Search Algorithms"
+        }
+      ]
+    },
+    {
+      "id": "key-search-algorithms",
+      "title": "Key Search Algorithms",
+      "children": [
+        {
+          "id": "linear-search",
+          "title": "Linear Search"
+        },
+        {
+          "id": "binary-search",
+          "title": "Binary Search"
+        },
+        {
+          "id": "dfs",
+          "title": "Depth First Search (DFS)"
+        },
+        {
+          "id": "bfs",
+          "title": "Breadth First Search (BFS)"
+        },
+        {
+          "id": "interpolation-search",
+          "title": "Interpolation Search"
+        }
+      ]
+    },
+    {
+      "id": "factors-choosing-search",
+      "title": "Factors to Consider While Choosing Search Algorithms",
+      "children": [
+        {
+          "id": "data-structure-size",
+          "title": "Data Structure and Size"
+        },
+        {
+          "id": "data-organization",
+          "title": "Data Organization"
+        },
+        {
+          "id": "memory-constraints",
+          "title": "Memory Constraints"
+        },
+        {
+          "id": "heuristic-information",
+          "title": "Heuristic Information"
+        },
+        {
+          "id": "required-output",
+          "title": "Required Output"
+        }
+      ]
+    },
+    {
+      "id": "search-applications",
+      "title": "Applications",
+      "children": [
+        {
+          "id": "database-retrieval",
+          "title": "Data Retrieval in Databases"
+        },
+        {
+          "id": "file-system-search",
+          "title": "File System"
+        },
+        {
+          "id": "ai-ml-search",
+          "title": "Artificial Intelligence and Machine Learning"
+        },
+        {
+          "id": "web-crawlers",
+          "title": "Network and Web Crawlers"
+        },
+        {
+          "id": "puzzle-solving-search",
+          "title": "Puzzle Solving"
+        }
+      ]
+    }
+  ]
+},
             { "id": "sorting-algorithms", "title": "Sorting Algorithms", "count": 19 }
           ]
         },
