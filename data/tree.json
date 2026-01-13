@@ -859,7 +859,95 @@
     }
   ]
 },
-            { "id": "sorting-algorithms", "title": "Sorting Algorithms", "count": 19 }
+            {
+  "id": "sorting-algorithms",
+  "title": "Sorting Algorithms",
+  "count": 26,
+  "children": [
+    {
+      "id": "categories-of-sorting",
+      "title": "Categories of Sorting",
+      "children": [
+        {
+          "id": "comparison-based-sorting",
+          "title": "Comparison Based Sorting"
+        },
+        {
+          "id": "non-comparison-based-sorting",
+          "title": "Non Comparison Based Sorting"
+        },
+        {
+          "id": "internal-external-sorting",
+          "title": "Internal vs External Sorting"
+        },
+        {
+          "id": "stable-unstable-sorting",
+          "title": "Stable vs Unstable Sorting"
+        }
+      ]
+    },
+    {
+      "id": "key-sorting-algorithms",
+      "title": "Key Sorting Algorithms",
+      "children": [
+        {
+          "id": "bubble-sort",
+          "title": "Bubble Sort"
+        },
+        {
+          "id": "selection-sort",
+          "title": "Selection Sort"
+        },
+        {
+          "id": "insertion-sort",
+          "title": "Insertion Sort"
+        },
+        {
+          "id": "merge-sort",
+          "title": "Merge Sort"
+        },
+        {
+          "id": "quick-sort",
+          "title": "Quick Sort"
+        },
+        {
+          "id": "heap-sort",
+          "title": "Heap Sort"
+        },
+        {
+          "id": "counting-sort",
+          "title": "Counting Sort"
+        }
+      ]
+    },
+    {
+      "id": "choosing-right-sorting-algorithm",
+      "title": "Choosing the Right Sorting Algorithm",
+      "children": [
+        {
+          "id": "data-size",
+          "title": "Data Size"
+        },
+        {
+          "id": "data-characteristics",
+          "title": "Data Characteristics"
+        },
+        {
+          "id": "memory-constraints-sorting",
+          "title": "Memory Constraints"
+        },
+        {
+          "id": "stability-requirement",
+          "title": "Stability Requirement"
+        },
+        {
+          "id": "time-constraint",
+          "title": "Time Constraint"
+        }
+      ]
+    }
+  ]
+},
           ]
         },
         {
