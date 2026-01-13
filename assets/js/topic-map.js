@@ -3,23 +3,23 @@ console.log("topic-map.js loaded");
 const svg = document.getElementById("mindmap");
 const NS = "http://www.w3.org/2000/svg";
 
-// Create group for zoom/pan
+// SVG group for zoom/pan
 const g = document.createElementNS(NS, "g");
 svg.appendChild(g);
 
-// Read topic id
+// Read topic id from URL
 const params = new URLSearchParams(window.location.search);
 const topicId = params.get("id");
 console.log("URL id:", topicId);
-console.log("Tree loaded:", tree);
 
-const path = findNodePath(tree, topicId);
-console.log("Found path:", path);
 // Load JSON
 fetch("data/tree.json")
   .then(res => res.json())
   .then(tree => {
+    console.log("Tree loaded");
+
     const path = findNodePath(tree, topicId);
+    console.log("Found path:", path);
 
     if (!path) {
       alert("Topic not found: " + topicId);
@@ -27,7 +27,7 @@ fetch("data/tree.json")
     }
 
     const node = path[path.length - 1];
-const parentNode = path.length > 1 ? path[path.length - 2] : null;
+    const parentNode = path.length > 1 ? path[path.length - 2] : null;
 
     renderBreadcrumb(path);
     renderTopic(node, parentNode);
@@ -36,9 +36,9 @@ const parentNode = path.length > 1 ? path[path.length - 2] : null;
     console.error("Failed to load tree.json", err);
   });
 
-/* -----------------------------
+/* =============================
    Rendering
--------------------------------- */
+============================= */
 
 function renderTopic(node, parentNode) {
   const width = svg.clientWidth;
@@ -47,7 +47,8 @@ function renderTopic(node, parentNode) {
   const centerX = width * 0.3;
   const centerY = height / 2;
 
-  drawNode(centerX, centerY, node, parentNode);
+  // CENTER NODE
+  drawNode(centerX, centerY, node, true, parentNode);
 
   if (!node.children) return;
 
@@ -59,17 +60,17 @@ function renderTopic(node, parentNode) {
     const y = startY + i * GAP;
 
     drawLink(centerX, centerY, rightX, y);
-    drawNode(rightX, y, child);
+    drawNode(rightX, y, child, false, null);
   });
 
   enableZoomPan(svg, g);
 }
 
-/* -----------------------------
-   Node drawing (auto size)
--------------------------------- */
+/* =============================
+   Node drawing
+============================= */
 
-function drawNode(x, y, node, parentNode = null) {
+function drawNode(x, y, node, isCenter, parentNode) {
   const paddingX = 20;
   const paddingY = 12;
 
@@ -104,26 +105,28 @@ function drawNode(x, y, node, parentNode = null) {
   group.insertBefore(rect, text);
 
   group.style.cursor = "pointer";
-group.addEventListener("click", () => {
 
-  // CASE 1: Center node → go UP
-  if (parentNode) {
-    window.location.href =
-      parentNode.id === "map-of-science"
-        ? "index.html"
-        : `topic.html?id=${parentNode.id}`;
-    return;
-  }
+  group.addEventListener("click", () => {
 
-  // CASE 2: Child node → go DOWN
-  if (node.children && node.children.length) {
-    window.location.href = `topic.html?id=${node.id}`;
-  }
-});
+    // CENTER NODE → go UP
+    if (isCenter && parentNode) {
+      window.location.href =
+        parentNode.id === "map-of-science"
+          ? "index.html"
+          : `topic.html?id=${parentNode.id}`;
+      return;
+    }
 
-/* -----------------------------
+    // CHILD NODE → go DOWN
+    if (!isCenter && node.children && node.children.length) {
+      window.location.href = `topic.html?id=${node.id}`;
+    }
+  });
+}
+
+/* =============================
    Links
--------------------------------- */
+============================= */
 
 function drawLink(x1, y1, x2, y2) {
   const path = document.createElementNS(NS, "path");
@@ -140,9 +143,9 @@ function drawLink(x1, y1, x2, y2) {
   g.appendChild(path);
 }
 
-/* -----------------------------
+/* =============================
    Breadcrumb
--------------------------------- */
+============================= */
 
 function renderBreadcrumb(path) {
   const bc = document.getElementById("breadcrumb");
@@ -168,9 +171,9 @@ function renderBreadcrumb(path) {
   });
 }
 
-/* -----------------------------
+/* =============================
    Tree traversal
--------------------------------- */
+============================= */
 
 function findNodePath(node, targetId, path = []) {
   const newPath = [...path, node];
@@ -185,16 +188,19 @@ function findNodePath(node, targetId, path = []) {
   return null;
 }
 
-/* -----------------------------
+/* =============================
    Zoom & pan
--------------------------------- */
+============================= */
 
 function enableZoomPan(svg, group) {
   let scale = 1, tx = 0, ty = 0;
   let dragging = false, sx = 0, sy = 0;
 
   function update() {
-    group.setAttribute("transform", `translate(${tx},${ty}) scale(${scale})`);
+    group.setAttribute(
+      "transform",
+      `translate(${tx},${ty}) scale(${scale})`
+    );
   }
 
   svg.addEventListener("wheel", e => {
