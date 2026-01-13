@@ -1028,15 +1028,66 @@
       ]
     },
     {
-      "id": "java",
-      "title": "Java",
-      "count": 33,
+  "id": "java-details",
+  "title": "Java",
+  "children": [
+    {
+      "id": "java-key-features",
+      "title": "Key Features",
       "children": [
-        { "id": "java-enterprise", "title": "Enterprise Applications" },
-        { "id": "java-android", "title": "Android Development" },
-        { "id": "java-backend", "title": "Backend Systems" }
+        { "id": "java-oop", "title": "Object Oriented Programming (OOP)" },
+        { "id": "java-platform-independent", "title": "Platform Independence" },
+        { "id": "java-memory", "title": "Robust Memory Management" },
+        { "id": "java-multithreading", "title": "Multithreading Support" },
+        { "id": "java-security", "title": "Security" },
+        { "id": "java-performance", "title": "High Performance" },
+        { "id": "java-distributed", "title": "Distributed Computing" },
+        { "id": "java-library", "title": "Rich Standard Library" },
+        { "id": "java-scalability", "title": "Scalability" }
       ]
     },
+    {
+      "id": "java-components",
+      "title": "Components",
+      "children": [
+        { "id": "jdk", "title": "Java Development Kit (JDK)" },
+        { "id": "jvm", "title": "Java Virtual Machine (JVM)" },
+        { "id": "jre", "title": "Java Runtime Environment (JRE)" }
+      ]
+    },
+    {
+      "id": "java-syntax",
+      "title": "Java Syntax and Language Constructs",
+      "children": [
+        { "id": "java-data-types", "title": "Data Types" },
+        { "id": "java-control-structures", "title": "Control Structures" },
+        { "id": "java-classes-objects", "title": "Classes and Objects" },
+        { "id": "java-methods", "title": "Methods" },
+        { "id": "java-constructors", "title": "Constructors" },
+        { "id": "java-inheritance", "title": "Inheritance" },
+        { "id": "java-polymorphism", "title": "Polymorphism" },
+        { "id": "java-abstraction", "title": "Abstraction and Interfaces" },
+        { "id": "java-encapsulation", "title": "Encapsulation" }
+      ]
+    },
+    {
+      "id": "java-libraries-frameworks",
+      "title": "Popular Libraries and Frameworks",
+      "children": [
+        { "id": "java-web", "title": "Web Development" },
+        { "id": "java-enterprise", "title": "Enterprise Applications" },
+        { "id": "java-android", "title": "Android Development" },
+        { "id": "java-ml", "title": "Data Science and Machine Learning" },
+        { "id": "java-networking", "title": "Networking and Multithreading" },
+        { "id": "java-testing", "title": "Testing Frameworks" }
+      ]
+    },
+    {
+      "id": "java-adv-dis",
+      "title": "Advantages and Disadvantages"
+    }
+  ]
+},
     {
       "id": "c-language",
       "title": "C",
