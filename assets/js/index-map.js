@@ -6,19 +6,58 @@ const g = document.createElementNS(NS, "g");
 svg.appendChild(g);
 
 // Layout constants
-const WIDTH = svg.clientWidth;
-const HEIGHT = svg.clientHeight;
+function getSize() {
+  return {
+    width: svg.getBoundingClientRect().width,
+    height: svg.getBoundingClientRect().height
+  };
+}
 
-const CENTER_X = WIDTH * 0.25;
-const CENTER_Y = HEIGHT / 2;
 
-const RIGHT_X = WIDTH * 0.65;
-const GAP_Y = 80;
+
 
 // Load JSON
 fetch("data/tree.json")
   .then(res => res.json())
   .then(tree => init(tree));
+function init(tree) {
+  const { width: WIDTH, height: HEIGHT } = getSize();
+
+  const CENTER_X = WIDTH * 0.25;
+  const CENTER_Y = HEIGHT / 2;
+  const RIGHT_X = WIDTH * 0.75;
+
+  const root = tree.children ? tree : tree[0];
+
+  drawNode(CENTER_X, CENTER_Y, root.title, null);
+
+  if (!root.children) return;
+
+  const startY = CENTER_Y - ((root.children.length - 1) * GAP_Y) / 2;
+
+  root.children.forEach((child, i) => {
+    const y = startY + i * GAP_Y;
+
+    drawConnection(
+      CENTER_X + 90,
+      CENTER_Y,
+      RIGHT_X,
+      y
+    );
+
+    drawNode(
+      RIGHT_X,
+      y,
+      child.title,
+      () => {
+        window.location.href = `topic.html?id=${child.id}`;
+      }
+    );
+  });
+
+  autoFit(); // 🔥 THIS is the key
+}
+
 
 function init(tree) {
   // Defensive root normalization
@@ -167,4 +206,21 @@ function enableZoomPan(svg, group) {
     isPanning = false;
     svg.style.cursor = "default";
   }
+}
+function autoFit() {
+  const bbox = g.getBBox();
+  const svgRect = svg.getBoundingClientRect();
+
+  const scale = Math.min(
+    svgRect.width / bbox.width,
+    svgRect.height / bbox.height
+  ) * 0.9;
+
+  const translateX = (svgRect.width - bbox.width * scale) / 2 - bbox.x * scale;
+  const translateY = (svgRect.height - bbox.height * scale) / 2 - bbox.y * scale;
+
+  g.setAttribute(
+    "transform",
+    `translate(${translateX}, ${translateY}) scale(${scale})`
+  );
 }
