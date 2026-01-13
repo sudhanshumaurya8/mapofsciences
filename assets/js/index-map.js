@@ -21,10 +21,15 @@ fetch("data/tree.json")
   .then(tree => init(tree));
 
 function init(tree) {
-  const root = tree; // root = Map of Science
+  // Defensive root normalization
+  const root = tree.children ? tree : tree[0];
+
+  console.log("ROOT:", root);
+ // root = Map of Science
 
   // Draw center node
   drawNode(CENTER_X, CENTER_Y, root.title, null);
+console.log("Level-1 children:", root.children?.map(c => c.title));
 
   if (!root.children) return;
 
