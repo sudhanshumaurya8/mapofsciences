@@ -28,10 +28,99 @@
   "title": "Computer Science",
   "children": [
     {
-      "id": "algorithms-data-structures",
-      "title": "Algorithms and Data Structure",
-      "count": 3
+  "id": "algorithms-data-structures",
+  "title": "Algorithms and Data Structure",
+  "children": [
+    {
+      "id": "algorithms",
+      "title": "Algorithms",
+      "children": [
+        {
+          "id": "key-properties",
+          "title": "Key Properties",
+          "children": [
+            { "id": "correctness", "title": "Correctness" },
+            { "id": "efficiency", "title": "Efficiency" },
+            { "id": "deterministic", "title": "Deterministic" },
+            { "id": "finiteness", "title": "Finiteness" }
+          ]
+        },
+        {
+          "id": "types-of-algorithms",
+          "title": "Types of Algorithms",
+          "children": [
+            { "id": "greedy", "title": "Greedy Algorithms", "count": 35 },
+            { "id": "divide-conquer", "title": "Divide and Conquer Algorithms", "count": 31 },
+            { "id": "dynamic-programming", "title": "Dynamic Programming", "count": 38 },
+            { "id": "backtracking", "title": "Backtracking", "count": 40 },
+            { "id": "brute-force", "title": "Brute Force", "count": 38 },
+            { "id": "recursion", "title": "Recursion", "count": 37 },
+            { "id": "search-algorithms", "title": "Search Algorithms", "count": 21 },
+            { "id": "sorting-algorithms", "title": "Sorting Algorithms", "count": 19 }
+          ]
+        },
+        {
+          "id": "time-space-complexity",
+          "title": "Time and Space Complexity",
+          "children": [
+            { "id": "time-complexity", "title": "Time Complexity" },
+            { "id": "space-complexity", "title": "Space Complexity" }
+          ]
+        }
+      ]
     },
+    {
+      "id": "data-structures",
+      "title": "Data Structures",
+      "children": [
+        {
+          "id": "types-of-data-structures",
+          "title": "Types of Data Structure",
+          "children": [
+            { "id": "primitive-ds", "title": "Primitive Data Structure" },
+            {
+              "id": "non-primitive-ds",
+              "title": "Non-Primitive Data Structures",
+              "children": [
+                {
+                  "id": "linear-ds",
+                  "title": "Linear Data Structures",
+                  "children": [
+                    { "id": "arrays", "title": "Arrays" },
+                    { "id": "linked-lists", "title": "Linked Lists" },
+                    { "id": "stacks", "title": "Stacks" },
+                    { "id": "queues", "title": "Queues" }
+                  ]
+                },
+                {
+                  "id": "non-linear-ds",
+                  "title": "Non-Linear Data Structures",
+                  "children": [
+                    { "id": "trees", "title": "Trees" },
+                    { "id": "graphs", "title": "Graphs" }
+                  ]
+                },
+                {
+                  "id": "other-ds",
+                  "title": "Other Important Data Structures",
+                  "children": [
+                    { "id": "hash-tables", "title": "Hash Tables" },
+                    { "id": "heaps", "title": "Heaps" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "choosing-ds",
+          "title": "Choosing the Right Data Structure"
+        }
+      ]
+    }
+  ]
+},
+
     {
       "id": "programming-languages",
       "title": "Programming Language",
@@ -112,7 +201,7 @@
       "count": "99+"
     }
   ]
-}
+},
 
         {
           "id": "information-technology",
