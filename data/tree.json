@@ -486,7 +486,148 @@
   ]
 },
 
-            { "id": "brute-force", "title": "Brute Force", "count": 38 },
+            {
+  "id": "brute-force",
+  "title": "Brute Force",
+  "count": 28,
+  "children": [
+    {
+      "id": "bruteforce-key-characteristics",
+      "title": "Key Characteristics",
+      "children": [
+        { "id": "exhaustive-search", "title": "Exhaustive Search" },
+        { "id": "bruteforce-simplicity", "title": "Simplicity" },
+        {
+          "id": "high-computational-cost",
+          "title": "High Computational Cost"
+        },
+        { "id": "guaranteed-solution", "title": "Guaranteed Solution" },
+        { "id": "lack-of-efficiency", "title": "Lack of Efficiency" }
+      ]
+    },
+    {
+      "id": "bruteforce-types",
+      "title": "Types",
+      "children": [
+        {
+          "id": "complete-enumeration",
+          "title": "Complete Enumeration"
+        },
+        { "id": "trial-and-error", "title": "Trial and Error" },
+        {
+          "id": "optimization-exhaustive-search",
+          "title": "Exhaustive Search for Optimization"
+        }
+      ]
+    },
+    {
+      "id": "bruteforce-examples",
+      "title": "Examples",
+      "children": [
+        { "id": "string-matching", "title": "String Matching" },
+        {
+          "id": "travelling-salesman",
+          "title": "Travelling Salesman Problem"
+        },
+        {
+          "id": "subset-sum-bruteforce",
+          "title": "Subset Sum Problem"
+        },
+        {
+          "id": "all-permutations",
+          "title": "Generating All Permutations"
+        }
+      ]
+    },
+    {
+      "id": "bruteforce-complexity",
+      "title": "Complexity Analysis",
+      "children": [
+        { "id": "bf-time-complexity", "title": "Time Complexity" },
+        { "id": "bf-space-complexity", "title": "Space Complexity" },
+        {
+          "id": "scalability-issues",
+          "title": "Scalability Issues"
+        }
+      ]
+    },
+    {
+      "id": "bruteforce-advantages-disadvantages",
+      "title": "Advantages / Disadvantages",
+      "children": [
+        {
+          "id": "bf-advantages",
+          "title": "Advantages",
+          "children": [
+            { "id": "bf-simple", "title": "Simplicity" },
+            {
+              "id": "bf-guaranteed",
+              "title": "Guaranteed Solution"
+            },
+            {
+              "id": "baseline-approach",
+              "title": "Useful as Baseline"
+            }
+          ]
+        },
+        {
+          "id": "bf-disadvantages",
+          "title": "Disadvantages",
+          "children": [
+            { "id": "bf-inefficiency", "title": "Inefficiency" },
+            {
+              "id": "redundant-computation",
+              "title": "Redundant Computation"
+            },
+            {
+              "id": "limited-scalability",
+              "title": "Limited Scalability"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "when-to-use-bruteforce",
+      "title": "When to Use Brute Force",
+      "children": [
+        { "id": "small-input-size", "title": "Input Size is Small" },
+        {
+          "id": "no-optimized-solution",
+          "title": "No Optimized Solution Exists"
+        },
+        {
+          "id": "all-solutions-required",
+          "title": "All Solutions Must Be Found"
+        },
+        {
+          "id": "exact-solution",
+          "title": "Exact Solution is Required"
+        }
+      ]
+    },
+    {
+      "id": "bruteforce-applications",
+      "title": "Applications of Brute Force",
+      "children": [
+        { "id": "cryptanalysis", "title": "Cryptanalysis" },
+        {
+          "id": "exhaustive-combinatorial",
+          "title": "Exhaustive Combinatorial Generation"
+        },
+        {
+          "id": "bruteforce-search",
+          "title": "Search Algorithms"
+        },
+        {
+          "id": "puzzle-game-solving",
+          "title": "Puzzle and Game Solving"
+        }
+      ]
+    }
+  ]
+},
+
             { "id": "recursion", "title": "Recursion", "count": 37 },
             { "id": "search-algorithms", "title": "Search Algorithms", "count": 21 },
             { "id": "sorting-algorithms", "title": "Sorting Algorithms", "count": 19 }
