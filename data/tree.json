@@ -221,7 +221,130 @@
   ]
 },
 
-            { "id": "dynamic-programming", "title": "Dynamic Programming", "count": 38 },
+            {
+  "id": "dynamic-programming",
+  "title": "Dynamic Programming",
+  "count": 38,
+  "children": [
+    {
+      "id": "dp-key-characteristics",
+      "title": "Key Characteristics",
+      "children": [
+        { "id": "dp-optimal-substructure", "title": "Optimal Substructure" },
+        { "id": "overlapping-subproblems", "title": "Overlapping Subproblems" },
+        {
+          "id": "memoization-tabulation",
+          "title": "Memoization or Tabulation"
+        }
+      ]
+    },
+    {
+      "id": "dp-steps-design",
+      "title": "Steps to Design",
+      "children": [
+        { "id": "define-state", "title": "Define the State" },
+        {
+          "id": "recurrence-relation",
+          "title": "Formulate the Recurrence Relation"
+        },
+        { "id": "base-cases", "title": "Identify the Base Cases" },
+        {
+          "id": "choose-approach",
+          "title": "Choose a Memoization or Tabulation Approach"
+        },
+        { "id": "construct-solution", "title": "Construct" }
+      ]
+    },
+    {
+      "id": "dp-types",
+      "title": "Types",
+      "children": [
+        {
+          "id": "memoization",
+          "title": "Memoization (Top-Down Approach)"
+        },
+        {
+          "id": "tabulation",
+          "title": "Tabulation (Bottom-Up Approach)"
+        }
+      ]
+    },
+    {
+      "id": "dp-examples",
+      "title": "Examples",
+      "children": [
+        { "id": "fibonacci", "title": "Fibonacci Sequence" },
+        { "id": "dp-knapsack", "title": "Knapsack Problem" },
+        {
+          "id": "lcs",
+          "title": "Longest Common Subsequence (LCS)"
+        },
+        { "id": "coin-change", "title": "Coin Change Problem" },
+        {
+          "id": "edit-distance",
+          "title": "Edit Distance (Levenshtein Distance)"
+        },
+        { "id": "subset-sum", "title": "Subset Sum Problem" }
+      ]
+    },
+    {
+      "id": "dp-complexity",
+      "title": "Complexity Analysis",
+      "children": [
+        { "id": "dp-time", "title": "Time Complexity" },
+        { "id": "dp-space", "title": "Space Complexity" },
+        {
+          "id": "overlap-vs-no-overlap",
+          "title": "Overlapping Subproblems vs No Overlapping Subproblems"
+        }
+      ]
+    },
+    {
+      "id": "dp-advantages-disadvantages",
+      "title": "Advantages / Disadvantages",
+      "children": [
+        {
+          "id": "dp-advantages",
+          "title": "Advantages",
+          "children": [
+            { "id": "dp-efficiency", "title": "Efficiency" },
+            { "id": "optimal-solutions", "title": "Optimal Solutions" },
+            { "id": "dp-applicability", "title": "Applicability" }
+          ]
+        },
+        {
+          "id": "dp-disadvantages",
+          "title": "Disadvantages",
+          "children": [
+            { "id": "memory-usage", "title": "Memory Usage" },
+            { "id": "dp-complexity", "title": "Complexity" },
+            {
+              "id": "dp-limitations",
+              "title": "Applicability Limitations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dp-applications",
+      "title": "Applications",
+      "children": [
+        {
+          "id": "operations-research",
+          "title": "Operations Research and Economics"
+        },
+        { "id": "bioinformatics", "title": "Bioinformatics" },
+        {
+          "id": "cs-algorithms",
+          "title": "Computer Science Algorithms"
+        },
+        { "id": "machine-learning", "title": "Machine Learning" }
+      ]
+    }
+  ]
+},
+
             { "id": "backtracking", "title": "Backtracking", "count": 40 },
             { "id": "brute-force", "title": "Brute Force", "count": 38 },
             { "id": "recursion", "title": "Recursion", "count": 37 },
