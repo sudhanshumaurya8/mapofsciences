@@ -1013,10 +1013,110 @@
 },
 
     {
-      "id": "programming-languages",
-      "title": "Programming Language",
-      "count": "99+"
+  "id": "popular-programming-languages",
+  "title": "Popular Programming Languages and Their Applications",
+  "children": [
+    {
+      "id": "python",
+      "title": "Python",
+      "count": 0,
+      "children": [
+        { "id": "python-data-science", "title": "Data Science & Machine Learning" },
+        { "id": "python-web", "title": "Web Development" },
+        { "id": "python-automation", "title": "Automation & Scripting" },
+        { "id": "python-scientific", "title": "Scientific Computing" }
+      ]
     },
+    {
+      "id": "java",
+      "title": "Java",
+      "count": 33,
+      "children": [
+        { "id": "java-enterprise", "title": "Enterprise Applications" },
+        { "id": "java-android", "title": "Android Development" },
+        { "id": "java-backend", "title": "Backend Systems" }
+      ]
+    },
+    {
+      "id": "c-language",
+      "title": "C",
+      "count": 31,
+      "children": [
+        { "id": "c-system-programming", "title": "System Programming" },
+        { "id": "c-embedded", "title": "Embedded Systems" },
+        { "id": "c-operating-systems", "title": "Operating Systems" }
+      ]
+    },
+    {
+      "id": "cpp",
+      "title": "C++",
+      "count": 42,
+      "children": [
+        { "id": "cpp-game-dev", "title": "Game Development" },
+        { "id": "cpp-high-performance", "title": "High Performance Computing" },
+        { "id": "cpp-system-software", "title": "System Software" }
+      ]
+    },
+    {
+      "id": "javascript",
+      "title": "JavaScript",
+      "count": 55,
+      "children": [
+        { "id": "js-web", "title": "Web Development" },
+        { "id": "js-frontend", "title": "Frontend Frameworks" },
+        { "id": "js-backend", "title": "Backend (Node.js)" }
+      ]
+    },
+    {
+      "id": "swift",
+      "title": "Swift",
+      "count": 34,
+      "children": [
+        { "id": "swift-ios", "title": "iOS App Development" },
+        { "id": "swift-macos", "title": "macOS Applications" }
+      ]
+    },
+    {
+      "id": "rust",
+      "title": "Rust",
+      "count": 28,
+      "children": [
+        { "id": "rust-systems", "title": "System Programming" },
+        { "id": "rust-security", "title": "Memory-Safe Software" },
+        { "id": "rust-blockchain", "title": "Blockchain Development" }
+      ]
+    },
+    {
+      "id": "go",
+      "title": "Go",
+      "children": [
+        { "id": "go-cloud", "title": "Cloud Services" },
+        { "id": "go-microservices", "title": "Microservices" },
+        { "id": "go-networking", "title": "Networking Tools" }
+      ]
+    },
+    {
+      "id": "r-language",
+      "title": "R",
+      "count": 50,
+      "children": [
+        { "id": "r-statistics", "title": "Statistical Analysis" },
+        { "id": "r-data-visualization", "title": "Data Visualization" },
+        { "id": "r-research", "title": "Academic Research" }
+      ]
+    },
+    {
+      "id": "sql",
+      "title": "SQL",
+      "count": 35,
+      "children": [
+        { "id": "sql-databases", "title": "Database Management" },
+        { "id": "sql-data-analysis", "title": "Data Analysis" },
+        { "id": "sql-reporting", "title": "Business Reporting" }
+      ]
+    }
+  ]
+},
     {
       "id": "software-engineering",
       "title": "Software Engineering",
