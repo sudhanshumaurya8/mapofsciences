@@ -628,7 +628,138 @@
   ]
 },
 
-            { "id": "recursion", "title": "Recursion", "count": 37 },
+            {
+  "id": "recursion",
+  "title": "Recursion",
+  "count": 32,
+  "children": [
+    {
+      "id": "recursion-key-characteristics",
+      "title": "Key Characteristics",
+      "children": [
+        {
+          "id": "self-referential-call",
+          "title": "Self Referential Function Call"
+        },
+        { "id": "base-case", "title": "Base Case" },
+        { "id": "recursive-case", "title": "Recursive Case" },
+        { "id": "stack-frame", "title": "Stack Frame" },
+        {
+          "id": "recursion-divide-conquer",
+          "title": "Divide and Conquer"
+        }
+      ]
+    },
+    {
+      "id": "types-of-recursion",
+      "title": "Types of Recursion",
+      "children": [
+        { "id": "direct-recursion", "title": "Direct Recursion" },
+        {
+          "id": "indirect-recursion",
+          "title": "Indirect Recursion"
+        },
+        { "id": "tail-recursion", "title": "Tail Recursion" },
+        {
+          "id": "non-tail-recursion",
+          "title": "Non-tail Recursion"
+        },
+        { "id": "tree-recursion", "title": "Tree Recursion" }
+      ]
+    },
+    {
+      "id": "recursion-examples",
+      "title": "Examples",
+      "children": [
+        {
+          "id": "fibonacci-recursion",
+          "title": "Fibonacci Sequence"
+        },
+        {
+          "id": "binary-search-recursion",
+          "title": "Binary Search"
+        },
+        { "id": "merge-sort", "title": "Merge Sort" },
+        { "id": "n-queen", "title": "N-Queen Problem" }
+      ]
+    },
+    {
+      "id": "recursion-complexity",
+      "title": "Complexity Analysis",
+      "children": [
+        { "id": "rec-time", "title": "Time Complexity" },
+        { "id": "rec-space", "title": "Space Complexity" },
+        {
+          "id": "optimization-techniques",
+          "title": "Optimization Techniques"
+        }
+      ]
+    },
+    {
+      "id": "recursion-advantages-disadvantages",
+      "title": "Advantages / Disadvantages",
+      "children": [
+        {
+          "id": "recursion-advantages",
+          "title": "Advantages",
+          "children": [
+            {
+              "id": "simplifies-problems",
+              "title": "Simplifies Complex Problems"
+            },
+            { "id": "readability", "title": "Readability" },
+            {
+              "id": "powerful-divide-conquer",
+              "title": "Powerful for Divide and Conquer"
+            }
+          ]
+        },
+        {
+          "id": "recursion-disadvantages",
+          "title": "Disadvantages",
+          "children": [
+            {
+              "id": "high-memory-usage",
+              "title": "High Memory Usage"
+            },
+            {
+              "id": "redundant-computation",
+              "title": "Inefficiency Due to Redundant Computations"
+            },
+            {
+              "id": "difficult-debug",
+              "title": "Difficult to Debug"
+            },
+            {
+              "id": "stack-size-dependence",
+              "title": "Dependence on Stack Size"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "recursion-applications",
+      "title": "Applications of Recursion",
+      "children": [
+        { "id": "ds-recursion", "title": "Data Structures" },
+        {
+          "id": "rec-divide-conquer",
+          "title": "Divide and Conquer"
+        },
+        {
+          "id": "rec-dynamic-programming",
+          "title": "Dynamic Programming"
+        },
+        {
+          "id": "combinatorial-problems",
+          "title": "Combinatorial Problems"
+        },
+        { "id": "puzzle-solving", "title": "Puzzle Solving" }
+      ]
+    }
+  ]
+},
             { "id": "search-algorithms", "title": "Search Algorithms", "count": 21 },
             { "id": "sorting-algorithms", "title": "Sorting Algorithms", "count": 19 }
           ]
