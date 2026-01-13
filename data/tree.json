@@ -345,7 +345,147 @@
   ]
 },
 
-            { "id": "backtracking", "title": "Backtracking", "count": 40 },
+            {
+  "id": "backtracking",
+  "title": "Backtracking",
+  "count": 34,
+  "children": [
+    {
+      "id": "backtracking-key-characteristics",
+      "title": "Key Characteristics",
+      "children": [
+        { "id": "incremental-construction", "title": "Incremental Construction" },
+        { "id": "constraint-satisfaction", "title": "Constraints Satisfaction" },
+        { "id": "recursive-exploration", "title": "Recursive Exploration" },
+        { "id": "pruning-search-space", "title": "Pruning of Search Space" },
+        {
+          "id": "exhaustive-search-constraints",
+          "title": "Exhaustive Search with Constraints"
+        }
+      ]
+    },
+    {
+      "id": "backtracking-steps",
+      "title": "Steps in Designing a Backtracking Solution",
+      "children": [
+        { "id": "define-problem", "title": "Define the Problem" },
+        {
+          "id": "identify-decision-points",
+          "title": "Identify the Decision Points"
+        },
+        {
+          "id": "recursive-backtracking",
+          "title": "Implement Recursive Backtracking with Constraints"
+        },
+        {
+          "id": "collect-solutions",
+          "title": "Return or Collect Valid Solutions"
+        }
+      ]
+    },
+    {
+      "id": "backtracking-examples",
+      "title": "Examples",
+      "children": [
+        { "id": "n-queen", "title": "N-Queen Problem" },
+        { "id": "sudoku", "title": "Sudoku Solver" },
+        {
+          "id": "permutations",
+          "title": "Permutations of a Set"
+        },
+        { "id": "subset-sum-bt", "title": "Subset Sum Problem" }
+      ]
+    },
+    {
+      "id": "backtracking-complexity",
+      "title": "Complexity Analysis",
+      "children": [
+        {
+          "id": "worst-case-complexity",
+          "title": "Worst Case Complexity"
+        },
+        { "id": "bt-space-complexity", "title": "Space Complexity" },
+        {
+          "id": "pruning-optimization",
+          "title": "Optimization through Pruning"
+        }
+      ]
+    },
+    {
+      "id": "backtracking-advantages-disadvantages",
+      "title": "Advantages / Disadvantages",
+      "children": [
+        {
+          "id": "bt-advantages",
+          "title": "Advantages",
+          "children": [
+            {
+              "id": "constraint-effectiveness",
+              "title": "Effective for Constraint Satisfaction"
+            },
+            { "id": "bt-flexibility", "title": "Flexibility" },
+            {
+              "id": "optimal-solution-bt",
+              "title": "Optimal Solution"
+            }
+          ]
+        },
+        {
+          "id": "bt-disadvantages",
+          "title": "Disadvantages",
+          "children": [
+            {
+              "id": "high-computation",
+              "title": "High Computational Cost"
+            },
+            {
+              "id": "limited-applicability",
+              "title": "Limited Applicability"
+            },
+            { "id": "bt-memory", "title": "Memory Usage" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "when-to-use-backtracking",
+      "title": "When to Use Backtracking",
+      "children": [
+        {
+          "id": "constraint-problems",
+          "title": "Constraint Satisfaction"
+        },
+        {
+          "id": "combinatorial-explosion",
+          "title": "Combinatorial Explosion"
+        },
+        { "id": "recursive-nature", "title": "Recursive Nature" },
+        {
+          "id": "valid-solutions",
+          "title": "Finding All or Any Valid Solutions"
+        }
+      ]
+    },
+    {
+      "id": "backtracking-applications",
+      "title": "Applications",
+      "children": [
+        { "id": "puzzle-solving", "title": "Puzzle Solving" },
+        { "id": "graph-coloring", "title": "Graph Coloring" },
+        {
+          "id": "combinatorial-generation",
+          "title": "Combinatorial Generation"
+        },
+        {
+          "id": "csp",
+          "title": "Constraint Satisfaction Problems"
+        },
+        { "id": "pathfinding", "title": "Pathfinding" }
+      ]
+    }
+  ]
+},
+
             { "id": "brute-force", "title": "Brute Force", "count": 38 },
             { "id": "recursion", "title": "Recursion", "count": 37 },
             { "id": "search-algorithms", "title": "Search Algorithms", "count": 21 },
