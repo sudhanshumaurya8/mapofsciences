@@ -38,22 +38,30 @@ function init(tree) {
   root.children.forEach((child, i) => {
     const y = startY + i * GAP_Y;
 
-    drawConnection(
-      CENTER_X + 90,
-      CENTER_Y,
-      RIGHT_X,
-      y
-    );
+   const startOffset = -((root.children.length - 1) * GAP_Y) / 2;
 
-    drawNode(
-      RIGHT_X,
-      y,
-      child.title,
-      () => {
-        window.location.href = `topic.html?id=${child.id}`;
-      }
-    );
-  });
+root.children.forEach((child, i) => {
+  const y = startY + i * GAP_Y;
+
+  const fromY = CENTER_Y + startOffset + i * GAP_Y; // 🔥 SPREAD LINES
+
+  drawConnection(
+    CENTER_X + 90,
+    fromY,
+    RIGHT_X,
+    y
+  );
+
+  drawNode(
+    RIGHT_X,
+    y,
+    child.title,
+    () => {
+      window.location.href = `topic.html?id=${child.id}`;
+    }
+  );
+});
+
 
   autoFit(); // 🔥 THIS is the key
 }
