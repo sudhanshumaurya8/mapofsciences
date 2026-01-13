@@ -24,9 +24,96 @@
           "title": "Electronics and Communication Engineering"
         },
         {
-          "id": "computer-science-engineering",
-          "title": "Computer Science and Engineering"
-        },
+  "id": "computer-science",
+  "title": "Computer Science",
+  "children": [
+    {
+      "id": "algorithms-data-structures",
+      "title": "Algorithms and Data Structure",
+      "count": 3
+    },
+    {
+      "id": "programming-languages",
+      "title": "Programming Language",
+      "count": "99+"
+    },
+    {
+      "id": "software-engineering",
+      "title": "Software Engineering",
+      "count": 62
+    },
+    {
+      "id": "computer-architecture",
+      "title": "Computer Architecture",
+      "count": "99+"
+    },
+    {
+      "id": "operating-systems",
+      "title": "Operating Systems",
+      "count": 58
+    },
+    {
+      "id": "databases",
+      "title": "Databases",
+      "count": 30
+    },
+    {
+      "id": "ai-ml",
+      "title": "Artificial Intelligence (AI) and Machine Learning (ML)",
+      "count": "99+"
+    },
+    {
+      "id": "computer-networks",
+      "title": "Computer Networks",
+      "count": "99+"
+    },
+    {
+      "id": "theory-of-computation",
+      "title": "Theory of Computation",
+      "count": 27
+    },
+    {
+      "id": "cybersecurity",
+      "title": "Cybersecurity",
+      "count": "99+"
+    },
+    {
+      "id": "hci",
+      "title": "Human Computer Interaction (HCI)",
+      "count": 60
+    },
+    {
+      "id": "graphics-visualization",
+      "title": "Graphics and Visualization",
+      "count": 51
+    },
+    {
+      "id": "quantum-computing",
+      "title": "Quantum Computing"
+    },
+    {
+      "id": "distributed-cloud",
+      "title": "Distributed Systems and Cloud",
+      "count": "99+"
+    },
+    {
+      "id": "big-data-data-science",
+      "title": "Big Data and Data Science",
+      "count": 52
+    },
+    {
+      "id": "embedded-systems",
+      "title": "Embedded Systems",
+      "count": "99+"
+    },
+    {
+      "id": "applications-of-cs",
+      "title": "Applications of Computer Science",
+      "count": "99+"
+    }
+  ]
+}
+
         {
           "id": "information-technology",
           "title": "Information Technology"
