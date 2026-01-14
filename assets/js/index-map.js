@@ -26,6 +26,7 @@ function init(tree) {
   const CENTER_X = WIDTH * 0.25;
   const CENTER_Y = HEIGHT / 2;
   const RIGHT_X = WIDTH * 0.75;
+  const GAP_Y = 80;
 
   const root = tree.children ? tree : tree[0];
 
@@ -35,61 +36,13 @@ function init(tree) {
 
   const startY = CENTER_Y - ((root.children.length - 1) * GAP_Y) / 2;
 
-  root.children.forEach((child, i) => {
-    const y = startY + i * GAP_Y;
-
-   const startOffset = -((root.children.length - 1) * GAP_Y) / 2;
-
-root.children.forEach((child, i) => {
-  const y = startY + i * GAP_Y;
-
-  const fromY = CENTER_Y + startOffset + i * GAP_Y; // 🔥 SPREAD LINES
-
-  drawConnection(
-    CENTER_X + 90,
-    fromY,
-    RIGHT_X,
-    y
-  );
-
-  drawNode(
-    RIGHT_X,
-    y,
-    child.title,
-    () => {
-      window.location.href = `topic.html?id=${child.id}`;
-    }
-  );
-});
-
-
-  autoFit(); // 🔥 THIS is the key
-}
-
-
-function init(tree) {
-  // Defensive root normalization
-  const root = tree.children ? tree : tree[0];
-
-  console.log("ROOT:", root);
- // root = Map of Science
-
-  // Draw center node
-  drawNode(CENTER_X, CENTER_Y, root.title, null);
-console.log("Level-1 children:", root.children?.map(c => c.title));
-
-  if (!root.children) return;
-
-  const startY = CENTER_Y - ((root.children.length - 1) * GAP_Y) / 2;
-
-  // Draw ONLY level-1 branches
   root.children.forEach((child, i) => {
     const y = startY + i * GAP_Y;
 
     drawConnection(
-      CENTER_X + 90,
+      CENTER_X + 60,   // start from edge, not center
       CENTER_Y,
-      RIGHT_X,
+      RIGHT_X - 60,
       y
     );
 
@@ -102,7 +55,11 @@ console.log("Level-1 children:", root.children?.map(c => c.title));
       }
     );
   });
+
+  autoFit();
 }
+
+
 
 /* =========================
    DRAWING FUNCTIONS
