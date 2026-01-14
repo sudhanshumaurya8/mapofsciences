@@ -26,3 +26,39 @@
 .arrow {
   color: #6b7280;
 }
+#search-container {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 420px;
+  z-index: 1000;
+}
+
+#searchBox {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+}
+
+#searchResults {
+  background: white;
+  border-radius: 8px;
+  margin-top: 6px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.search-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.search-item:hover {
+  background: #f1f5f9;
+}

@@ -19,7 +19,36 @@ function getSize() {
 // Load JSON
 fetch("data/tree.json")
   .then(res => res.json())
-  .then(tree => init(tree));
+ .then(tree => {
+  init(tree);
+  buildSearchIndex(tree);
+});
+const searchBox = document.getElementById("searchBox");
+const searchResults = document.getElementById("searchResults");
+
+searchBox.addEventListener("input", () => {
+  const q = searchBox.value.toLowerCase().trim();
+  searchResults.innerHTML = "";
+
+  if (q.length < 2) return;
+
+  const matches = SEARCH_INDEX.filter(item =>
+    item.title.toLowerCase().includes(q)
+  ).slice(0, 12);
+
+  matches.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "search-item";
+    div.innerHTML = `<strong>${item.title}</strong><br><small>${item.path}</small>`;
+
+    div.onclick = () => {
+      window.location.href = `topic.html?id=${item.id}`;
+    };
+
+    searchResults.appendChild(div);
+  });
+});
+
 function init(tree) {
   const { width: WIDTH, height: HEIGHT } = getSize();
 
@@ -190,4 +219,20 @@ function autoFit() {
     "transform",
     `translate(${translateX}, ${translateY}) scale(${scale})`
   );
+}
+let SEARCH_INDEX = [];
+function buildSearchIndex(node, path = []) {
+  const currentPath = [...path, node.title];
+
+  SEARCH_INDEX.push({
+    id: node.id,
+    title: node.title,
+    path: currentPath.join(" → ")
+  });
+
+  if (node.children) {
+    node.children.forEach(child =>
+      buildSearchIndex(child, currentPath)
+    );
+  }
 }
