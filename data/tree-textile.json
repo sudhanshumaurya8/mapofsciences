@@ -1,0 +1,147 @@
+{
+  "id": "textile-engineering",
+  "title": "Textile Engineering",
+  "type": "domain",
+  "context": {
+    "definition": "Textile Engineering is the field concerned with the design, production, properties, and applications of fibres, yarns, fabrics, and textile-based products.",
+    "role": "Provides the structural foundation for understanding all textile materials, processes, and applications.",
+    "references": [
+      {
+        "title": "NPTEL – Introduction to Textiles",
+        "url": "https://nptel.ac.in/courses/116102029"
+      },
+      {
+        "title": "Textile Institute (UK)",
+        "url": "https://www.textileinstitute.org"
+      }
+    ]
+  },
+  "children": [
+    {
+      "id": "textile-fibres",
+      "title": "Fibres",
+      "context": {
+        "definition": "Fibres are the fundamental raw materials of textiles, characterized by high length-to-diameter ratio and flexibility.",
+        "role": "All textile structures originate from fibres; their properties strongly influence yarn, fabric, and end-use performance.",
+        "references": [
+          {
+            "title": "NPTEL – Fibre Science and Technology",
+            "url": "https://nptel.ac.in/courses/116102015"
+          }
+        ]
+      }
+    },
+    {
+      "id": "yarn-formation",
+      "title": "Yarn Formation",
+      "context": {
+        "definition": "Yarn formation involves converting fibres into continuous strands through various spinning and bonding processes.",
+        "role": "Acts as the intermediate stage linking fibres to fabric structures.",
+        "references": [
+          {
+            "title": "NPTEL – Yarn Manufacturing Technology",
+            "url": "https://nptel.ac.in/courses/116102016"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fabric-formation",
+      "title": "Fabric Formation",
+      "context": {
+        "definition": "Fabric formation refers to processes that convert yarns or fibres into planar textile structures.",
+        "role": "Determines the structural geometry and mechanical behavior of textile products.",
+        "references": [
+          {
+            "title": "NPTEL – Fabric Manufacturing",
+            "url": "https://nptel.ac.in/courses/116102019"
+          }
+        ]
+      }
+    },
+    {
+      "id": "textile-processing",
+      "title": "Textile Wet Processing",
+      "context": {
+        "definition": "Wet processing includes chemical and mechanical treatments such as scouring, bleaching, dyeing, printing, and finishing.",
+        "role": "Enhances appearance, functionality, and end-use performance of textile materials.",
+        "references": [
+          {
+            "title": "NPTEL – Textile Processing",
+            "url": "https://nptel.ac.in/courses/116102021"
+          }
+        ]
+      }
+    },
+    {
+      "id": "textile-properties",
+      "title": "Textile Properties",
+      "context": {
+        "definition": "Textile properties describe the mechanical, physical, thermal, and comfort-related behavior of fibres, yarns, and fabrics.",
+        "role": "Used to evaluate performance, quality, and suitability for specific applications.",
+        "references": [
+          {
+            "title": "NPTEL – Textile Testing",
+            "url": "https://nptel.ac.in/courses/116102022"
+          }
+        ]
+      }
+    },
+    {
+      "id": "technical-textiles",
+      "title": "Technical Textiles",
+      "context": {
+        "definition": "Technical textiles are textile products engineered primarily for performance and functional properties rather than aesthetics.",
+        "role": "Represents high-value, application-driven segments of the textile industry.",
+        "references": [
+          {
+            "title": "NPTEL – Technical Textiles",
+            "url": "https://nptel.ac.in/courses/116102024"
+          }
+        ]
+      }
+    },
+    {
+      "id": "textile-machinery",
+      "title": "Textile Machinery",
+      "context": {
+        "definition": "Textile machinery includes equipment used in fibre processing, spinning, fabric formation, and finishing.",
+        "role": "Controls productivity, quality, and efficiency in textile manufacturing.",
+        "references": [
+          {
+            "title": "NPTEL – Textile Machinery",
+            "url": "https://nptel.ac.in/courses/116102020"
+          }
+        ]
+      }
+    },
+    {
+      "id": "textile-management",
+      "title": "Textile Management and Economics",
+      "context": {
+        "definition": "This area deals with production planning, quality management, supply chain, and economics of textile industries.",
+        "role": "Connects technical textile knowledge with industrial decision-making.",
+        "references": [
+          {
+            "title": "NPTEL – Industrial Management",
+            "url": "https://nptel.ac.in/courses/110106044"
+          }
+        ]
+      }
+    },
+    {
+      "id": "sustainable-textiles",
+      "title": "Sustainable and Smart Textiles",
+      "context": {
+        "definition": "Focuses on environmentally responsible textile production and intelligent textile systems.",
+        "role": "Represents the future direction of textile research and innovation.",
+        "references": [
+          {
+            "title": "NPTEL – Sustainable Manufacturing",
+            "url": "https://nptel.ac.in/courses/112104204"
+          }
+        ]
+      }
+    }
+  ]
+}
