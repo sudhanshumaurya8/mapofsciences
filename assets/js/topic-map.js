@@ -152,9 +152,10 @@ function drawNode(x, y, node, isCenter, parentNode) {
     }
 
     // GO DOWN
-    if (!isCenter && node.children?.length) {
-      window.location.href = `topic.html?id=${node.id}`;
-    }
+    // CHILD NODE → show context ONLY
+if (!isCenter) {
+  renderContext(node);
+}
   });
 }
 

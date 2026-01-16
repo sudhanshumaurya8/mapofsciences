@@ -1,67 +1,58 @@
+console.log("index-map.js loaded");
+
 const svg = document.getElementById("mindmap");
 const NS = "http://www.w3.org/2000/svg";
 
-// SVG group (needed later for zoom/pan)
+// Main SVG group (for zoom / pan)
 const g = document.createElementNS(NS, "g");
 svg.appendChild(g);
 
-// Layout constants
+/* =========================
+   SIZE HELPERS
+========================= */
+
 function getSize() {
+  const rect = svg.getBoundingClientRect();
   return {
-    width: svg.getBoundingClientRect().width,
-    height: svg.getBoundingClientRect().height
+    width: rect.width,
+    height: rect.height
   };
 }
 
+/* =========================
+   LOAD DATA
+========================= */
 
+let SEARCH_INDEX = [];
 
-
-// Load JSON
 fetch("data/tree-textile.json")
   .then(res => res.json())
- .then(tree => {
-  init(tree);
-  buildSearchIndex(tree);
-});
-const searchBox = document.getElementById("searchBox");
-const searchResults = document.getElementById("searchResults");
+  .then(tree => {
+    buildSearchIndex(tree);
+    init(tree);
+  })
+  .catch(err => console.error("Failed to load tree:", err));
 
-searchBox.addEventListener("input", () => {
-  const q = searchBox.value.toLowerCase().trim();
-  searchResults.innerHTML = "";
-
-  if (q.length < 2) return;
-
-  const matches = SEARCH_INDEX.filter(item =>
-    item.title.toLowerCase().includes(q)
-  ).slice(0, 12);
-
-  matches.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "search-item";
-    div.innerHTML = `<strong>${item.title}</strong><br><small>${item.path}</small>`;
-
-    div.onclick = () => {
-      window.location.href = `topic.html?id=${item.id}`;
-    };
-
-    searchResults.appendChild(div);
-  });
-});
+/* =========================
+   INITIAL DRAW
+========================= */
 
 function init(tree) {
+  g.innerHTML = ""; // clear SVG
+
   const { width: WIDTH, height: HEIGHT } = getSize();
 
   const CENTER_X = WIDTH * 0.25;
   const CENTER_Y = HEIGHT / 2;
-  const RIGHT_X = WIDTH * 0.75;
-  const GAP_Y = 80;
+  const RIGHT_X  = WIDTH * 0.75;
+  const GAP_Y    = 80;
 
   const root = tree.children ? tree : tree[0];
 
+  // Draw center node
   drawNode(CENTER_X, CENTER_Y, root.title, null);
 
-  if (!root.children) return;
+  if (!root.children || !root.children.length) return;
 
   const startY = CENTER_Y - ((root.children.length - 1) * GAP_Y) / 2;
 
@@ -69,7 +60,7 @@ function init(tree) {
     const y = startY + i * GAP_Y;
 
     drawConnection(
-      CENTER_X + 60,   // start from edge, not center
+      CENTER_X + 60,
       CENTER_Y,
       RIGHT_X - 60,
       y
@@ -88,10 +79,8 @@ function init(tree) {
   autoFit();
 }
 
-
-
 /* =========================
-   DRAWING FUNCTIONS
+   DRAW NODE
 ========================= */
 
 function drawNode(x, y, text, onClick) {
@@ -126,6 +115,10 @@ function drawNode(x, y, text, onClick) {
   g.appendChild(group);
 }
 
+/* =========================
+   DRAW CONNECTION
+========================= */
+
 function drawConnection(x1, y1, x2, y2) {
   const path = document.createElementNS(NS, "path");
 
@@ -138,89 +131,90 @@ function drawConnection(x1, y1, x2, y2) {
 
   path.setAttribute("d", d);
   path.setAttribute("fill", "none");
-  path.setAttribute("stroke", "#9ca3af");
+  path.setAttribute("stroke", "#9ca3af");   // gray
   path.setAttribute("stroke-width", 2);
   path.setAttribute("stroke-linecap", "round");
 
   g.appendChild(path);
 }
 
+/* =========================
+   ZOOM & PAN
+========================= */
+
 enableZoomPan(svg, g);
 
 function enableZoomPan(svg, group) {
   let scale = 1;
-  let translateX = 0;
-  let translateY = 0;
+  let tx = 0;
+  let ty = 0;
+  let dragging = false;
+  let sx = 0;
+  let sy = 0;
 
-  let isPanning = false;
-  let startX, startY;
-
-  // Apply transform
-  function updateTransform() {
+  function update() {
     group.setAttribute(
       "transform",
-      `translate(${translateX}, ${translateY}) scale(${scale})`
+      `translate(${tx}, ${ty}) scale(${scale})`
     );
   }
 
-  // Zoom with mouse wheel
-  svg.addEventListener("wheel", (e) => {
+  svg.addEventListener("wheel", e => {
     e.preventDefault();
-
-    const zoomSpeed = 0.1;
-    const direction = e.deltaY > 0 ? -1 : 1;
-    const factor = 1 + zoomSpeed * direction;
-
-    scale *= factor;
-    scale = Math.min(Math.max(scale, 0.4), 3); // limits
-
-    updateTransform();
+    scale += e.deltaY > 0 ? -0.1 : 0.1;
+    scale = Math.min(Math.max(scale, 0.4), 3);
+    update();
   });
 
-  // Start panning
-  svg.addEventListener("mousedown", (e) => {
-    isPanning = true;
-    startX = e.clientX - translateX;
-    startY = e.clientY - translateY;
+  svg.addEventListener("mousedown", e => {
+    dragging = true;
+    sx = e.clientX - tx;
+    sy = e.clientY - ty;
     svg.style.cursor = "grabbing";
   });
 
-  // Pan movement
-  svg.addEventListener("mousemove", (e) => {
-    if (!isPanning) return;
-
-    translateX = e.clientX - startX;
-    translateY = e.clientY - startY;
-    updateTransform();
+  svg.addEventListener("mousemove", e => {
+    if (!dragging) return;
+    tx = e.clientX - sx;
+    ty = e.clientY - sy;
+    update();
   });
 
-  // Stop panning
-  svg.addEventListener("mouseup", stopPan);
-  svg.addEventListener("mouseleave", stopPan);
+  svg.addEventListener("mouseup", stop);
+  svg.addEventListener("mouseleave", stop);
 
-  function stopPan() {
-    isPanning = false;
+  function stop() {
+    dragging = false;
     svg.style.cursor = "default";
   }
 }
+
+/* =========================
+   AUTO FIT
+========================= */
+
 function autoFit() {
   const bbox = g.getBBox();
-  const svgRect = svg.getBoundingClientRect();
+  const rect = svg.getBoundingClientRect();
 
   const scale = Math.min(
-    svgRect.width / bbox.width,
-    svgRect.height / bbox.height
+    rect.width / bbox.width,
+    rect.height / bbox.height
   ) * 0.9;
 
-  const translateX = (svgRect.width - bbox.width * scale) / 2 - bbox.x * scale;
-  const translateY = (svgRect.height - bbox.height * scale) / 2 - bbox.y * scale;
+  const tx = (rect.width - bbox.width * scale) / 2 - bbox.x * scale;
+  const ty = (rect.height - bbox.height * scale) / 2 - bbox.y * scale;
 
   g.setAttribute(
     "transform",
-    `translate(${translateX}, ${translateY}) scale(${scale})`
+    `translate(${tx}, ${ty}) scale(${scale})`
   );
 }
-let SEARCH_INDEX = [];
+
+/* =========================
+   SEARCH INDEX
+========================= */
+
 function buildSearchIndex(node, path = []) {
   const currentPath = [...path, node.title];
 
@@ -236,3 +230,33 @@ function buildSearchIndex(node, path = []) {
     );
   }
 }
+
+/* =========================
+   SEARCH UI
+========================= */
+
+const searchBox = document.getElementById("searchBox");
+const searchResults = document.getElementById("searchResults");
+
+searchBox.addEventListener("input", () => {
+  const q = searchBox.value.toLowerCase().trim();
+  searchResults.innerHTML = "";
+
+  if (q.length < 2) return;
+
+  SEARCH_INDEX
+    .filter(item => item.title.toLowerCase().includes(q))
+    .slice(0, 12)
+    .forEach(item => {
+      const div = document.createElement("div");
+      div.className = "search-item";
+      div.innerHTML = `
+        <strong>${item.title}</strong><br>
+        <small>${item.path}</small>
+      `;
+      div.onclick = () => {
+        window.location.href = `topic.html?id=${item.id}`;
+      };
+      searchResults.appendChild(div);
+    });
+});
