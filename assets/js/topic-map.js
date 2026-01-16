@@ -13,7 +13,7 @@ const topicId = params.get("id");
 console.log("URL id:", topicId);
 
 // Load JSON
-fetch("data/tree.json")
+fetch("data/tree-textile.json")
   .then(res => res.json())
   .then(tree => {
     console.log("Tree loaded");

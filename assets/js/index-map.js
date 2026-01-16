@@ -17,7 +17,7 @@ function getSize() {
 
 
 // Load JSON
-fetch("data/tree.json")
+fetch("data/tree-textile.json")
   .then(res => res.json())
  .then(tree => {
   init(tree);
