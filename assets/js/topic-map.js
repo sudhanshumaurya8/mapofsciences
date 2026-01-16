@@ -39,6 +39,30 @@ fetch("data/tree-textile.json")
 /* =============================
    Rendering
 ============================= */
+function renderContext(node) {
+  const container = document.getElementById("context");
+
+  if (!node.context) {
+    container.innerHTML = "<p>No context available yet.</p>";
+    return;
+  }
+
+  let html = "";
+
+  if (node.context.summary) {
+    html += `<p>${node.context.summary}</p>`;
+  }
+
+  if (node.context.links?.length) {
+    html += "<h3>References</h3><ul>";
+    node.context.links.forEach(link => {
+      html += `<li><a href="${link.url}" target="_blank">${link.title}</a></li>`;
+    });
+    html += "</ul>";
+  }
+
+  container.innerHTML = html;
+}
 
 function renderTopic(node, parentNode) {
   const width = svg.clientWidth;
