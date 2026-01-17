@@ -13,6 +13,7 @@
   <section class="hero">
     <div class="hero-content">
       <h1>Map of Sciences</h1>
+
       <p class="subtitle">
         Explore knowledge as a connected structure — not as isolated pages.
       </p>
@@ -21,6 +22,17 @@
         A visual, navigable map of scientific and engineering disciplines,
         designed for deep understanding, research orientation, and discovery.
       </p>
+
+      <!-- SEARCH -->
+      <div class="search-container">
+        <input
+          type="text"
+          id="searchBox"
+          placeholder="Search any concept, topic, or field…"
+          autocomplete="off"
+        />
+        <div id="searchResults"></div>
+      </div>
 
       <div class="hero-actions">
         <a href="topic.html?id=textile-engineering" class="primary-btn">
@@ -33,7 +45,7 @@
     </div>
   </section>
 
-  <!-- WHY SECTION -->
+  <!-- WHY -->
   <section class="why" id="about">
     <h2>Why a Map of Knowledge?</h2>
 
@@ -64,7 +76,7 @@
     </div>
   </section>
 
-  <!-- MAP PREVIEW -->
+  <!-- PREVIEW -->
   <section class="preview">
     <h2>Explore a Discipline</h2>
     <p class="preview-text">
@@ -76,7 +88,7 @@
     </a>
   </section>
 
-  <!-- WHO IS THIS FOR -->
+  <!-- AUDIENCE -->
   <section class="audience">
     <h2>Who Is This For?</h2>
 
@@ -94,6 +106,9 @@
       Map of Sciences — an experiment in structured knowledge representation.
     </p>
   </footer>
+
+  <!-- SEARCH SCRIPT -->
+  <script src="assets/js/index-map.js"></script>
 
 </body>
 </html>
