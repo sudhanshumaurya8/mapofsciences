@@ -1,16 +1,20 @@
 /****************************************************
  * topic-map.js
  * ----------------------------------
- * Works with NESTED tree JSON
- * Renders parent + active + children
+ * UX-refined version
+ * - Subtle hover affordances
+ * - Clearer active node emphasis
+ * - Calmer tooltip behavior
  ****************************************************/
 
 /* ---------- CONFIG ---------- */
 
 const DATA_PATH = "/assets/data/tree-textile.json";
 const NODE_RADIUS = 18;
+const ACTIVE_NODE_RADIUS = 21;
 const LEVEL_GAP_X = 220;
-const LEVEL_GAP_Y = 80;
+const LEVEL_GAP_Y = 96;
+const TOOLTIP_DELAY = 200;
 
 /* ---------- DOM REFERENCES ---------- */
 
@@ -23,6 +27,7 @@ const tooltipEl = document.getElementById("tooltip");
 
 let TREE_INDEX = {};
 let ACTIVE_NODE = null;
+let tooltipTimer = null;
 
 /* ---------- INIT ---------- */
 
@@ -55,11 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ---------- URL ---------- */
 
 function getTopicIdFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("id");
+  return new URLSearchParams(window.location.search).get("id");
 }
 
-/* ---------- INDEX BUILDER (FIXED) ---------- */
+/* ---------- INDEX ---------- */
 
 function buildIndex(node, parentId) {
   TREE_INDEX[node.id] = {
@@ -70,9 +74,7 @@ function buildIndex(node, parentId) {
   };
 
   if (Array.isArray(node.children)) {
-    node.children.forEach(child => {
-      buildIndex(child, node.id);
-    });
+    node.children.forEach(child => buildIndex(child, node.id));
   }
 }
 
@@ -121,18 +123,23 @@ function renderMap() {
 
 function drawNode(node, x, y, isActive) {
   const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  g.setAttribute("tabindex", "0");
+  g.style.cursor = "pointer";
 
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   circle.setAttribute("cx", x);
   circle.setAttribute("cy", y);
-  circle.setAttribute("r", NODE_RADIUS);
+  circle.setAttribute("r", isActive ? ACTIVE_NODE_RADIUS : NODE_RADIUS);
   circle.setAttribute("fill", "#ffffff");
-  circle.setAttribute("stroke", isActive ? "#1f2937" : "#6b7280");
+  circle.setAttribute(
+    "stroke",
+    isActive ? "#0f172a" : "#64748b"
+  );
   circle.setAttribute("stroke-width", isActive ? "3" : "1.5");
 
   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", x);
-  text.setAttribute("y", y + NODE_RADIUS + 14);
+  text.setAttribute("y", y + NODE_RADIUS + 16);
   text.setAttribute("text-anchor", "middle");
   text.setAttribute("font-size", "13");
   text.setAttribute("fill", "#111827");
@@ -146,14 +153,25 @@ function drawNode(node, x, y, isActive) {
   });
 
   g.addEventListener("mouseenter", e => {
-    tooltipEl.style.display = "block";
-    tooltipEl.style.left = e.clientX + 12 + "px";
-    tooltipEl.style.top = e.clientY + 12 + "px";
-    tooltipEl.innerHTML = `<strong>${node.label}</strong>`;
+    tooltipTimer = setTimeout(() => {
+      tooltipEl.style.display = "block";
+      tooltipEl.style.left = e.clientX + 12 + "px";
+      tooltipEl.style.top = e.clientY + 12 + "px";
+      tooltipEl.innerHTML = `<strong>${node.label}</strong>`;
+    }, TOOLTIP_DELAY);
+
+    if (!isActive) {
+      circle.setAttribute("stroke", "#1e40af");
+    }
   });
 
   g.addEventListener("mouseleave", () => {
+    clearTimeout(tooltipTimer);
     tooltipEl.style.display = "none";
+    circle.setAttribute(
+      "stroke",
+      isActive ? "#0f172a" : "#64748b"
+    );
   });
 
   svg.appendChild(g);
@@ -165,7 +183,7 @@ function drawLink(x1, y1, x2, y2) {
   line.setAttribute("y1", y1);
   line.setAttribute("x2", x2);
   line.setAttribute("y2", y2);
-  line.setAttribute("stroke", "#9ca3af");
+  line.setAttribute("stroke", "#cbd5f5");
   line.setAttribute("stroke-width", "1");
   svg.appendChild(line);
 }
