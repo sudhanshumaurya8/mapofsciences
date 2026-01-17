@@ -1,20 +1,13 @@
 /****************************************************
  * topic-map.js
  * ----------------------------------
- * Responsibilities:
- * - Read topic ID from URL
- * - Load tree JSON
- * - Render SVG mind map (parent + node + children)
- * - Center and highlight active node
- * - Populate breadcrumb
- * - Populate context panel
- * - Handle tooltip
+ * Works with NESTED tree JSON
+ * Renders parent + active + children
  ****************************************************/
 
 /* ---------- CONFIG ---------- */
 
-const DATA_PATH = "assets/data/tree-textile.json"; // adjust later per domain
-const SVG_PADDING = 60;
+const DATA_PATH = "/assets/data/tree-textile.json";
 const NODE_RADIUS = 18;
 const LEVEL_GAP_X = 220;
 const LEVEL_GAP_Y = 80;
@@ -28,61 +21,36 @@ const tooltipEl = document.getElementById("tooltip");
 
 /* ---------- STATE ---------- */
 
-let TREE_INDEX = {};      // id -> node
+let TREE_INDEX = {};
 let ACTIVE_NODE = null;
 
 /* ---------- INIT ---------- */
 
-document.addEventListener("DOMContentLoaded", init);
-
-function init() {
+document.addEventListener("DOMContentLoaded", () => {
   const topicId = getTopicIdFromURL();
   if (!topicId) {
     contextEl.innerHTML = "<p>No topic selected.</p>";
     return;
   }
 
-  loadTree(DATA_PATH).then(() => {
-    ACTIVE_NODE = TREE_INDEX[topicId];
-    if (!ACTIVE_NODE) {
-      contextEl.innerHTML = "<p>Topic not found.</p>";
-      return;
-    }
-
-    render();
-  });
-}
-
-/* ---------- DATA LOADING ---------- */
-
-function loadTree(path) {
-  return fetch(path)
+  fetch(DATA_PATH)
     .then(res => res.json())
     .then(root => {
-      flattenTree(root, null);
-    });
-}
+      buildIndex(root, null);
 
-/**
- * Convert nested tree JSON into flat index
- */
-function flattenTree(node, parentId) {
-  TREE_INDEX[node.id] = {
-    id: node.id,
-    label: node.title,
-    parent: parentId,
-    children: [],
-    definition: node.context?.definition || "",
-    summary: []
-  };
+      ACTIVE_NODE = TREE_INDEX[topicId];
+      if (!ACTIVE_NODE) {
+        contextEl.innerHTML = "<p>Topic not found.</p>";
+        return;
+      }
 
-  if (node.children && Array.isArray(node.children)) {
-    node.children.forEach(child => {
-      TREE_INDEX[node.id].children.push(child.id);
-      flattenTree(child, node.id);
+      renderAll();
+    })
+    .catch(err => {
+      console.error(err);
+      contextEl.innerHTML = "<p>Error loading tree.</p>";
     });
-  }
-}
+});
 
 /* ---------- URL ---------- */
 
@@ -91,50 +59,68 @@ function getTopicIdFromURL() {
   return params.get("id");
 }
 
+/* ---------- INDEX BUILDER (FIXED) ---------- */
+
+function buildIndex(node, parentId) {
+  TREE_INDEX[node.id] = {
+    id: node.id,
+    label: node.title,
+    parent: parentId,
+    raw: node
+  };
+
+  if (Array.isArray(node.children)) {
+    node.children.forEach(child => {
+      buildIndex(child, node.id);
+    });
+  }
+}
+
 /* ---------- RENDER ---------- */
 
-function render() {
+function renderAll() {
   clearSVG();
-  renderBreadcrumb(ACTIVE_NODE);
-  renderContext(ACTIVE_NODE);
-  renderMap(ACTIVE_NODE);
+  renderBreadcrumb();
+  renderContext();
+  renderMap();
 }
 
-/* ---------- SVG MAP ---------- */
+/* ---------- MAP ---------- */
 
-function renderMap(node) {
-  const parent = TREE_INDEX[node.parent];
-  const children = (node.children || []).map(id => TREE_INDEX[id]);
+function renderMap() {
+  const cx = 600;
+  const cy = 400;
 
-  const centerX = 600;
-  const centerY = 400;
+  const parent = ACTIVE_NODE.parent
+    ? TREE_INDEX[ACTIVE_NODE.parent]
+    : null;
 
-  // Parent
+  const children = Array.isArray(ACTIVE_NODE.raw.children)
+    ? ACTIVE_NODE.raw.children.map(c => TREE_INDEX[c.id])
+    : [];
+
   if (parent) {
-    drawNode(parent, centerX - LEVEL_GAP_X, centerY, false);
-    drawLink(centerX - LEVEL_GAP_X, centerY, centerX, centerY);
+    drawNode(parent, cx - LEVEL_GAP_X, cy, false);
+    drawLink(cx - LEVEL_GAP_X, cy, cx, cy);
   }
 
-  // Active node
-  drawNode(node, centerX, centerY, true);
+  drawNode(ACTIVE_NODE, cx, cy, true);
 
-  // Children
-  children.forEach((child, index) => {
-    const offsetY =
-      centerY +
-      (index - (children.length - 1) / 2) * LEVEL_GAP_Y;
+  children.forEach((child, i) => {
+    const y =
+      cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
 
-    drawNode(child, centerX + LEVEL_GAP_X, offsetY, false);
-    drawLink(centerX, centerY, centerX + LEVEL_GAP_X, offsetY);
+    drawNode(child, cx + LEVEL_GAP_X, y, false);
+    drawLink(cx, cy, cx + LEVEL_GAP_X, y);
   });
 
-  centerSVG(centerX, centerY);
+  svg.setAttribute("viewBox", "0 0 1200 800");
 }
 
-/* ---------- SVG PRIMITIVES ---------- */
+/* ---------- SVG ---------- */
 
 function drawNode(node, x, y, isActive) {
-  const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   circle.setAttribute("cx", x);
@@ -152,20 +138,25 @@ function drawNode(node, x, y, isActive) {
   text.setAttribute("fill", "#111827");
   text.textContent = node.label;
 
-  group.appendChild(circle);
-  group.appendChild(text);
+  g.appendChild(circle);
+  g.appendChild(text);
 
-  group.addEventListener("click", () => {
+  g.addEventListener("click", () => {
     window.location.href = `topic.html?id=${node.id}`;
   });
 
-  group.addEventListener("mouseenter", e => {
-    showTooltip(node, e.clientX, e.clientY);
+  g.addEventListener("mouseenter", e => {
+    tooltipEl.style.display = "block";
+    tooltipEl.style.left = e.clientX + 12 + "px";
+    tooltipEl.style.top = e.clientY + 12 + "px";
+    tooltipEl.innerHTML = `<strong>${node.label}</strong>`;
   });
 
-  group.addEventListener("mouseleave", hideTooltip);
+  g.addEventListener("mouseleave", () => {
+    tooltipEl.style.display = "none";
+  });
 
-  svg.appendChild(group);
+  svg.appendChild(g);
 }
 
 function drawLink(x1, y1, x2, y2) {
@@ -179,83 +170,57 @@ function drawLink(x1, y1, x2, y2) {
   svg.appendChild(line);
 }
 
-/* ---------- VIEWPORT ---------- */
-
-function centerSVG(cx, cy) {
-  const width = svg.clientWidth;
-  const height = svg.clientHeight;
-
-  const viewX = cx - width / 2;
-  const viewY = cy - height / 2;
-
-  svg.setAttribute(
-    "viewBox",
-    `${viewX} ${viewY} ${width} ${height}`
-  );
-}
-
 function clearSVG() {
-  while (svg.firstChild) {
-    svg.removeChild(svg.firstChild);
-  }
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
 }
 
 /* ---------- BREADCRUMB ---------- */
 
-function renderBreadcrumb(node) {
+function renderBreadcrumb() {
   const path = [];
-  let current = node;
+  let current = ACTIVE_NODE;
 
   while (current) {
     path.unshift(current);
-    current = TREE_INDEX[current.parent];
+    current = current.parent ? TREE_INDEX[current.parent] : null;
   }
 
   breadcrumbEl.innerHTML = path
-    .map((n, i) => {
-      if (i === path.length - 1) {
-        return `<strong>${n.label}</strong>`;
-      }
-      return `<a href="topic.html?id=${n.id}">${n.label}</a>`;
-    })
+    .map((n, i) =>
+      i === path.length - 1
+        ? `<strong>${n.label}</strong>`
+        : `<a href="topic.html?id=${n.id}">${n.label}</a>`
+    )
     .join(" &gt; ");
 }
 
-/* ---------- CONTEXT PANEL ---------- */
+/* ---------- CONTEXT ---------- */
 
-function renderContext(node) {
+function renderContext() {
+  const ctx = ACTIVE_NODE.raw.context || {};
+
   contextEl.innerHTML = `
-    <h3>${node.label}</h3>
+    <h3>${ACTIVE_NODE.label}</h3>
 
-    <p><strong>Definition</strong><br>
-    ${node.definition || "No definition available."}</p>
+    <p><strong>Definition</strong></p>
+    <p>${ctx.definition || "No definition available."}</p>
 
-    <p><strong>Summary</strong></p>
-    <ul>
-      ${(node.summary || []).map(s => `<li>${s}</li>`).join("")}
-    </ul>
+    ${
+      ctx.role
+        ? `<p><strong>Role</strong></p><p>${ctx.role}</p>`
+        : ""
+    }
 
-    <p><strong>Relations</strong></p>
-    <ul>
-      ${node.parent ? `<li>Parent: ${TREE_INDEX[node.parent].label}</li>` : ""}
-      <li>Children: ${(node.children || []).length}</li>
-    </ul>
+    ${
+      Array.isArray(ctx.references)
+        ? `
+        <p><strong>References</strong></p>
+        <ul>
+          ${ctx.references
+            .map(r => `<li><a href="${r.url}" target="_blank">${r.title}</a></li>`)
+            .join("")}
+        </ul>`
+        : ""
+    }
   `;
-}
-
-/* ---------- TOOLTIP ---------- */
-
-function showTooltip(node, x, y) {
-  tooltipEl.style.display = "block";
-  tooltipEl.style.left = x + 12 + "px";
-  tooltipEl.style.top = y + 12 + "px";
-
-  tooltipEl.innerHTML = `
-    <strong>${node.label}</strong><br>
-    ${node.definition || ""}
-  `;
-}
-
-function hideTooltip() {
-  tooltipEl.style.display = "none";
 }
