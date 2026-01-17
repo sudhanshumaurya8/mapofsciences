@@ -2,32 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Map of Science – Topic</title>
+  <title>Map of Sciences – Topic</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- Page-specific styles -->
+  <!-- Page-specific layout styles -->
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
     }
 
+    /* Breadcrumb */
     #breadcrumb {
-      padding: 10px 16px;
+      padding: 8px 16px;
       font-size: 14px;
       border-bottom: 1px solid #e5e7eb;
       background: #fafafa;
     }
 
-    /* Layout container */
+    /* Main layout container */
     #container {
       display: flex;
-      height: calc(100vh - 42px);
+      height: calc(100vh - 52px - 37px);
+      /* 52px header + ~37px breadcrumb */
     }
 
-    /* SVG area (80%) */
+    /* SVG mind map (80%) */
     #mindmap {
       flex: 4;
       width: 100%;
@@ -57,7 +61,7 @@
       border: 1px solid #cbd5f5;
       padding: 10px;
       font-size: 13px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       display: none;
       z-index: 1000;
       pointer-events: none;
@@ -67,30 +71,50 @@
 
 <body>
 
-  <!-- Breadcrumb -->
+  <!-- GLOBAL HEADER (same as index.html) -->
+  <header class="site-header">
+    <div class="site-title">
+      <a href="index.html">Map of Sciences</a>
+    </div>
+
+    <div class="search-container">
+      <input
+        type="search"
+        id="global-search"
+        placeholder="Search the entire map…"
+        autocomplete="off"
+      />
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
   <div id="breadcrumb"></div>
 
-  <!-- Main layout -->
+  <!-- MAIN LAYOUT -->
   <div id="container">
 
-    <!-- SVG mind map -->
+    <!-- SVG MIND MAP -->
     <svg
       id="mindmap"
       viewBox="0 0 1200 800"
       preserveAspectRatio="xMidYMid meet">
     </svg>
 
-    <!-- Context side panel -->
+    <!-- CONTEXT PANEL -->
     <div id="context">
       <p>Select a topic to see its context.</p>
     </div>
 
   </div>
 
-  <!-- Tooltip -->
+  <!-- TOOLTIP -->
   <div id="tooltip"></div>
 
-  <!-- Script -->
+  <!-- GLOBAL SEARCH LOGIC -->
+  <script src="assets/js/search.js" defer></script>
+
+  <!-- PAGE-SPECIFIC LOGIC -->
   <script src="assets/js/topic-map.js"></script>
 
 </body>

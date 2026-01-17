@@ -4,111 +4,130 @@
   <meta charset="UTF-8" />
   <title>Map of Sciences</title>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Map of Sciences — a structured, navigable map of scientific and engineering knowledge."
+  />
+
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Map of Sciences</h1>
+  <!-- GLOBAL HEADER -->
+  <header class="site-header">
+    <div class="site-title">
+      <a href="index.html">Map of Sciences</a>
+    </div>
 
-      <p class="subtitle">
-        Explore knowledge as a connected structure — not as isolated pages.
+    <div class="search-container">
+      <input
+        type="search"
+        id="global-search"
+        placeholder="Search the entire map…"
+        autocomplete="off"
+      />
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Map of Sciences</h1>
+
+        <p class="subtitle">
+          Explore knowledge as a connected structure — not as isolated pages.
+        </p>
+
+        <p class="description">
+          A visual, navigable map of scientific and engineering disciplines,
+          designed for deep understanding, research orientation, and
+          systematic discovery.
+        </p>
+
+        <div class="hero-actions">
+          <a href="topic.html?id=textile-engineering" class="primary-btn">
+            Explore the Map
+          </a>
+          <a href="#about" class="secondary-btn">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="why" id="about">
+      <h2>Why a Map of Knowledge?</h2>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <h3>Structure over Search</h3>
+          <p>
+            Instead of searching blindly through disconnected pages,
+            understand how concepts branch, relate, and evolve within a
+            discipline.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <h3>Designed for Thinking</h3>
+          <p>
+            Built for students, researchers, and educators who reason
+            structurally and prefer conceptual continuity over fragmentation.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <h3>Expandable by Design</h3>
+          <p>
+            A foundation intended to scale to tens of thousands of concepts,
+            enriched gradually with definitions, summaries, and references.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREVIEW -->
+    <section class="preview">
+      <h2>Explore a Discipline</h2>
+      <p class="preview-text">
+        Begin with a field and move deeper — one level at a time.
       </p>
 
-      <p class="description">
-        A visual, navigable map of scientific and engineering disciplines,
-        designed for deep understanding, research orientation, and discovery.
-      </p>
+      <a href="topic.html?id=textile-engineering" class="preview-box">
+        Textile Engineering →
+      </a>
+    </section>
 
-      <!-- SEARCH -->
-      <div class="search-container">
-        <input
-          type="text"
-          id="searchBox"
-          placeholder="Search any concept, topic, or field…"
-          autocomplete="off"
-        />
-        <div id="searchResults"></div>
-      </div>
+    <!-- AUDIENCE -->
+    <section class="audience">
+      <h2>Who Is This For?</h2>
 
-      <div class="hero-actions">
-        <a href="topic.html?id=textile-engineering" class="primary-btn">
-          Explore the Map
-        </a>
-        <a href="#about" class="secondary-btn">
-          Learn More
-        </a>
-      </div>
-    </div>
-  </section>
+      <ul>
+        <li>Undergraduate and postgraduate students</li>
+        <li>PhD scholars and academic researchers</li>
+        <li>Educators and curriculum designers</li>
+        <li>Independent learners seeking structured understanding</li>
+      </ul>
+    </section>
 
-  <!-- WHY -->
-  <section class="why" id="about">
-    <h2>Why a Map of Knowledge?</h2>
-
-    <div class="why-grid">
-      <div class="why-card">
-        <h3>Structure over Search</h3>
-        <p>
-          Instead of searching blindly, see how concepts connect,
-          branch, and evolve across disciplines.
-        </p>
-      </div>
-
-      <div class="why-card">
-        <h3>Designed for Thinking</h3>
-        <p>
-          Built for students, researchers, and educators who
-          think in systems, not pages.
-        </p>
-      </div>
-
-      <div class="why-card">
-        <h3>Expandable by Design</h3>
-        <p>
-          A foundation that can grow to millions of concepts,
-          enriched gradually with context and references.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PREVIEW -->
-  <section class="preview">
-    <h2>Explore a Discipline</h2>
-    <p class="preview-text">
-      Start from a field and move deeper — one level at a time.
-    </p>
-
-    <a href="topic.html?id=textile-engineering" class="preview-box">
-      Textile Engineering →
-    </a>
-  </section>
-
-  <!-- AUDIENCE -->
-  <section class="audience">
-    <h2>Who Is This For?</h2>
-
-    <ul>
-      <li>Undergraduate and postgraduate students</li>
-      <li>PhD scholars and researchers</li>
-      <li>Educators and curriculum designers</li>
-      <li>Self-learners seeking structured understanding</li>
-    </ul>
-  </section>
+  </main>
 
   <!-- FOOTER -->
-  <footer>
+  <footer class="site-footer">
     <p>
       Map of Sciences — an experiment in structured knowledge representation.
     </p>
   </footer>
 
-  <!-- SEARCH SCRIPT -->
-  <script src="assets/js/index-map.js"></script>
+  <!-- GLOBAL SEARCH LOGIC -->
+  <script src="assets/js/search.js" defer></script>
 
 </body>
 </html>
