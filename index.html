@@ -2,27 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Map of Science</title>
-  <link rel="stylesheet" href="assets/css/mindmap.css" />
+  <title>Map of Sciences</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
+
 <body>
-<div id="search-container">
-  <input
-    type="text"
-    id="searchBox"
-    placeholder="Search topics (e.g. Greedy, Java, Biomedical)"
-  />
-  <div id="searchResults"></div>
-</div>
 
-<svg
-  id="mindmap"
-  viewBox="0 0 1200 800"
-  preserveAspectRatio="xMidYMid meet"
-  style="width: 100%; height: 100vh; display: block;"
-></svg>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Map of Sciences</h1>
+      <p class="subtitle">
+        Explore knowledge as a connected structure — not as isolated pages.
+      </p>
 
+      <p class="description">
+        A visual, navigable map of scientific and engineering disciplines,
+        designed for deep understanding, research orientation, and discovery.
+      </p>
 
-<script src="assets/js/index-map.js"></script>
+      <div class="hero-actions">
+        <a href="topic.html?id=textile-engineering" class="primary-btn">
+          Explore the Map
+        </a>
+        <a href="#about" class="secondary-btn">
+          Learn More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY SECTION -->
+  <section class="why" id="about">
+    <h2>Why a Map of Knowledge?</h2>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>Structure over Search</h3>
+        <p>
+          Instead of searching blindly, see how concepts connect,
+          branch, and evolve across disciplines.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <h3>Designed for Thinking</h3>
+        <p>
+          Built for students, researchers, and educators who
+          think in systems, not pages.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <h3>Expandable by Design</h3>
+        <p>
+          A foundation that can grow to millions of concepts,
+          enriched gradually with context and references.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP PREVIEW -->
+  <section class="preview">
+    <h2>Explore a Discipline</h2>
+    <p class="preview-text">
+      Start from a field and move deeper — one level at a time.
+    </p>
+
+    <a href="topic.html?id=textile-engineering" class="preview-box">
+      Textile Engineering →
+    </a>
+  </section>
+
+  <!-- WHO IS THIS FOR -->
+  <section class="audience">
+    <h2>Who Is This For?</h2>
+
+    <ul>
+      <li>Undergraduate and postgraduate students</li>
+      <li>PhD scholars and researchers</li>
+      <li>Educators and curriculum designers</li>
+      <li>Self-learners seeking structured understanding</li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      Map of Sciences — an experiment in structured knowledge representation.
+    </p>
+  </footer>
+
 </body>
 </html>
