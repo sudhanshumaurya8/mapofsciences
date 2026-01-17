@@ -58,11 +58,30 @@ function init() {
 function loadTree(path) {
   return fetch(path)
     .then(res => res.json())
-    .then(data => {
-      data.forEach(node => {
-        TREE_INDEX[node.id] = node;
-      });
+    .then(root => {
+      flattenTree(root, null);
     });
+}
+
+/**
+ * Convert nested tree JSON into flat index
+ */
+function flattenTree(node, parentId) {
+  TREE_INDEX[node.id] = {
+    id: node.id,
+    label: node.title,
+    parent: parentId,
+    children: [],
+    definition: node.context?.definition || "",
+    summary: []
+  };
+
+  if (node.children && Array.isArray(node.children)) {
+    node.children.forEach(child => {
+      TREE_INDEX[node.id].children.push(child.id);
+      flattenTree(child, node.id);
+    });
+  }
 }
 
 /* ---------- URL ---------- */
