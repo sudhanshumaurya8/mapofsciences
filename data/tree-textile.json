@@ -20,6 +20,7 @@
     {
       "id": "textile-fibres",
       "title": "Fibres",
+      "type": "core-area",
       "context": {
         "definition": "Fibres are the fundamental raw materials of textiles, characterized by high length-to-diameter ratio and flexibility.",
         "role": "All textile structures originate from fibres; their properties strongly influence yarn, fabric, and end-use performance.",
@@ -29,11 +30,13 @@
             "url": "https://nptel.ac.in/courses/116102015"
           }
         ]
-      }
+      },
+      "children": []
     },
     {
       "id": "yarn-formation",
       "title": "Yarn Formation",
+      "type": "core-area",
       "context": {
         "definition": "Yarn formation involves converting fibres into continuous strands through various spinning and bonding processes.",
         "role": "Acts as the intermediate stage linking fibres to fabric structures.",
@@ -43,11 +46,13 @@
             "url": "https://nptel.ac.in/courses/116102016"
           }
         ]
-      }
+      },
+      "children": []
     },
     {
       "id": "fabric-formation",
       "title": "Fabric Formation",
+      "type": "core-area",
       "context": {
         "definition": "Fabric formation refers to processes that convert yarns or fibres into planar textile structures.",
         "role": "Determines the structural geometry and mechanical behavior of textile products.",
@@ -57,11 +62,13 @@
             "url": "https://nptel.ac.in/courses/116102019"
           }
         ]
-      }
+      },
+      "children": []
     },
     {
       "id": "textile-processing",
       "title": "Textile Wet Processing",
+      "type": "core-area",
       "context": {
         "definition": "Wet processing includes chemical and mechanical treatments such as scouring, bleaching, dyeing, printing, and finishing.",
         "role": "Enhances appearance, functionality, and end-use performance of textile materials.",
@@ -71,11 +78,13 @@
             "url": "https://nptel.ac.in/courses/116102021"
           }
         ]
-      }
+      },
+      "children": []
     },
     {
       "id": "textile-properties",
       "title": "Textile Properties",
+      "type": "core-area",
       "context": {
         "definition": "Textile properties describe the mechanical, physical, thermal, and comfort-related behavior of fibres, yarns, and fabrics.",
         "role": "Used to evaluate performance, quality, and suitability for specific applications.",
@@ -85,11 +94,13 @@
             "url": "https://nptel.ac.in/courses/116102022"
           }
         ]
-      }
+      },
+      "children": []
     },
     {
       "id": "technical-textiles",
       "title": "Technical Textiles",
+      "type": "advanced-area",
       "context": {
         "definition": "Technical textiles are textile products engineered primarily for performance and functional properties rather than aesthetics.",
         "role": "Represents high-value, application-driven segments of the textile industry.",
@@ -99,11 +110,13 @@
             "url": "https://nptel.ac.in/courses/116102024"
           }
         ]
-      }
+      },
+      "children": []
     },
     {
       "id": "textile-machinery",
       "title": "Textile Machinery",
+      "type": "support-area",
       "context": {
         "definition": "Textile machinery includes equipment used in fibre processing, spinning, fabric formation, and finishing.",
         "role": "Controls productivity, quality, and efficiency in textile manufacturing.",
@@ -113,11 +126,13 @@
             "url": "https://nptel.ac.in/courses/116102020"
           }
         ]
-      }
+      },
+      "children": []
     },
     {
       "id": "textile-management",
       "title": "Textile Management and Economics",
+      "type": "support-area",
       "context": {
         "definition": "This area deals with production planning, quality management, supply chain, and economics of textile industries.",
         "role": "Connects technical textile knowledge with industrial decision-making.",
@@ -127,11 +142,13 @@
             "url": "https://nptel.ac.in/courses/110106044"
           }
         ]
-      }
+      },
+      "children": []
     },
     {
       "id": "sustainable-textiles",
       "title": "Sustainable and Smart Textiles",
+      "type": "future-area",
       "context": {
         "definition": "Focuses on environmentally responsible textile production and intelligent textile systems.",
         "role": "Represents the future direction of textile research and innovation.",
@@ -141,7 +158,8 @@
             "url": "https://nptel.ac.in/courses/112104204"
           }
         ]
-      }
+      },
+      "children": []
     }
   ]
 }
