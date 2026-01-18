@@ -161,9 +161,17 @@ function drawNode(node, x, y, isActive) {
   rect.setAttribute("stroke-width", isActive ? "2.5" : "1.5");
 
   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  if (isActive) {
+  // Active node: centered text
   text.setAttribute("x", x);
-  text.setAttribute("y", y + 5);
   text.setAttribute("text-anchor", "middle");
+} else {
+  // Child nodes: left-aligned text
+  const LEFT_PADDING = 14;
+  text.setAttribute("x", x - boxWidth / 2 + LEFT_PADDING);
+  text.setAttribute("text-anchor", "start");
+}
+
   text.setAttribute("font-size", "13");
   text.setAttribute("fill", "#111827");
   text.textContent = node.label;
