@@ -232,3 +232,47 @@ main {
 .search-item small {
   color: #6b7280;
 }
+/* =====================================================
+   LIGHT THEME REFINEMENT
+   ===================================================== */
+
+/* Page background */
+body {
+  background: #f9fafb; /* very light gray */
+}
+
+/* Hero section */
+.hero {
+  background: #f1f5f9; /* light slate */
+}
+
+/* Headings – lighter academic palette */
+h1 {
+  color: #1e293b; /* slate-800 */
+}
+
+h2 {
+  color: #334155; /* slate-700 */
+}
+
+h3 {
+  color: #475569; /* slate-600 */
+}
+
+/* Body text slightly softer */
+.subtitle,
+.description,
+.why-card p,
+.preview-text {
+  color: #475569;
+}
+
+/* Cards / sections stay clean */
+.why,
+.audience {
+  background: #f9fafb;
+}
+
+.preview {
+  background: #eef2f7;
+}
