@@ -1,0 +1,278 @@
+/* =====================================================
+   MAP OF SCIENCES — CORE STYLESHEET
+   Academic, minimal, cache-safe
+   ===================================================== */
+
+/* ---------- RESET ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #111827;
+  background: #ffffff;
+}
+
+/* ---------- LINKS ---------- */
+
+a {
+  color: #1e40af;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- GLOBAL HEADINGS (FORCED) ---------- */
+/* These WILL apply no matter what */
+
+h1 {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 20px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 48px 0 24px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #334155;
+  margin: 24px 0 8px;
+}
+
+/* ---------- HEADER ---------- */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 1000;
+}
+
+.site-title a {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* ---------- MAIN OFFSET ---------- */
+
+main {
+  padding-top: 72px;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+  padding: 80px 24px 64px;
+  background: #fafafa;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.description {
+  max-width: 720px;
+  margin: 0 auto 32px;
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+/* ---------- ACTION ---------- */
+
+.hero-actions {
+  margin-top: 24px;
+}
+
+.primary-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid #1f2937;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* ---------- WHY ---------- */
+
+.why {
+  padding: 64px 24px;
+}
+
+.why-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+}
+
+.why-card p {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+/* ---------- PREVIEW ---------- */
+
+.preview {
+  padding: 64px 24px;
+  background: #f8fafc;
+  text-align: center;
+}
+
+.preview-text {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.preview-box {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 18px;
+  border: 1px solid #c7d2fe;
+  font-weight: 500;
+}
+
+/* ---------- AUDIENCE ---------- */
+
+.audience {
+  padding: 64px 24px;
+}
+
+.audience ul {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.audience li {
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+}
+
+/* ---------- FOOTER ---------- */
+
+.site-footer {
+  padding: 24px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* ---------- SEARCH ---------- */
+
+.search-container {
+  position: relative;
+  width: 360px;
+}
+
+#global-search {
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #cbd5f5;
+}
+
+#search-results {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.search-item {
+  padding: 8px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+}
+
+.search-item:hover {
+  background: #f8fafc;
+}
+
+.search-item small {
+  color: #6b7280;
+}
+/* =====================================================
+   LIGHT THEME REFINEMENT
+   ===================================================== */
+
+/* Page background */
+body {
+  background: #f9fafb; /* very light gray */
+}
+
+/* Hero section */
+.hero {
+  background: #f1f5f9; /* light slate */
+}
+
+/* Headings – lighter academic palette */
+h1 {
+  color: #1e293b; /* slate-800 */
+}
+
+h2 {
+  color: #334155; /* slate-700 */
+}
+
+h3 {
+  color: #475569; /* slate-600 */
+}
+
+/* Body text slightly softer */
+.subtitle,
+.description,
+.why-card p,
+.preview-text {
+  color: #475569;
+}
+
+/* Cards / sections stay clean */
+.why,
+.audience {
+  background: #f9fafb;
+}
+
+.preview {
+  background: #eef2f7;
+}
