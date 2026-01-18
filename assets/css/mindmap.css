@@ -1,29 +1,67 @@
-/* ===== GLOBAL ===== */
+/* =====================================================
+   MAP OF SCIENCES — CORE STYLESHEET
+   Academic, minimal, cache-safe
+   ===================================================== */
+
+/* ---------- RESET ---------- */
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  font-family: "Source Sans 3", "Inter", Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: #0f172a;
+  color: #111827;
   background: #ffffff;
 }
 
+/* ---------- LINKS ---------- */
+
 a {
+  color: #1e40af;
   text-decoration: none;
-  color: inherit;
 }
 
 a:hover {
   text-decoration: underline;
 }
 
-/* ===== HEADER ===== */
+/* ---------- GLOBAL HEADINGS (FORCED) ---------- */
+/* These WILL apply no matter what */
+
+h1 {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 20px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 48px 0 24px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #334155;
+  margin: 24px 0 8px;
+}
+
+/* ---------- HEADER ---------- */
 
 .site-header {
   position: fixed;
   top: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
   height: 52px;
   display: flex;
   align-items: center;
@@ -35,146 +73,108 @@ a:hover {
 }
 
 .site-title a {
-  font-weight: 600;
   font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
 }
 
-/* ===== MAIN OFFSET ===== */
+/* ---------- MAIN OFFSET ---------- */
 
 main {
-  padding-top: 64px;
+  padding-top: 72px;
 }
 
-/* ===== HERO ===== */
+/* ---------- HERO ---------- */
 
 .hero {
-  padding: 96px 40px 72px;
+  padding: 80px 24px 64px;
   background: #fafafa;
 }
 
 .hero-content {
   max-width: 900px;
-  margin: auto;
+  margin: 0 auto;
   text-align: center;
 }
 
-.hero h1 {
-  font-size: 2.4rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
 .subtitle {
-  font-size: 1.15rem;
-  color: #334155;
+  font-size: 1.1rem;
+  color: #374151;
   margin-bottom: 12px;
 }
 
 .description {
   max-width: 720px;
-  margin: 20px auto 32px;
+  margin: 0 auto 32px;
   font-size: 1rem;
-  color: #475569;
+  color: #4b5563;
 }
 
-/* ===== ACTION LINKS ===== */
+/* ---------- ACTION ---------- */
 
 .hero-actions {
-  display: flex;
-  justify-content: center;
+  margin-top: 24px;
 }
 
 .primary-btn {
-  padding: 10px 20px;
-  border: 1px solid #1e293b;
-  border-radius: 4px;
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid #1f2937;
+  color: #1f2937;
   font-weight: 500;
-  background: transparent;
 }
 
-.primary-btn:hover {
-  background: #f1f5f9;
-}
-
-/* ===== WHY ===== */
+/* ---------- WHY ---------- */
 
 .why {
-  padding: 72px 40px;
-}
-
-.why h2 {
-  text-align: center;
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 40px;
+  padding: 64px 24px;
 }
 
 .why-grid {
+  max-width: 1000px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 32px;
-  max-width: 1000px;
-  margin: auto;
-}
-
-.why-card {
-  padding: 0;
-}
-
-.why-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 8px;
 }
 
 .why-card p {
   font-size: 0.95rem;
-  color: #475569;
+  color: #4b5563;
 }
 
-/* ===== PREVIEW ===== */
+/* ---------- PREVIEW ---------- */
 
 .preview {
-  padding: 72px 40px;
+  padding: 64px 24px;
   background: #f8fafc;
   text-align: center;
 }
 
-.preview h2 {
-  font-size: 1.6rem;
-  margin-bottom: 12px;
-}
-
 .preview-text {
   font-size: 0.95rem;
-  color: #475569;
+  color: #4b5563;
 }
 
 .preview-box {
   display: inline-block;
-  margin-top: 24px;
+  margin-top: 20px;
   padding: 10px 18px;
-  border: 1px solid #cbd5f5;
-  border-radius: 4px;
+  border: 1px solid #c7d2fe;
   font-weight: 500;
 }
 
-/* ===== AUDIENCE ===== */
+/* ---------- AUDIENCE ---------- */
 
 .audience {
-  padding: 72px 40px;
-}
-
-.audience h2 {
-  text-align: center;
-  font-size: 1.6rem;
-  margin-bottom: 32px;
+  padding: 64px 24px;
 }
 
 .audience ul {
   max-width: 640px;
-  margin: auto;
-  list-style: none;
+  margin: 0 auto;
   padding: 0;
+  list-style: none;
 }
 
 .audience li {
@@ -183,17 +183,17 @@ main {
   font-size: 0.95rem;
 }
 
-/* ===== FOOTER ===== */
+/* ---------- FOOTER ---------- */
 
 .site-footer {
   padding: 24px;
   text-align: center;
   font-size: 0.85rem;
-  color: #64748b;
+  color: #6b7280;
   border-top: 1px solid #e5e7eb;
 }
 
-/* ===== SEARCH ===== */
+/* ---------- SEARCH ---------- */
 
 .search-container {
   position: relative;
@@ -204,7 +204,6 @@ main {
   width: 100%;
   padding: 6px 10px;
   font-size: 14px;
-  border-radius: 4px;
   border: 1px solid #cbd5f5;
 }
 
@@ -222,8 +221,8 @@ main {
 
 .search-item {
   padding: 8px 12px;
-  cursor: pointer;
   border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
 }
 
 .search-item:hover {
@@ -231,25 +230,5 @@ main {
 }
 
 .search-item small {
-  color: #64748b;
-}
-/* ===== HEADING STYLES (ACADEMIC) ===== */
-
-/* ===== GLOBAL HEADING OVERRIDE (FORCE APPLY) ===== */
-
-h1 {
-  text-align: center;
-  color: #0f172a;
-  font-weight: 600;
-}
-
-h2 {
-  text-align: center;
-  color: #1e293b;
-  font-weight: 600;
-}
-
-h3 {
-  color: #334155;
-  font-weight: 600;
+  color: #6b7280;
 }
