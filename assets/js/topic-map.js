@@ -2,35 +2,33 @@
  * topic-map.js
  * ----------------------------------
  * FINAL STABLE VERSION
- * - Correct SVG binding
- * - Left-aligned child text
- * - Curved links
- * - Auto-sized boxes
+ * - Nested JSON → flat indexed tree
+ * - Breadcrumb restored
+ * - Parent + children navigation
+ * - Hover tooltip
+ * - Sidebar context restored
  * - Zoom + pan
- * - Correct navigation
  ****************************************************/
 
 const DATA_PATH = "data/tree-textile.json";
 
-/* ---------- CONFIG ---------- */
-const LEVEL_GAP_X = 300;
-const LEVEL_GAP_Y = 110;
-const BOX_HEIGHT = 44;
-const BOX_RADIUS = 6;
-const TEXT_PADDING_LEFT = 16;
+/* ---------- SVG + DOM ---------- */
 
-/* ---------- DOM ---------- */
 const svg = document.getElementById("mindmap");
 const breadcrumbEl = document.getElementById("breadcrumb");
 const contextEl = document.getElementById("context");
+const tooltipEl = document.getElementById("tooltip");
 
-if (!svg) {
-  alert("SVG not found (id mismatch)");
-  throw new Error("SVG #mindmap not found");
-}
-const tooltip = document.getElementById("tooltip");
+/* ---------- LAYOUT ---------- */
+
+const LEVEL_GAP_X = 280;
+const LEVEL_GAP_Y = 110;
+const BOX_HEIGHT = 44;
+const BOX_RADIUS = 6;
+const TEXT_PADDING = 16;
 
 /* ---------- STATE ---------- */
+
 let TREE_INDEX = {};
 let ACTIVE_NODE = null;
 
@@ -39,30 +37,40 @@ let isPanning = false;
 let panStart = { x: 0, y: 0 };
 
 /* ---------- INIT ---------- */
+
 document.addEventListener("DOMContentLoaded", () => {
-  const id = new URLSearchParams(window.location.search).get("id");
-  if (!id) return;
+  const topicId = new URLSearchParams(window.location.search).get("id");
+  if (!topicId) return;
 
   fetch(DATA_PATH)
     .then(r => r.json())
     .then(root => {
-      indexTree(root, null);
-      ACTIVE_NODE = TREE_INDEX[id];
+      buildIndex(root, null);
+      ACTIVE_NODE = TREE_INDEX[topicId];
       if (!ACTIVE_NODE) return;
-      render();
+      renderAll();
     });
 
   initZoomPan();
 });
 
 /* ---------- TREE INDEX ---------- */
-function indexTree(node, parent) {
-  TREE_INDEX[node.id] = { ...node, parent };
-  (node.children || []).forEach(c => indexTree(c, node.id));
+
+function buildIndex(node, parentId) {
+  TREE_INDEX[node.id] = {
+    id: node.id,
+    title: node.title,
+    context: node.context || {},
+    parent: parentId,
+    children: (node.children || []).map(c => c.id)
+  };
+
+  (node.children || []).forEach(c => buildIndex(c, node.id));
 }
 
 /* ---------- RENDER ---------- */
-function render() {
+
+function renderAll() {
   clearSVG();
   renderBreadcrumb();
   renderContext();
@@ -70,40 +78,30 @@ function render() {
 }
 
 /* ---------- MAP ---------- */
+
 function renderMap() {
-  const cx = 500;
+  const cx = 420;
   const cy = 450;
 
   const active = measureNode(ACTIVE_NODE, cx, cy, false);
 
-  // -------- PARENT NODE --------
-  let parentNode = null;
-  if (ACTIVE_NODE.parent) {
-    const parent = TREE_INDEX[ACTIVE_NODE.parent];
-    parentNode = measureNode(parent, cx - LEVEL_GAP_X, cy, false);
-    drawCurve(parentNode, active);
-  }
-
-  // -------- CHILD NODES --------
-  const children = (ACTIVE_NODE.children || []).map(c => TREE_INDEX[c.id]);
+  const children = ACTIVE_NODE.children.map(id => TREE_INDEX[id]);
 
   const childNodes = children.map((c, i) => {
     const y = cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
     return measureNode(c, cx + LEVEL_GAP_X, y, true);
   });
 
-  // Draw links first
   childNodes.forEach(c => drawCurve(active, c));
 
-  // Draw nodes
-  if (parentNode) drawNode(parentNode, false);
-  drawNode(active, true);
-  childNodes.forEach(c => drawNode(c, false));
+  drawNode(active, true, false);
+  childNodes.forEach(c => drawNode(c, false, true));
 
   updateViewBox();
 }
 
 /* ---------- NODE MEASURE ---------- */
+
 function measureNode(node, x, y, leftAlign) {
   const charWidth = 7.2;
   const width = Math.min(
@@ -115,7 +113,8 @@ function measureNode(node, x, y, leftAlign) {
 }
 
 /* ---------- NODE DRAW ---------- */
-function drawNode(n, isActive) {
+
+function drawNode(n, isActive, leftAlign) {
   const g = document.createElementNS(svg.namespaceURI, "g");
   g.style.cursor = "pointer";
 
@@ -125,7 +124,7 @@ function drawNode(n, isActive) {
   rect.setAttribute("width", n.width);
   rect.setAttribute("height", BOX_HEIGHT);
   rect.setAttribute("rx", BOX_RADIUS);
-  rect.setAttribute("fill", "#ffffff");
+  rect.setAttribute("fill", "#fff");
   rect.setAttribute("stroke", isActive ? "#0f172a" : "#64748b");
   rect.setAttribute("stroke-width", isActive ? "2.6" : "1.5");
 
@@ -135,8 +134,8 @@ function drawNode(n, isActive) {
   text.setAttribute("fill", "#111827");
   text.style.pointerEvents = "none";
 
-  if (n.leftAlign) {
-    text.setAttribute("x", n.x - n.width / 2 + TEXT_PADDING_LEFT);
+  if (leftAlign) {
+    text.setAttribute("x", n.x - n.width / 2 + TEXT_PADDING);
     text.setAttribute("text-anchor", "start");
   } else {
     text.setAttribute("x", n.x);
@@ -145,42 +144,39 @@ function drawNode(n, isActive) {
 
   text.textContent = n.title;
 
-  g.appendChild(rect);
-  g.appendChild(text);
+  g.append(rect, text);
 
   g.addEventListener("click", () => {
     window.location.href = `topic.html?id=${n.id}`;
   });
-g.addEventListener("mouseenter", e => {
-  if (!n.context?.definition) return;
 
-  tooltip.style.display = "block";
-  tooltip.style.left = e.clientX + 12 + "px";
-  tooltip.style.top = e.clientY + 12 + "px";
-  tooltip.innerHTML = `<strong>${n.title}</strong><br>${n.context.definition}`;
-});
+  g.addEventListener("mouseenter", e => {
+    tooltipEl.style.display = "block";
+    tooltipEl.innerHTML = `<strong>${n.title}</strong>`;
+    tooltipEl.style.left = e.clientX + 12 + "px";
+    tooltipEl.style.top = e.clientY + 12 + "px";
+  });
 
-g.addEventListener("mouseleave", () => {
-  tooltip.style.display = "none";
-});
+  g.addEventListener("mouseleave", () => {
+    tooltipEl.style.display = "none";
+  });
 
   svg.appendChild(g);
 }
 
 /* ---------- CURVES ---------- */
+
 function drawCurve(from, to) {
   const startX = from.x + from.width / 2;
   const endX = to.x - to.width / 2;
-
-  const c1x = startX + 90;
-  const c2x = endX - 90;
+  const offset = (to.y - from.y) * 0.35;
 
   const path = document.createElementNS(svg.namespaceURI, "path");
   path.setAttribute(
     "d",
     `M ${startX} ${from.y}
-     C ${c1x} ${from.y},
-       ${c2x} ${to.y},
+     C ${startX + 80} ${from.y + offset},
+       ${endX - 80} ${to.y - offset},
        ${endX} ${to.y}`
   );
   path.setAttribute("fill", "none");
@@ -190,37 +186,47 @@ function drawCurve(from, to) {
   svg.appendChild(path);
 }
 
-/* ---------- UI ---------- */
-function clearSVG() {
-  while (svg.firstChild) svg.removeChild(svg.firstChild);
-}
+/* ---------- BREADCRUMB ---------- */
 
 function renderBreadcrumb() {
-  const path = [];
+  const chain = [];
   let n = ACTIVE_NODE;
+
   while (n) {
-    path.unshift(n);
+    chain.unshift(n);
     n = n.parent ? TREE_INDEX[n.parent] : null;
   }
 
-  breadcrumbEl.innerHTML = path
+  breadcrumbEl.innerHTML = chain
     .map((n, i) =>
-      i === path.length - 1
+      i === chain.length - 1
         ? `<strong>${n.title}</strong>`
         : `<a href="topic.html?id=${n.id}">${n.title}</a>`
     )
     .join(" › ");
 }
 
+/* ---------- CONTEXT ---------- */
+
 function renderContext() {
   const c = ACTIVE_NODE.context || {};
+
   contextEl.innerHTML = `
     <h3>${ACTIVE_NODE.title}</h3>
     <p>${c.definition || ""}</p>
+    ${c.role ? `<p><strong>Role:</strong> ${c.role}</p>` : ""}
+    ${
+      Array.isArray(c.references)
+        ? `<ul>${c.references
+            .map(r => `<li><a href="${r.url}" target="_blank">${r.title}</a></li>`)
+            .join("")}</ul>`
+        : ""
+    }
   `;
 }
 
 /* ---------- ZOOM + PAN ---------- */
+
 function initZoomPan() {
   svg.addEventListener("wheel", e => {
     e.preventDefault();
@@ -243,10 +249,8 @@ function initZoomPan() {
 
   window.addEventListener("mousemove", e => {
     if (!isPanning) return;
-    const dx = (panStart.x - e.clientX) * (viewBox.w / svg.clientWidth);
-    const dy = (panStart.y - e.clientY) * (viewBox.h / svg.clientHeight);
-    viewBox.x += dx;
-    viewBox.y += dy;
+    viewBox.x += (panStart.x - e.clientX) * 0.8;
+    viewBox.y += (panStart.y - e.clientY) * 0.8;
     panStart = { x: e.clientX, y: e.clientY };
     updateViewBox();
   });
@@ -257,4 +261,8 @@ function updateViewBox() {
     "viewBox",
     `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`
   );
+}
+
+function clearSVG() {
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
 }
