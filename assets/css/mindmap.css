@@ -233,3 +233,28 @@ main {
 .search-item small {
   color: #64748b;
 }
+/* ===== HEADING STYLES (ACADEMIC) ===== */
+
+/* Main page title */
+.hero h1 {
+  text-align: center;
+  color: #0f172a; /* near-black, serious */
+}
+
+/* Section headings */
+.why h2,
+.preview h2,
+.audience h2 {
+  text-align: center;
+  color: #1e293b; /* deep slate */
+}
+
+/* Subsection headings */
+.why-card h3 {
+  color: #334155; /* muted slate */
+}
+
+/* Optional: soften excessive boldness */
+h1, h2, h3 {
+  font-weight: 600;
+}
