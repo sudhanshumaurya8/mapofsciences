@@ -121,23 +121,33 @@ function drawNode(node, x, y, isActive) {
   const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
   g.style.cursor = "pointer";
 
-  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  circle.setAttribute("cx", x);
-  circle.setAttribute("cy", y);
-  circle.setAttribute("r", isActive ? ACTIVE_NODE_RADIUS : NODE_RADIUS);
-  circle.setAttribute("fill", "#ffffff");
-  circle.setAttribute("stroke", isActive ? "#0f172a" : "#64748b");
-  circle.setAttribute("stroke-width", isActive ? "3" : "1.5");
+  const BOX_WIDTH = 180;
+  const BOX_HEIGHT = 44;
+  const RADIUS = 6;
+
+  const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  rect.setAttribute("x", x - BOX_WIDTH / 2);
+  rect.setAttribute("y", y - BOX_HEIGHT / 2);
+  rect.setAttribute("width", BOX_WIDTH);
+  rect.setAttribute("height", BOX_HEIGHT);
+  rect.setAttribute("rx", RADIUS);
+  rect.setAttribute("ry", RADIUS);
+  rect.setAttribute("fill", "#ffffff");
+  rect.setAttribute(
+    "stroke",
+    isActive ? "#0f172a" : "#64748b"
+  );
+  rect.setAttribute("stroke-width", isActive ? "2.5" : "1.5");
 
   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
   text.setAttribute("x", x);
-  text.setAttribute("y", y + NODE_RADIUS + 16);
+  text.setAttribute("y", y + 5);
   text.setAttribute("text-anchor", "middle");
   text.setAttribute("font-size", "13");
   text.setAttribute("fill", "#111827");
   text.textContent = node.label;
 
-  g.appendChild(circle);
+  g.appendChild(rect);
   g.appendChild(text);
 
   g.addEventListener("click", () => {
@@ -151,15 +161,24 @@ function drawNode(node, x, y, isActive) {
       tooltipEl.style.top = e.clientY + 12 + "px";
       tooltipEl.innerHTML = `<strong>${node.label}</strong>`;
     }, TOOLTIP_DELAY);
+
+    if (!isActive) {
+      rect.setAttribute("stroke", "#1e40af");
+    }
   });
 
   g.addEventListener("mouseleave", () => {
     clearTimeout(tooltipTimer);
     tooltipEl.style.display = "none";
+    rect.setAttribute(
+      "stroke",
+      isActive ? "#0f172a" : "#64748b"
+    );
   });
 
   svg.appendChild(g);
 }
+
 
 function drawLink(x1, y1, x2, y2) {
   const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
