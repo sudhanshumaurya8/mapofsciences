@@ -1,12 +1,15 @@
 /****************************************************
  * topic-map.js
  * ----------------------------------
- * Clean, stable implementation
- * - Nested JSON
+ * FINAL STABLE VERSION
+ * - Nested JSON tree
  * - Rectangular nodes
+ * - Left-aligned child text
  * - Curved links to box edges
  * - Auto-sized boxes
- * - LEFT-aligned children text
+ * - Mouse wheel zoom
+ * - Drag pan
+ * - Correct click navigation
  ****************************************************/
 
 /* ---------- CONFIG ---------- */
@@ -16,51 +19,39 @@ const LEVEL_GAP_X = 260;
 const LEVEL_GAP_Y = 100;
 const BOX_HEIGHT = 44;
 const BOX_RADIUS = 6;
-const TOOLTIP_DELAY = 200;
 
 /* ---------- DOM ---------- */
 
 const svg = document.getElementById("mindmap");
 const breadcrumbEl = document.getElementById("breadcrumb");
 const contextEl = document.getElementById("context");
-const tooltipEl = document.getElementById("tooltip");
 
 /* ---------- STATE ---------- */
 
 let TREE_INDEX = {};
 let ACTIVE_NODE = null;
-let tooltipTimer = null;
+
+/* ---------- VIEWPORT STATE ---------- */
+
+let viewBox = { x: 0, y: 0, w: 1200, h: 800 };
+let isPanning = false;
+let panStart = { x: 0, y: 0 };
 
 /* ---------- INIT ---------- */
 
 document.addEventListener("DOMContentLoaded", () => {
   const topicId = new URLSearchParams(window.location.search).get("id");
-
-  if (!topicId) {
-    contextEl.innerHTML = "<p>No topic selected.</p>";
-    return;
-  }
+  if (!topicId) return;
 
   fetch(DATA_PATH)
-    .then(res => {
-      if (!res.ok) throw new Error(`Tree load failed (${res.status})`);
-      return res.json();
-    })
+    .then(r => r.json())
     .then(root => {
       buildIndex(root, null);
       ACTIVE_NODE = TREE_INDEX[topicId];
-
-      if (!ACTIVE_NODE) {
-        contextEl.innerHTML = "<p>Topic not found.</p>";
-        return;
-      }
-
       renderAll();
-    })
-    .catch(err => {
-      console.error(err);
-      contextEl.innerHTML = "<p>Error loading tree.</p>";
     });
+
+  initZoomPan();
 });
 
 /* ---------- TREE INDEX ---------- */
@@ -72,13 +63,10 @@ function buildIndex(node, parentId) {
     parent: parentId,
     raw: node
   };
-
-  if (Array.isArray(node.children)) {
-    node.children.forEach(child => buildIndex(child, node.id));
-  }
+  (node.children || []).forEach(c => buildIndex(c, node.id));
 }
 
-/* ---------- RENDER PIPELINE ---------- */
+/* ---------- RENDER ---------- */
 
 function renderAll() {
   clearSVG();
@@ -90,87 +78,55 @@ function renderAll() {
 /* ---------- MAP ---------- */
 
 function renderMap() {
-  const cx = 600;
+  const cx = 400;
   const cy = 400;
 
-  const parent = ACTIVE_NODE.parent
-    ? TREE_INDEX[ACTIVE_NODE.parent]
-    : null;
+  const active = drawNode(ACTIVE_NODE, cx, cy, true, false);
 
-  const children = Array.isArray(ACTIVE_NODE.raw.children)
-    ? ACTIVE_NODE.raw.children.map(c => TREE_INDEX[c.id])
-    : [];
+  const children = (ACTIVE_NODE.raw.children || [])
+    .map(c => TREE_INDEX[c.id]);
 
-  // Parent
-  let parentRender = null;
-  if (parent) {
-    parentRender = drawNode(parent, cx - LEVEL_GAP_X, cy, false, false);
-    drawCurve(parentRender, drawNodePreview(cx, cy, ACTIVE_NODE));
-  }
-
-  // Active (centered text)
-  const activeRender = drawNode(ACTIVE_NODE, cx, cy, true, false);
-
-  // Children (LEFT-aligned text)
   children.forEach((child, i) => {
-    const y =
-      cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
-
-    const childRender = drawNode(
-      child,
-      cx + LEVEL_GAP_X,
-      y,
-      false,
-      true
-    );
-
-    drawCurve(activeRender, childRender);
+    const y = cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
+    const childNode = drawNode(child, cx + LEVEL_GAP_X, y, false, true);
+    drawCurve(active, childNode);
   });
 
-  svg.setAttribute("viewBox", "0 0 1200 800");
+  updateViewBox();
 }
 
-/* ---------- NODES ---------- */
+/* ---------- NODE ---------- */
 
-function drawNode(node, x, y, isActive, leftAlignText) {
+function drawNode(node, x, y, isActive, leftAlign) {
   const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
   g.style.cursor = "pointer";
 
   const CHAR_WIDTH = 7.2;
-  const PADDING_X = 20;
-
+  const PADDING = 20;
   const textWidth = node.label.length * CHAR_WIDTH;
-  const boxWidth = Math.min(
-    Math.max(textWidth + PADDING_X * 2, 140),
-    320
-  );
+  const boxWidth = Math.min(Math.max(textWidth + PADDING * 2, 140), 320);
 
-  const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  const rect = document.createElementNS(svg.namespaceURI, "rect");
   rect.setAttribute("x", x - boxWidth / 2);
   rect.setAttribute("y", y - BOX_HEIGHT / 2);
   rect.setAttribute("width", boxWidth);
   rect.setAttribute("height", BOX_HEIGHT);
   rect.setAttribute("rx", BOX_RADIUS);
-  rect.setAttribute("ry", BOX_RADIUS);
   rect.setAttribute("fill", "#ffffff");
-  rect.setAttribute(
-    "stroke",
-    isActive ? "#0f172a" : "#64748b"
-  );
+  rect.setAttribute("stroke", isActive ? "#0f172a" : "#64748b");
   rect.setAttribute("stroke-width", isActive ? "2.5" : "1.5");
 
-  const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  const text = document.createElementNS(svg.namespaceURI, "text");
   text.setAttribute("y", y + 5);
   text.setAttribute("font-size", "13");
   text.setAttribute("fill", "#111827");
+  text.style.pointerEvents = "none";
 
-  if (leftAlignText) {
-    // LEFT-ALIGNED INSIDE BOX (SAFE SVG WAY)
+  if (leftAlign) {
     text.setAttribute("x", x);
     text.setAttribute("text-anchor", "middle");
     text.setAttribute("dx", -boxWidth / 2 + 14);
   } else {
-    // CENTERED (active + parent)
     text.setAttribute("x", x);
     text.setAttribute("text-anchor", "middle");
   }
@@ -184,43 +140,23 @@ function drawNode(node, x, y, isActive, leftAlignText) {
     window.location.href = `topic.html?id=${node.id}`;
   });
 
-  g.addEventListener("mouseenter", e => {
-    tooltipTimer = setTimeout(() => {
-      tooltipEl.style.display = "block";
-      tooltipEl.style.left = e.clientX + 12 + "px";
-      tooltipEl.style.top = e.clientY + 12 + "px";
-      tooltipEl.innerHTML = `<strong>${node.label}</strong>`;
-    }, TOOLTIP_DELAY);
-
-    if (!isActive) rect.setAttribute("stroke", "#1e40af");
-  });
-
-  g.addEventListener("mouseleave", () => {
-    clearTimeout(tooltipTimer);
-    tooltipEl.style.display = "none";
-    rect.setAttribute(
-      "stroke",
-      isActive ? "#0f172a" : "#64748b"
-    );
-  });
-
   svg.appendChild(g);
 
   return { x, y, boxWidth };
 }
 
-/* ---------- CURVED LINKS ---------- */
+/* ---------- CURVE ---------- */
 
 function drawCurve(from, to) {
   const startX = from.x + from.boxWidth / 2;
   const endX = to.x - to.boxWidth / 2;
-  const controlX = (startX + endX) / 2;
+  const cX = (startX + endX) / 2;
 
-  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  const path = document.createElementNS(svg.namespaceURI, "path");
   path.setAttribute(
     "d",
     `M ${startX} ${from.y}
-     Q ${controlX} ${from.y}, ${endX} ${to.y}`
+     C ${cX} ${from.y}, ${cX} ${to.y}, ${endX} ${to.y}`
   );
   path.setAttribute("fill", "none");
   path.setAttribute("stroke", "#c7d2fe");
@@ -229,55 +165,69 @@ function drawCurve(from, to) {
   svg.appendChild(path);
 }
 
-/* ---------- UTIL ---------- */
+/* ---------- ZOOM & PAN ---------- */
+
+function initZoomPan() {
+  svg.addEventListener("wheel", e => {
+    e.preventDefault();
+    const scale = e.deltaY > 0 ? 1.1 : 0.9;
+    viewBox.w *= scale;
+    viewBox.h *= scale;
+    updateViewBox();
+  });
+
+  svg.addEventListener("mousedown", e => {
+    isPanning = true;
+    panStart = { x: e.clientX, y: e.clientY };
+  });
+
+  svg.addEventListener("mousemove", e => {
+    if (!isPanning) return;
+    const dx = (panStart.x - e.clientX) * (viewBox.w / svg.clientWidth);
+    const dy = (panStart.y - e.clientY) * (viewBox.h / svg.clientHeight);
+    viewBox.x += dx;
+    viewBox.y += dy;
+    panStart = { x: e.clientX, y: e.clientY };
+    updateViewBox();
+  });
+
+  svg.addEventListener("mouseup", () => isPanning = false);
+  svg.addEventListener("mouseleave", () => isPanning = false);
+}
+
+function updateViewBox() {
+  svg.setAttribute(
+    "viewBox",
+    `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`
+  );
+}
+
+/* ---------- UI ---------- */
 
 function clearSVG() {
   while (svg.firstChild) svg.removeChild(svg.firstChild);
 }
 
-/* ---------- BREADCRUMB ---------- */
-
 function renderBreadcrumb() {
   const path = [];
-  let current = ACTIVE_NODE;
-
-  while (current) {
-    path.unshift(current);
-    current = current.parent ? TREE_INDEX[current.parent] : null;
+  let n = ACTIVE_NODE;
+  while (n) {
+    path.unshift(n);
+    n = n.parent ? TREE_INDEX[n.parent] : null;
   }
-
   breadcrumbEl.innerHTML = path
     .map((n, i) =>
       i === path.length - 1
         ? `<strong>${n.label}</strong>`
         : `<a href="topic.html?id=${n.id}">${n.label}</a>`
     )
-    .join(" &gt; ");
+    .join(" › ");
 }
 
-/* ---------- CONTEXT ---------- */
-
 function renderContext() {
-  const ctx = ACTIVE_NODE.raw.context || {};
-
+  const c = ACTIVE_NODE.raw.context || {};
   contextEl.innerHTML = `
     <h3>${ACTIVE_NODE.label}</h3>
-    <p><strong>Definition</strong></p>
-    <p>${ctx.definition || "No definition available."}</p>
-    ${
-      ctx.role
-        ? `<p><strong>Role</strong></p><p>${ctx.role}</p>`
-        : ""
-    }
-    ${
-      Array.isArray(ctx.references)
-        ? `<p><strong>References</strong></p>
-           <ul>
-             ${ctx.references
-               .map(r => `<li><a href="${r.url}" target="_blank">${r.title}</a></li>`)
-               .join("")}
-           </ul>`
-        : ""
-    }
+    <p>${c.definition || ""}</p>
   `;
 }
