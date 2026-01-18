@@ -9,7 +9,7 @@
 
 /* ---------- CONFIG ---------- */
 
-const DATA_PATH = "assets/data/tree-textile.json";
+const DATA_PATH = "data/tree-textile.json";
 const NODE_RADIUS = 18;
 const ACTIVE_NODE_RADIUS = 21;
 const LEVEL_GAP_X = 220;
@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("FETCH STATUS:", res.status, res.url);
   return res.json();
 })
-
     .then(res => res.json())
     .then(root => {
       buildIndex(root, null);
