@@ -15,7 +15,7 @@ const TEXT_PADDING_LEFT = 16;
 
 /* ---------- DOM ---------- */
 
-const svg = document.getElementById("style");
+const svg = document.getElementById("mindmap");
 const breadcrumbEl = document.getElementById("breadcrumb");
 const contextEl = document.getElementById("context");
 

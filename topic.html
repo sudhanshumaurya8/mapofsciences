@@ -5,7 +5,7 @@
   <title>Map of Sciences – Topic</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- GLOBAL CSS -->
+  <!-- Global styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
 
   <style>
@@ -21,7 +21,6 @@
       height: calc(100vh - 52px - 34px);
     }
 
-    /* SVG AREA */
     #mindmap {
       flex: 4;
       width: 100%;
@@ -30,23 +29,22 @@
       cursor: grab;
     }
 
-    /* CONTEXT */
     #context {
       flex: 1;
-      padding: 20px;
+      padding: 24px 20px;
       border-left: 1px solid #e5e7eb;
-      background: #fafafa;
       overflow-y: auto;
+      background: #fafafa;
     }
 
     #tooltip {
       position: fixed;
-      background: #fff;
-      border: 1px solid #cbd5f5;
-      padding: 6px 8px;
-      font-size: 0.8rem;
       display: none;
       pointer-events: none;
+      background: white;
+      border: 1px solid #cbd5f5;
+      padding: 6px 8px;
+      font-size: 12px;
       z-index: 1000;
     }
   </style>
@@ -54,34 +52,34 @@
 
 <body>
 
-<header class="site-header">
-  <div class="site-title">
-    <a href="index.html">Map of Sciences</a>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="site-title">
+      <a href="index.html">Map of Sciences</a>
+    </div>
+
+    <div class="search-container">
+      <input id="global-search" type="search" placeholder="Search the entire map…" />
+      <div id="search-results"></div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <nav id="breadcrumb"></nav>
+
+  <!-- MAIN -->
+  <div id="container">
+    <!-- ✅ CORRECT SVG ID -->
+    <svg id="mindmap" viewBox="0 0 1400 900"></svg>
+
+    <aside id="context">
+      <p>Select a topic to see its context.</p>
+    </aside>
   </div>
 
-  <div class="search-container">
-    <input id="global-search" placeholder="Search the entire map…" />
-    <div id="search-results"></div>
-  </div>
-</header>
+  <div id="tooltip"></div>
 
-<nav id="breadcrumb"></nav>
-
-<div id="container">
-
-  <!-- ✅ SVG ID MUST MATCH JS -->
-  <svg id="mindmap" viewBox="0 0 1400 900"></svg>
-
-  <aside id="context">
-    <p>Select a topic to see its context.</p>
-  </aside>
-
-</div>
-
-<div id="tooltip"></div>
-
-<script src="assets/js/search.js" defer></script>
-<script src="assets/js/topic-map.js"></script>
-
+  <script src="assets/js/search.js" defer></script>
+  <script src="assets/js/topic-map.js"></script>
 </body>
 </html>
