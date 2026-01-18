@@ -168,8 +168,18 @@ function drawNode(node, x, y, isActive) {
 } else {
   // Child nodes: left-aligned text
   const LEFT_PADDING = 14;
-  text.setAttribute("x", x - boxWidth / 2 + LEFT_PADDING);
-  text.setAttribute("text-anchor", "start");
+  if (isActive) {
+  // Active node stays centered
+  text.setAttribute("x", x);
+  text.setAttribute("text-anchor", "middle");
+  text.removeAttribute("dx");
+} else {
+  // Child nodes: left-aligned INSIDE box
+  text.setAttribute("x", x);
+  text.setAttribute("text-anchor", "middle");
+  text.setAttribute("dx", -boxWidth / 2 + 14);
+}
+
 }
 
   text.setAttribute("font-size", "13");
