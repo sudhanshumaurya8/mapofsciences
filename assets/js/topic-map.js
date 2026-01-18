@@ -1,26 +1,35 @@
 /****************************************************
- * topic-map.js — FINAL STABLE VERSION
+ * topic-map.js
+ * ----------------------------------
+ * FINAL STABLE VERSION
+ * - Correct SVG binding
+ * - Left-aligned child text
+ * - Curved links
+ * - Auto-sized boxes
+ * - Zoom + pan
+ * - Correct navigation
  ****************************************************/
 
+const DATA_PATH = "data/tree-textile.json";
+
 /* ---------- CONFIG ---------- */
-
-const DATA_PATH = "../data/tree-textile.json";
-
 const LEVEL_GAP_X = 300;
 const LEVEL_GAP_Y = 110;
-
 const BOX_HEIGHT = 44;
 const BOX_RADIUS = 6;
 const TEXT_PADDING_LEFT = 16;
 
 /* ---------- DOM ---------- */
-
 const svg = document.getElementById("mindmap");
 const breadcrumbEl = document.getElementById("breadcrumb");
 const contextEl = document.getElementById("context");
 
-/* ---------- STATE ---------- */
+if (!svg) {
+  alert("SVG not found (id mismatch)");
+  throw new Error("SVG #mindmap not found");
+}
 
+/* ---------- STATE ---------- */
 let TREE_INDEX = {};
 let ACTIVE_NODE = null;
 
@@ -29,83 +38,61 @@ let isPanning = false;
 let panStart = { x: 0, y: 0 };
 
 /* ---------- INIT ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+  const id = new URLSearchParams(window.location.search).get("id");
+  if (!id) return;
 
-document.addEventListener("DOMContentLoaded", async () => {
-  if (!svg) {
-    alert("SVG not found (id mismatch)");
-    return;
-  }
-
-  let id = new URLSearchParams(window.location.search).get("id");
-  if (!id) {
-    alert("Missing ?id= in URL");
-    return;
-  }
-
-  const res = await fetch(DATA_PATH);
-  const root = await res.json();
-
-  indexTree(root, null);
-
-  ACTIVE_NODE = TREE_INDEX[id];
-  if (!ACTIVE_NODE) {
-    alert("Node not found in tree");
-    return;
-  }
+  fetch(DATA_PATH)
+    .then(r => r.json())
+    .then(root => {
+      indexTree(root, null);
+      ACTIVE_NODE = TREE_INDEX[id];
+      if (!ACTIVE_NODE) return;
+      render();
+    });
 
   initZoomPan();
-  renderAll();
 });
 
 /* ---------- TREE INDEX ---------- */
-
 function indexTree(node, parent) {
-  TREE_INDEX[node.id] = {
-    id: node.id,
-    title: node.title,
-    context: node.context || {},
-    parent,
-    children: node.children || []
-  };
-
+  TREE_INDEX[node.id] = { ...node, parent };
   (node.children || []).forEach(c => indexTree(c, node.id));
 }
 
 /* ---------- RENDER ---------- */
-
-function renderAll() {
+function render() {
   clearSVG();
   renderBreadcrumb();
   renderContext();
   renderMap();
-  updateViewBox();
 }
 
 /* ---------- MAP ---------- */
-
 function renderMap() {
   const cx = 420;
   const cy = 450;
 
   const active = measureNode(ACTIVE_NODE, cx, cy, false);
 
-  const children = ACTIVE_NODE.children.map(id => TREE_INDEX[id]);
+  const children = (ACTIVE_NODE.children || []).map(c => TREE_INDEX[c.id]);
 
   const childNodes = children.map((c, i) => {
     const y = cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
     return measureNode(c, cx + LEVEL_GAP_X, y, true);
   });
 
-  // Draw links first
+  // links first
   childNodes.forEach(c => drawCurve(active, c));
 
-  // Draw nodes on top
+  // nodes on top
   drawNode(active, true);
   childNodes.forEach(c => drawNode(c, false));
+
+  updateViewBox();
 }
 
 /* ---------- NODE MEASURE ---------- */
-
 function measureNode(node, x, y, leftAlign) {
   const charWidth = 7.2;
   const width = Math.min(
@@ -113,13 +100,12 @@ function measureNode(node, x, y, leftAlign) {
     360
   );
 
-  return { id: node.id, title: node.title, x, y, width, leftAlign };
+  return { ...node, x, y, width, leftAlign };
 }
 
 /* ---------- NODE DRAW ---------- */
-
 function drawNode(n, isActive) {
-  const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  const g = document.createElementNS(svg.namespaceURI, "g");
   g.style.cursor = "pointer";
 
   const rect = document.createElementNS(svg.namespaceURI, "rect");
@@ -159,22 +145,19 @@ function drawNode(n, isActive) {
 }
 
 /* ---------- CURVES ---------- */
-
 function drawCurve(from, to) {
   const startX = from.x + from.width / 2;
   const endX = to.x - to.width / 2;
 
-  const offset = (to.y - from.y) * 0.35;
-
-  const c1x = startX + 80;
-  const c2x = endX - 80;
+  const c1x = startX + 90;
+  const c2x = endX - 90;
 
   const path = document.createElementNS(svg.namespaceURI, "path");
   path.setAttribute(
     "d",
     `M ${startX} ${from.y}
-     C ${c1x} ${from.y + offset},
-       ${c2x} ${to.y - offset},
+     C ${c1x} ${from.y},
+       ${c2x} ${to.y},
        ${endX} ${to.y}`
   );
   path.setAttribute("fill", "none");
@@ -185,7 +168,6 @@ function drawCurve(from, to) {
 }
 
 /* ---------- UI ---------- */
-
 function clearSVG() {
   while (svg.firstChild) svg.removeChild(svg.firstChild);
 }
@@ -193,7 +175,6 @@ function clearSVG() {
 function renderBreadcrumb() {
   const path = [];
   let n = ACTIVE_NODE;
-
   while (n) {
     path.unshift(n);
     n = n.parent ? TREE_INDEX[n.parent] : null;
@@ -217,7 +198,6 @@ function renderContext() {
 }
 
 /* ---------- ZOOM + PAN ---------- */
-
 function initZoomPan() {
   svg.addEventListener("wheel", e => {
     e.preventDefault();
