@@ -1,17 +1,20 @@
 /****************************************************
  * topic-map.js
  * ----------------------------------
- * Stable, corrected version
- * Works with nested JSON tree
+ * Clean, stable implementation
+ * - Nested JSON
+ * - Rectangular nodes
+ * - Curved links to box edges
+ * - Auto-sized boxes
  ****************************************************/
 
 /* ---------- CONFIG ---------- */
 
 const DATA_PATH = "data/tree-textile.json";
-const NODE_RADIUS = 18;
-const ACTIVE_NODE_RADIUS = 21;
-const LEVEL_GAP_X = 220;
-const LEVEL_GAP_Y = 96;
+const LEVEL_GAP_X = 260;
+const LEVEL_GAP_Y = 100;
+const BOX_HEIGHT = 44;
+const BOX_RADIUS = 6;
 const TOOLTIP_DELAY = 200;
 
 /* ---------- DOM ---------- */
@@ -39,15 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetch(DATA_PATH)
     .then(res => {
-      if (!res.ok) {
-        throw new Error(`Failed to load tree (${res.status})`);
-      }
+      if (!res.ok) throw new Error(`Tree load failed (${res.status})`);
       return res.json();
     })
     .then(root => {
       buildIndex(root, null);
-
       ACTIVE_NODE = TREE_INDEX[topicId];
+
       if (!ACTIVE_NODE) {
         contextEl.innerHTML = "<p>Topic not found.</p>";
         return;
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-/* ---------- INDEX ---------- */
+/* ---------- TREE INDEX ---------- */
 
 function buildIndex(node, parentId) {
   TREE_INDEX[node.id] = {
@@ -76,7 +77,7 @@ function buildIndex(node, parentId) {
   }
 }
 
-/* ---------- RENDER ---------- */
+/* ---------- RENDER PIPELINE ---------- */
 
 function renderAll() {
   clearSVG();
@@ -88,53 +89,75 @@ function renderAll() {
 /* ---------- MAP ---------- */
 
 function renderMap() {
-const activeNodeRender = drawNode(ACTIVE_NODE, cx, cy, true);
+  const cx = 600;
+  const cy = 400;
 
-children.forEach((child, i) => {
-  const y = cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
+  const parent = ACTIVE_NODE.parent
+    ? TREE_INDEX[ACTIVE_NODE.parent]
+    : null;
 
-  const childRender = drawNode(child, cx + LEVEL_GAP_X, y, false);
+  const children = Array.isArray(ACTIVE_NODE.raw.children)
+    ? ACTIVE_NODE.raw.children.map(c => TREE_INDEX[c.id])
+    : [];
 
-  drawLink(
-    activeNodeRender.x,
-    activeNodeRender.y,
-    childRender.x,
-    childRender.y,
-    activeNodeRender.boxWidth,
-    childRender.boxWidth
-  );
-});
+  // Parent
+  let parentRender = null;
+  if (parent) {
+    parentRender = drawNode(parent, cx - LEVEL_GAP_X, cy, false);
+    drawCurve(
+      parentRender,
+      { x: cx, y: cy, boxWidth: ACTIVE_NODE.boxWidth }
+    );
+  }
 
+  // Active
+  const activeRender = drawNode(ACTIVE_NODE, cx, cy, true);
 
-/* ---------- SVG ---------- */
+  // Children
+  children.forEach((child, i) => {
+    const y =
+      cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
+
+    const childRender = drawNode(
+      child,
+      cx + LEVEL_GAP_X,
+      y,
+      false
+    );
+
+    drawCurve(activeRender, childRender);
+  });
+
+  svg.setAttribute("viewBox", "0 0 1200 800");
+}
+
+/* ---------- NODES ---------- */
 
 function drawNode(node, x, y, isActive) {
   const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
   g.style.cursor = "pointer";
 
-  const CHAR_WIDTH = 7.2; // approx for 13px font
+  const CHAR_WIDTH = 7.2;
   const PADDING_X = 20;
-  const BOX_HEIGHT = 44;
-  const RADIUS = 6;
 
   const textWidth = node.label.length * CHAR_WIDTH;
   const boxWidth = Math.min(
-    Math.max(textWidth + PADDING_X * 2, 120),
-    280
+    Math.max(textWidth + PADDING_X * 2, 140),
+    300
   );
-
-  // expose width for link drawing
-  g.dataset.boxWidth = boxWidth;
 
   const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   rect.setAttribute("x", x - boxWidth / 2);
   rect.setAttribute("y", y - BOX_HEIGHT / 2);
   rect.setAttribute("width", boxWidth);
   rect.setAttribute("height", BOX_HEIGHT);
-  rect.setAttribute("rx", RADIUS);
-  rect.setAttribute("ry", RADIUS);
+  rect.setAttribute("rx", BOX_RADIUS);
+  rect.setAttribute("ry", BOX_RADIUS);
   rect.setAttribute("fill", "#ffffff");
-  rect.setAttribute("stroke", isActive ? "#0f172a" : "#64748b");
+  rect.setAttribute(
+    "stroke",
+    isActive ? "#0f172a" : "#64748b"
+  );
   rect.setAttribute("stroke-width", isActive ? "2.5" : "1.5");
 
   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -166,7 +189,10 @@ function drawNode(node, x, y, isActive) {
   g.addEventListener("mouseleave", () => {
     clearTimeout(tooltipTimer);
     tooltipEl.style.display = "none";
-    rect.setAttribute("stroke", isActive ? "#0f172a" : "#64748b");
+    rect.setAttribute(
+      "stroke",
+      isActive ? "#0f172a" : "#64748b"
+    );
   });
 
   svg.appendChild(g);
@@ -174,26 +200,31 @@ function drawNode(node, x, y, isActive) {
   return { x, y, boxWidth };
 }
 
+/* ---------- CURVED LINKS ---------- */
 
-function drawLink(fromX, fromY, toX, toY, fromBoxWidth, toBoxWidth) {
-  const startX = fromX + fromBoxWidth / 2;
-  const endX = toX - toBoxWidth / 2;
-
+function drawCurve(from, to) {
+  const startX = from.x + from.boxWidth / 2;
+  const endX = to.x - to.boxWidth / 2;
   const controlX = (startX + endX) / 2;
 
   const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
   path.setAttribute(
     "d",
-    `M ${startX} ${fromY}
-     Q ${controlX} ${fromY}, ${endX} ${toY}`
+    `M ${startX} ${from.y}
+     Q ${controlX} ${from.y}, ${endX} ${to.y}`
   );
   path.setAttribute("fill", "none");
   path.setAttribute("stroke", "#c7d2fe");
-  path.setAttribute("stroke-width", "1.5");
+  path.setAttribute("stroke-width", "1.4");
 
   svg.appendChild(path);
 }
 
+/* ---------- UTIL ---------- */
+
+function clearSVG() {
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+}
 
 /* ---------- BREADCRUMB ---------- */
 
