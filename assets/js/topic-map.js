@@ -19,7 +19,9 @@ const BOX_HEIGHT = 44;
 const BOX_RADIUS = 6;
 const TEXT_PADDING_LEFT = 16;
 
-const svg = document.getElementById("style");
+text.setAttribute("text-anchor", leftAlign ? "start" : "middle");
+text.setAttribute("x", leftAlign ? x - boxWidth / 2 + 14 : x);
+
 const breadcrumbEl = document.getElementById("breadcrumb");
 const contextEl = document.getElementById("context");
 
@@ -232,6 +234,45 @@ function initZoomPan() {
   svg.addEventListener("mouseup", () => (panning = false));
   svg.addEventListener("mouseleave", () => (panning = false));
 }
+
+function updateViewBox() {
+  svg.setAttribute(
+    "viewBox",
+    `${viewBox.x} ${viewBox.y} ${viewBox.w} ${viewBox.h}`
+  );
+}
+let viewBox = { x: 0, y: 0, w: 1400, h: 900 };
+let isPanning = false;
+let panStart = { x: 0, y: 0 };
+
+svg.addEventListener("wheel", e => {
+  e.preventDefault();
+  const scale = e.deltaY < 0 ? 0.9 : 1.1;
+  viewBox.w *= scale;
+  viewBox.h *= scale;
+  updateViewBox();
+});
+
+svg.addEventListener("mousedown", e => {
+  isPanning = true;
+  panStart = { x: e.clientX, y: e.clientY };
+  svg.style.cursor = "grabbing";
+});
+
+window.addEventListener("mouseup", () => {
+  isPanning = false;
+  svg.style.cursor = "grab";
+});
+
+window.addEventListener("mousemove", e => {
+  if (!isPanning) return;
+  const dx = (panStart.x - e.clientX) * 0.8;
+  const dy = (panStart.y - e.clientY) * 0.8;
+  viewBox.x += dx;
+  viewBox.y += dy;
+  panStart = { x: e.clientX, y: e.clientY };
+  updateViewBox();
+});
 
 function updateViewBox() {
   svg.setAttribute(
