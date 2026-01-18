@@ -19,7 +19,7 @@ const BOX_HEIGHT = 44;
 const BOX_RADIUS = 6;
 const TEXT_PADDING_LEFT = 16;
 
-const svg = document.getElementById("mindmap");
+const svg = document.getElementById("style");
 const breadcrumbEl = document.getElementById("breadcrumb");
 const contextEl = document.getElementById("context");
 
