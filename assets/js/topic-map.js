@@ -1,10 +1,8 @@
 /****************************************************
  * topic-map.js
  * ----------------------------------
- * UX-refined version
- * - Subtle hover affordances
- * - Clearer active node emphasis
- * - Calmer tooltip behavior
+ * Stable, corrected version
+ * Works with nested JSON tree
  ****************************************************/
 
 /* ---------- CONFIG ---------- */
@@ -16,7 +14,7 @@ const LEVEL_GAP_X = 220;
 const LEVEL_GAP_Y = 96;
 const TOOLTIP_DELAY = 200;
 
-/* ---------- DOM REFERENCES ---------- */
+/* ---------- DOM ---------- */
 
 const svg = document.getElementById("mindmap");
 const breadcrumbEl = document.getElementById("breadcrumb");
@@ -32,18 +30,20 @@ let tooltipTimer = null;
 /* ---------- INIT ---------- */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const topicId = getTopicIdFromURL();
+  const topicId = new URLSearchParams(window.location.search).get("id");
+
   if (!topicId) {
     contextEl.innerHTML = "<p>No topic selected.</p>";
     return;
   }
 
   fetch(DATA_PATH)
-  .then(res => {
-  console.log("FETCH STATUS:", res.status, res.url);
-  return res.json();
-})
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Failed to load tree (${res.status})`);
+      }
+      return res.json();
+    })
     .then(root => {
       buildIndex(root, null);
 
@@ -60,12 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
       contextEl.innerHTML = "<p>Error loading tree.</p>";
     });
 });
-
-/* ---------- URL ---------- */
-
-function getTopicIdFromURL() {
-  return new URLSearchParams(window.location.search).get("id");
-}
 
 /* ---------- INDEX ---------- */
 
@@ -113,9 +107,7 @@ function renderMap() {
   drawNode(ACTIVE_NODE, cx, cy, true);
 
   children.forEach((child, i) => {
-    const y =
-      cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
-
+    const y = cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
     drawNode(child, cx + LEVEL_GAP_X, y, false);
     drawLink(cx, cy, cx + LEVEL_GAP_X, y);
   });
@@ -127,7 +119,6 @@ function renderMap() {
 
 function drawNode(node, x, y, isActive) {
   const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-  g.setAttribute("tabindex", "0");
   g.style.cursor = "pointer";
 
   const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -135,10 +126,7 @@ function drawNode(node, x, y, isActive) {
   circle.setAttribute("cy", y);
   circle.setAttribute("r", isActive ? ACTIVE_NODE_RADIUS : NODE_RADIUS);
   circle.setAttribute("fill", "#ffffff");
-  circle.setAttribute(
-    "stroke",
-    isActive ? "#0f172a" : "#64748b"
-  );
+  circle.setAttribute("stroke", isActive ? "#0f172a" : "#64748b");
   circle.setAttribute("stroke-width", isActive ? "3" : "1.5");
 
   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -163,19 +151,11 @@ function drawNode(node, x, y, isActive) {
       tooltipEl.style.top = e.clientY + 12 + "px";
       tooltipEl.innerHTML = `<strong>${node.label}</strong>`;
     }, TOOLTIP_DELAY);
-
-    if (!isActive) {
-      circle.setAttribute("stroke", "#1e40af");
-    }
   });
 
   g.addEventListener("mouseleave", () => {
     clearTimeout(tooltipTimer);
     tooltipEl.style.display = "none";
-    circle.setAttribute(
-      "stroke",
-      isActive ? "#0f172a" : "#64748b"
-    );
   });
 
   svg.appendChild(g);
@@ -223,25 +203,21 @@ function renderContext() {
 
   contextEl.innerHTML = `
     <h3>${ACTIVE_NODE.label}</h3>
-
     <p><strong>Definition</strong></p>
     <p>${ctx.definition || "No definition available."}</p>
-
     ${
       ctx.role
         ? `<p><strong>Role</strong></p><p>${ctx.role}</p>`
         : ""
     }
-
     ${
       Array.isArray(ctx.references)
-        ? `
-        <p><strong>References</strong></p>
-        <ul>
-          ${ctx.references
-            .map(r => `<li><a href="${r.url}" target="_blank">${r.title}</a></li>`)
-            .join("")}
-        </ul>`
+        ? `<p><strong>References</strong></p>
+           <ul>
+             ${ctx.references
+               .map(r => `<li><a href="${r.url}" target="_blank">${r.title}</a></li>`)
+               .join("")}
+           </ul>`
         : ""
     }
   `;
