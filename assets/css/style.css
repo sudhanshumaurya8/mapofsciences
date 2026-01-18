@@ -1,6 +1,6 @@
 /* =====================================================
    MAP OF SCIENCES — CORE STYLESHEET
-   Academic, minimal, cache-safe
+   Academic, minimal, layout-safe
    ===================================================== */
 
 /* ---------- RESET ---------- */
@@ -15,7 +15,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: #111827;
-  background: #ffffff;
+  background: #f9fafb;
 }
 
 /* ---------- LINKS ---------- */
@@ -29,14 +29,13 @@ a:hover {
   text-decoration: underline;
 }
 
-/* ---------- GLOBAL HEADINGS (FORCED) ---------- */
-/* These WILL apply no matter what */
+/* ---------- GLOBAL HEADINGS ---------- */
 
 h1 {
   text-align: center;
   font-size: 2.4rem;
   font-weight: 600;
-  color: #0f172a;
+  color: #1e293b;
   margin: 0 0 20px;
 }
 
@@ -44,14 +43,14 @@ h2 {
   text-align: center;
   font-size: 1.6rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #334155;
   margin: 48px 0 24px;
 }
 
 h3 {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #334155;
+  color: #475569;
   margin: 24px 0 8px;
 }
 
@@ -84,116 +83,94 @@ main {
   padding-top: 72px;
 }
 
-/* ---------- HERO ---------- */
+/* =====================================================
+   TOPIC PAGE LAYOUT (CRITICAL FIX)
+   ===================================================== */
 
-.hero {
-  padding: 80px 24px 64px;
-  background: #fafafa;
-}
-
-.hero-content {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.subtitle {
-  font-size: 1.1rem;
-  color: #374151;
-  margin-bottom: 12px;
-}
-
-.description {
-  max-width: 720px;
-  margin: 0 auto 32px;
-  font-size: 1rem;
-  color: #4b5563;
-}
-
-/* ---------- ACTION ---------- */
-
-.hero-actions {
-  margin-top: 24px;
-}
-
-.primary-btn {
-  display: inline-block;
-  padding: 10px 18px;
-  border: 1px solid #1f2937;
-  color: #1f2937;
-  font-weight: 500;
-}
-
-/* ---------- WHY ---------- */
-
-.why {
-  padding: 64px 24px;
-}
-
-.why-grid {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 32px;
-}
-
-.why-card p {
-  font-size: 0.95rem;
-  color: #4b5563;
-}
-
-/* ---------- PREVIEW ---------- */
-
-.preview {
-  padding: 64px 24px;
-  background: #f8fafc;
-  text-align: center;
-}
-
-.preview-text {
-  font-size: 0.95rem;
-  color: #4b5563;
-}
-
-.preview-box {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 18px;
-  border: 1px solid #c7d2fe;
-  font-weight: 500;
-}
-
-/* ---------- AUDIENCE ---------- */
-
-.audience {
-  padding: 64px 24px;
-}
-
-.audience ul {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-}
-
-.audience li {
-  padding: 10px 0;
-  border-bottom: 1px solid #e5e7eb;
-  font-size: 0.95rem;
-}
-
-/* ---------- FOOTER ---------- */
-
-.site-footer {
-  padding: 24px;
-  text-align: center;
+/* Breadcrumb bar */
+#breadcrumb {
+  padding: 6px 20px;
   font-size: 0.85rem;
-  color: #6b7280;
-  border-top: 1px solid #e5e7eb;
+  color: #475569;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
 }
 
-/* ---------- SEARCH ---------- */
+/* Main horizontal container */
+#container {
+  display: flex;
+  height: calc(100vh - 52px - 34px);
+  overflow: hidden; /* PREVENT SVG OVERLAP */
+}
+
+/* ---------- SVG MAP AREA ---------- */
+
+#style {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  overflow: hidden; /* CLIP SVG */
+  cursor: grab;
+}
+
+/* ---------- CONTEXT SIDEBAR ---------- */
+
+#context {
+  width: 360px;
+  min-width: 360px;
+  max-width: 360px;
+  padding: 24px 20px;
+  border-left: 1px solid #e5e7eb;
+  overflow-y: auto;
+  background: #fafafa;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+#context h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+#context p {
+  margin: 0 0 16px;
+  color: #334155;
+}
+
+#context ul {
+  padding-left: 18px;
+  margin: 0 0 16px;
+}
+
+#context li {
+  margin-bottom: 6px;
+}
+
+#context a {
+  color: #1e40af;
+}
+
+/* ---------- TOOLTIP ---------- */
+
+#tooltip {
+  position: fixed;
+  max-width: 280px;
+  background: #ffffff;
+  border: 1px solid #cbd5f5;
+  padding: 8px 10px;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+/* =====================================================
+   SEARCH
+   ===================================================== */
 
 .search-container {
   position: relative;
@@ -232,34 +209,22 @@ main {
 .search-item small {
   color: #6b7280;
 }
+
 /* =====================================================
-   LIGHT THEME REFINEMENT
+   HOMEPAGE SECTIONS (UNCHANGED VISUALLY)
    ===================================================== */
 
-/* Page background */
-body {
-  background: #f9fafb; /* very light gray */
-}
-
-/* Hero section */
 .hero {
-  background: #f1f5f9; /* light slate */
+  padding: 80px 24px 64px;
+  background: #f1f5f9;
 }
 
-/* Headings – lighter academic palette */
-h1 {
-  color: #1e293b; /* slate-800 */
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
 }
 
-h2 {
-  color: #334155; /* slate-700 */
-}
-
-h3 {
-  color: #475569; /* slate-600 */
-}
-
-/* Body text slightly softer */
 .subtitle,
 .description,
 .why-card p,
@@ -267,12 +232,25 @@ h3 {
   color: #475569;
 }
 
-/* Cards / sections stay clean */
-.why,
-.audience {
-  background: #f9fafb;
+.why {
+  padding: 64px 24px;
 }
 
 .preview {
+  padding: 64px 24px;
   background: #eef2f7;
+}
+
+.audience {
+  padding: 64px 24px;
+}
+
+/* ---------- FOOTER ---------- */
+
+.site-footer {
+  padding: 24px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+  border-top: 1px solid #e5e7eb;
 }
