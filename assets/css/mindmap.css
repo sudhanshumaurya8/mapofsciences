@@ -235,26 +235,21 @@ main {
 }
 /* ===== HEADING STYLES (ACADEMIC) ===== */
 
-/* Main page title */
-.hero h1 {
+/* ===== GLOBAL HEADING OVERRIDE (FORCE APPLY) ===== */
+
+h1 {
   text-align: center;
-  color: #0f172a; /* near-black, serious */
+  color: #0f172a;
+  font-weight: 600;
 }
 
-/* Section headings */
-.why h2,
-.preview h2,
-.audience h2 {
+h2 {
   text-align: center;
-  color: #1e293b; /* deep slate */
+  color: #1e293b;
+  font-weight: 600;
 }
 
-/* Subsection headings */
-.why-card h3 {
-  color: #334155; /* muted slate */
-}
-
-/* Optional: soften excessive boldness */
-h1, h2, h3 {
+h3 {
+  color: #334155;
   font-weight: 600;
 }
