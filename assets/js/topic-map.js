@@ -6,6 +6,7 @@
  * - Rectangular nodes
  * - Curved links to box edges
  * - Auto-sized boxes
+ * - LEFT-aligned children text
  ****************************************************/
 
 /* ---------- CONFIG ---------- */
@@ -103,17 +104,14 @@ function renderMap() {
   // Parent
   let parentRender = null;
   if (parent) {
-    parentRender = drawNode(parent, cx - LEVEL_GAP_X, cy, false);
-    drawCurve(
-      parentRender,
-      { x: cx, y: cy, boxWidth: ACTIVE_NODE.boxWidth }
-    );
+    parentRender = drawNode(parent, cx - LEVEL_GAP_X, cy, false, false);
+    drawCurve(parentRender, drawNodePreview(cx, cy, ACTIVE_NODE));
   }
 
-  // Active
-  const activeRender = drawNode(ACTIVE_NODE, cx, cy, true);
+  // Active (centered text)
+  const activeRender = drawNode(ACTIVE_NODE, cx, cy, true, false);
 
-  // Children
+  // Children (LEFT-aligned text)
   children.forEach((child, i) => {
     const y =
       cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
@@ -122,7 +120,8 @@ function renderMap() {
       child,
       cx + LEVEL_GAP_X,
       y,
-      false
+      false,
+      true
     );
 
     drawCurve(activeRender, childRender);
@@ -133,7 +132,7 @@ function renderMap() {
 
 /* ---------- NODES ---------- */
 
-function drawNode(node, x, y, isActive) {
+function drawNode(node, x, y, isActive, leftAlignText) {
   const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
   g.style.cursor = "pointer";
 
@@ -143,7 +142,7 @@ function drawNode(node, x, y, isActive) {
   const textWidth = node.label.length * CHAR_WIDTH;
   const boxWidth = Math.min(
     Math.max(textWidth + PADDING_X * 2, 140),
-    300
+    320
   );
 
   const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -161,29 +160,21 @@ function drawNode(node, x, y, isActive) {
   rect.setAttribute("stroke-width", isActive ? "2.5" : "1.5");
 
   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  if (isActive) {
-  // Active node: centered text
-  text.setAttribute("x", x);
-  text.setAttribute("text-anchor", "middle");
-} else {
-  // Child nodes: left-aligned text
-  const LEFT_PADDING = 14;
-  if (isActive) {
-  // Active node stays centered
-  text.setAttribute("x", x);
-  text.setAttribute("text-anchor", "middle");
-  text.removeAttribute("dx");
-} else {
-  // Child nodes: left-aligned INSIDE box
-  text.setAttribute("x", x);
-  text.setAttribute("text-anchor", "middle");
-  text.setAttribute("dx", -boxWidth / 2 + 14);
-}
-
-}
-
+  text.setAttribute("y", y + 5);
   text.setAttribute("font-size", "13");
   text.setAttribute("fill", "#111827");
+
+  if (leftAlignText) {
+    // LEFT-ALIGNED INSIDE BOX (SAFE SVG WAY)
+    text.setAttribute("x", x);
+    text.setAttribute("text-anchor", "middle");
+    text.setAttribute("dx", -boxWidth / 2 + 14);
+  } else {
+    // CENTERED (active + parent)
+    text.setAttribute("x", x);
+    text.setAttribute("text-anchor", "middle");
+  }
+
   text.textContent = node.label;
 
   g.appendChild(rect);
