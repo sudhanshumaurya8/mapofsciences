@@ -28,6 +28,7 @@ if (!svg) {
   alert("SVG not found (id mismatch)");
   throw new Error("SVG #mindmap not found");
 }
+const tooltip = document.getElementById("tooltip");
 
 /* ---------- STATE ---------- */
 let TREE_INDEX = {};
@@ -70,11 +71,20 @@ function render() {
 
 /* ---------- MAP ---------- */
 function renderMap() {
-  const cx = 420;
+  const cx = 500;
   const cy = 450;
 
   const active = measureNode(ACTIVE_NODE, cx, cy, false);
 
+  // -------- PARENT NODE --------
+  let parentNode = null;
+  if (ACTIVE_NODE.parent) {
+    const parent = TREE_INDEX[ACTIVE_NODE.parent];
+    parentNode = measureNode(parent, cx - LEVEL_GAP_X, cy, false);
+    drawCurve(parentNode, active);
+  }
+
+  // -------- CHILD NODES --------
   const children = (ACTIVE_NODE.children || []).map(c => TREE_INDEX[c.id]);
 
   const childNodes = children.map((c, i) => {
@@ -82,10 +92,11 @@ function renderMap() {
     return measureNode(c, cx + LEVEL_GAP_X, y, true);
   });
 
-  // links first
+  // Draw links first
   childNodes.forEach(c => drawCurve(active, c));
 
-  // nodes on top
+  // Draw nodes
+  if (parentNode) drawNode(parentNode, false);
   drawNode(active, true);
   childNodes.forEach(c => drawNode(c, false));
 
@@ -140,6 +151,18 @@ function drawNode(n, isActive) {
   g.addEventListener("click", () => {
     window.location.href = `topic.html?id=${n.id}`;
   });
+g.addEventListener("mouseenter", e => {
+  if (!n.context?.definition) return;
+
+  tooltip.style.display = "block";
+  tooltip.style.left = e.clientX + 12 + "px";
+  tooltip.style.top = e.clientY + 12 + "px";
+  tooltip.innerHTML = `<strong>${n.title}</strong><br>${n.context.definition}`;
+});
+
+g.addEventListener("mouseleave", () => {
+  tooltip.style.display = "none";
+});
 
   svg.appendChild(g);
 }
