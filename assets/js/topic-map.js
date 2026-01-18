@@ -88,32 +88,23 @@ function renderAll() {
 /* ---------- MAP ---------- */
 
 function renderMap() {
-  const cx = 600;
-  const cy = 400;
+const activeNodeRender = drawNode(ACTIVE_NODE, cx, cy, true);
 
-  const parent = ACTIVE_NODE.parent
-    ? TREE_INDEX[ACTIVE_NODE.parent]
-    : null;
+children.forEach((child, i) => {
+  const y = cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
 
-  const children = Array.isArray(ACTIVE_NODE.raw.children)
-    ? ACTIVE_NODE.raw.children.map(c => TREE_INDEX[c.id])
-    : [];
+  const childRender = drawNode(child, cx + LEVEL_GAP_X, y, false);
 
-  if (parent) {
-    drawNode(parent, cx - LEVEL_GAP_X, cy, false);
-    drawLink(cx - LEVEL_GAP_X, cy, cx, cy);
-  }
+  drawLink(
+    activeNodeRender.x,
+    activeNodeRender.y,
+    childRender.x,
+    childRender.y,
+    activeNodeRender.boxWidth,
+    childRender.boxWidth
+  );
+});
 
-  drawNode(ACTIVE_NODE, cx, cy, true);
-
-  children.forEach((child, i) => {
-    const y = cy + (i - (children.length - 1) / 2) * LEVEL_GAP_Y;
-    drawNode(child, cx + LEVEL_GAP_X, y, false);
-    drawLink(cx, cy, cx + LEVEL_GAP_X, y);
-  });
-
-  svg.setAttribute("viewBox", "0 0 1200 800");
-}
 
 /* ---------- SVG ---------- */
 
@@ -121,22 +112,29 @@ function drawNode(node, x, y, isActive) {
   const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
   g.style.cursor = "pointer";
 
-  const BOX_WIDTH = 180;
+  const CHAR_WIDTH = 7.2; // approx for 13px font
+  const PADDING_X = 20;
   const BOX_HEIGHT = 44;
   const RADIUS = 6;
 
+  const textWidth = node.label.length * CHAR_WIDTH;
+  const boxWidth = Math.min(
+    Math.max(textWidth + PADDING_X * 2, 120),
+    280
+  );
+
+  // expose width for link drawing
+  g.dataset.boxWidth = boxWidth;
+
   const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  rect.setAttribute("x", x - BOX_WIDTH / 2);
+  rect.setAttribute("x", x - boxWidth / 2);
   rect.setAttribute("y", y - BOX_HEIGHT / 2);
-  rect.setAttribute("width", BOX_WIDTH);
+  rect.setAttribute("width", boxWidth);
   rect.setAttribute("height", BOX_HEIGHT);
   rect.setAttribute("rx", RADIUS);
   rect.setAttribute("ry", RADIUS);
   rect.setAttribute("fill", "#ffffff");
-  rect.setAttribute(
-    "stroke",
-    isActive ? "#0f172a" : "#64748b"
-  );
+  rect.setAttribute("stroke", isActive ? "#0f172a" : "#64748b");
   rect.setAttribute("stroke-width", isActive ? "2.5" : "1.5");
 
   const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -162,38 +160,40 @@ function drawNode(node, x, y, isActive) {
       tooltipEl.innerHTML = `<strong>${node.label}</strong>`;
     }, TOOLTIP_DELAY);
 
-    if (!isActive) {
-      rect.setAttribute("stroke", "#1e40af");
-    }
+    if (!isActive) rect.setAttribute("stroke", "#1e40af");
   });
 
   g.addEventListener("mouseleave", () => {
     clearTimeout(tooltipTimer);
     tooltipEl.style.display = "none";
-    rect.setAttribute(
-      "stroke",
-      isActive ? "#0f172a" : "#64748b"
-    );
+    rect.setAttribute("stroke", isActive ? "#0f172a" : "#64748b");
   });
 
   svg.appendChild(g);
+
+  return { x, y, boxWidth };
 }
 
 
-function drawLink(x1, y1, x2, y2) {
-  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  line.setAttribute("x1", x1);
-  line.setAttribute("y1", y1);
-  line.setAttribute("x2", x2);
-  line.setAttribute("y2", y2);
-  line.setAttribute("stroke", "#cbd5f5");
-  line.setAttribute("stroke-width", "1");
-  svg.appendChild(line);
+function drawLink(fromX, fromY, toX, toY, fromBoxWidth, toBoxWidth) {
+  const startX = fromX + fromBoxWidth / 2;
+  const endX = toX - toBoxWidth / 2;
+
+  const controlX = (startX + endX) / 2;
+
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute(
+    "d",
+    `M ${startX} ${fromY}
+     Q ${controlX} ${fromY}, ${endX} ${toY}`
+  );
+  path.setAttribute("fill", "none");
+  path.setAttribute("stroke", "#c7d2fe");
+  path.setAttribute("stroke-width", "1.5");
+
+  svg.appendChild(path);
 }
 
-function clearSVG() {
-  while (svg.firstChild) svg.removeChild(svg.firstChild);
-}
 
 /* ---------- BREADCRUMB ---------- */
 
