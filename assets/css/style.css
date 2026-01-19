@@ -254,3 +254,100 @@ main {
   color: #6b7280;
   border-top: 1px solid #e5e7eb;
 }
+/* =====================================================
+   HOMEPAGE STRUCTURE RESTORATION
+   (Does NOT affect topic pages)
+   ===================================================== */
+
+/* ---------- WHY SECTION GRID ---------- */
+
+.why {
+  padding: 64px 24px;
+}
+
+.why-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.why-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  border-radius: 6px;
+}
+
+.why-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.why-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+/* ---------- HERO ACTIONS / LINKS AS BOXES ---------- */
+
+.hero-actions {
+  margin-top: 28px;
+  text-align: center;
+}
+
+.primary-btn,
+.preview-box,
+.hero-actions a {
+  display: inline-block;
+  padding: 12px 20px;
+  border: 1.5px solid #1e293b;
+  border-radius: 6px;
+  font-weight: 500;
+  color: #1e293b;
+  background: #ffffff;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.primary-btn:hover,
+.preview-box:hover,
+.hero-actions a:hover {
+  background: #1e293b;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* ---------- PREVIEW SECTION ---------- */
+
+.preview {
+  padding: 64px 24px;
+  background: #eef2f7;
+  text-align: center;
+}
+
+.preview-text {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 16px;
+}
+
+/* ---------- AUDIENCE SECTION ---------- */
+
+.audience {
+  padding: 64px 24px;
+}
+
+.audience ul {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.audience li {
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+}
