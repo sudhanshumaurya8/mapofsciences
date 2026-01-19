@@ -112,7 +112,7 @@ rect.setAttribute("x", n.x);
   text.setAttribute("pointer-events", "none");
 
  text.setAttribute("x", n.x + n.width / 2);
-text.setAttribute("text-anchor", "middle");
+ text.setAttribute("text-anchor", "middle");
 
   text.textContent = n.title;
 
