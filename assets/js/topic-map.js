@@ -186,12 +186,45 @@ function renderBreadcrumb() {
 
 /* ---------- CONTEXT ---------- */
 function renderContext() {
-  const c = ACTIVE_NODE.context || {};
-  contextEl.innerHTML = `
+  const ctx = ACTIVE_NODE.context || {};
+
+  let html = `
     <h3>${ACTIVE_NODE.title}</h3>
-    <p>${c.definition || ""}</p>
-    ${c.role ? `<p><strong>Role:</strong> ${c.role}</p>` : ""}
   `;
+
+  if (ctx.definition) {
+    html += `
+      <p><strong>Definition</strong></p>
+      <p>${ctx.definition}</p>
+    `;
+  }
+
+  if (ctx.role) {
+    html += `
+      <p><strong>Role</strong></p>
+      <p>${ctx.role}</p>
+    `;
+  }
+
+  if (Array.isArray(ctx.references) && ctx.references.length > 0) {
+    html += `
+      <p><strong>References</strong></p>
+      <ul>
+        ${ctx.references
+          .map(
+            r =>
+              `<li>
+                 <a href="${r.url}" target="_blank" rel="noopener noreferrer">
+                   ${r.title}
+                 </a>
+               </li>`
+          )
+          .join("")}
+      </ul>
+    `;
+  }
+
+  contextEl.innerHTML = html;
 }
 
 /* ---------- ZOOM + PAN ---------- */
