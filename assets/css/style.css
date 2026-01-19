@@ -381,3 +381,30 @@ main {
   overflow-y: auto;
   background: #ffffff;
 }
+/* ===== TOPIC PAGE LAYOUT (FINAL, STABLE) ===== */
+
+#container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  height: calc(100vh - 52px - 34px);
+}
+
+/* MAP */
+#map-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+#map-panel svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* CONTEXT */
+#context {
+  border-left: 1px solid #e5e7eb;
+  padding: 20px 24px;
+  overflow-y: auto;
+  background: #ffffff;
+}
