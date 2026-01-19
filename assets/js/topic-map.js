@@ -62,19 +62,19 @@ function render() {
 
 /* ---------- MAP ---------- */
 function renderMap() {
-  const cx = 400;
   const cy = 450;
 
-  const LEFT_X = 400;     // shared left edge
-const CHILD_OFFSET = 260;
+  const LEFT_X = 400;
+  const CHILD_OFFSET = 260;
 
-const active = measureNode(ACTIVE_NODE, LEFT_X, cy, false);
+  const children = ACTIVE_NODE.children || [];
 
-const childNodes = children.map((c, i) => {
-  const y = cy + (i - (children.length - 1) / 2) * 90;
-  return measureNode(c, LEFT_X + CHILD_OFFSET, y, false);
-});
+  const active = measureNode(ACTIVE_NODE, LEFT_X, cy);
 
+  const childNodes = children.map((c, i) => {
+    const y = cy + (i - (children.length - 1) / 2) * 90;
+    return measureNode(c, LEFT_X + CHILD_OFFSET, y);
+  });
 
   childNodes.forEach(c => drawCurve(active, c));
 
@@ -84,10 +84,11 @@ const childNodes = children.map((c, i) => {
   updateViewBox();
 }
 
+
 /* ---------- NODE MEASURE ---------- */
-function measureNode(node, x, y, leftAlign) {
+function measureNode(node, x, y) {
   const width = Math.min(Math.max(node.title.length * 7.2 + 48, 160), 360);
-  return { ...node, x, y, width, leftAlign };
+  return { ...node, x, y, width };
 }
 
 /* ---------- NODE DRAW ---------- */
@@ -145,8 +146,8 @@ rect.setAttribute("x", n.x);
 
 /* ---------- CURVES ---------- */
 function drawCurve(from, to) {
-  const startX = from.x + from.width / 2;
-  const endX = to.x - to.width / 2;
+  const startX = from.x + from.width;
+  const endX = to.x;
 
   const path = document.createElementNS(svg.namespaceURI, "path");
   path.setAttribute(
@@ -156,6 +157,7 @@ function drawCurve(from, to) {
        ${endX - 80} ${to.y},
        ${endX} ${to.y}`
   );
+
   path.setAttribute("fill", "none");
   path.setAttribute("stroke", "#c7d2fe");
   path.setAttribute("stroke-width", "1.4");
