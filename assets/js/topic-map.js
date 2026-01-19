@@ -69,7 +69,7 @@ function renderMap() {
 
   const children = ACTIVE_NODE.children || [];
   const childNodes = children.map((c, i) => {
-    const y = cy + (i - (children.length - 1) / 2) * 110;
+    const y = cy + (i - (children.length - 1) / 2) * 90;
     return measureNode(c, cx + 320, y, true);
   });
 
