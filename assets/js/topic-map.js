@@ -65,13 +65,16 @@ function renderMap() {
   const cx = 400;
   const cy = 450;
 
-  const active = measureNode(ACTIVE_NODE, cx, cy, false);
+  const LEFT_X = 400;     // shared left edge
+const CHILD_OFFSET = 260;
 
-  const children = ACTIVE_NODE.children || [];
-  const childNodes = children.map((c, i) => {
-    const y = cy + (i - (children.length - 1) / 2) * 70;
-    return measureNode(c, cx + 320, y, true);
-  });
+const active = measureNode(ACTIVE_NODE, LEFT_X, cy, false);
+
+const childNodes = children.map((c, i) => {
+  const y = cy + (i - (children.length - 1) / 2) * 90;
+  return measureNode(c, LEFT_X + CHILD_OFFSET, y, false);
+});
+
 
   childNodes.forEach(c => drawCurve(active, c));
 
@@ -93,7 +96,7 @@ function drawNode(n, isActive) {
   g.style.cursor = "pointer";
 
   const rect = document.createElementNS(svg.namespaceURI, "rect");
-  rect.setAttribute("x", n.x - n.width / 2);
+rect.setAttribute("x", n.x);
   rect.setAttribute("y", n.y - 22);
   rect.setAttribute("width", n.width);
   rect.setAttribute("height", 44);
@@ -108,13 +111,8 @@ function drawNode(n, isActive) {
   text.setAttribute("fill", "#111827");
   text.setAttribute("pointer-events", "none");
 
-  if (n.leftAlign) {
-    text.setAttribute("x", n.x - n.width / 2 + 16);
-    text.setAttribute("text-anchor", "start");
-  } else {
-    text.setAttribute("x", n.x);
-    text.setAttribute("text-anchor", "middle");
-  }
+ text.setAttribute("x", n.x + n.width / 2);
+text.setAttribute("text-anchor", "middle");
 
   text.textContent = n.title;
 
