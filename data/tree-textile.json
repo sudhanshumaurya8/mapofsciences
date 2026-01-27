@@ -111,7 +111,97 @@
           }
         ]
       },
-      "children": []
+      "children": [
+  {
+    "id": "agrotech",
+    "title": "Agrotech",
+    "type": "application-area",
+    "context": {
+      "definition": "Textiles used in agriculture, horticulture, and fisheries to enhance crop productivity and protect plants.",
+      "role": "Improves yield, reduces environmental stress, and supports sustainable farming.",
+      "references": []
+    },
+    "children": []
+  },
+  {
+    "id": "meditech",
+    "title": "Meditech",
+    "type": "application-area",
+    "context": {
+      "definition": "Textiles used in medical and healthcare applications such as implants, wound care, and hygiene products.",
+      "role": "Supports healthcare delivery, infection control, and patient safety.",
+      "references": []
+    },
+    "children": []
+  },
+  {
+    "id": "geotech",
+    "title": "Geotech",
+    "type": "application-area",
+    "context": {
+      "definition": "Textiles used in civil engineering and construction for soil stabilization and erosion control.",
+      "role": "Enhances infrastructure durability and environmental protection.",
+      "references": []
+    },
+    "children": []
+  },
+  {
+    "id": "buildtech",
+    "title": "Buildtech",
+    "type": "application-area",
+    "context": {
+      "definition": "Textiles used in construction such as roofing membranes, insulation, and architectural fabrics.",
+      "role": "Improves energy efficiency, safety, and structural performance.",
+      "references": []
+    },
+    "children": []
+  },
+  {
+    "id": "mobiltech",
+    "title": "Mobiltech",
+    "type": "application-area",
+    "context": {
+      "definition": "Textiles used in transportation including automobiles, aerospace, railways, and marine applications.",
+      "role": "Reduces weight, increases safety, and improves comfort.",
+      "references": []
+    },
+    "children": []
+  },
+  {
+    "id": "protech",
+    "title": "Protech",
+    "type": "application-area",
+    "context": {
+      "definition": "Protective textiles used for personal and industrial safety.",
+      "role": "Protects against fire, chemicals, mechanical, and biological hazards.",
+      "references": []
+    },
+    "children": []
+  },
+  {
+    "id": "packtech",
+    "title": "Packtech",
+    "type": "application-area",
+    "context": {
+      "definition": "Textiles used in packaging for industrial, agricultural, and consumer goods.",
+      "role": "Ensures safe handling, storage, and transport of products.",
+      "references": []
+    },
+    "children": []
+  },
+  {
+    "id": "sportech",
+    "title": "Sportech",
+    "type": "application-area",
+    "context": {
+      "definition": "Textiles used in sports and leisure applications.",
+      "role": "Enhances performance, comfort, and safety.",
+      "references": []
+    },
+    "children": []
+  }
+]
+
     },
     {
       "id": "textile-machinery",
