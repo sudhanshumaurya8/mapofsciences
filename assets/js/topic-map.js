@@ -66,20 +66,39 @@ function renderMap() {
 
   const LEFT_X = 400;
   const CHILD_OFFSET = 260;
+  const GRANDCHILD_OFFSET = 520;
 
   const children = ACTIVE_NODE.children || [];
 
   const active = measureNode(ACTIVE_NODE, LEFT_X, cy);
 
+  /* ---------- CHILDREN ---------- */
   const childNodes = children.map((c, i) => {
-    const y = cy + (i - (children.length - 1) / 2) * 90;
+    const y = cy + (i - (children.length - 1) / 2) * 70; // reduced spacing
     return measureNode(c, LEFT_X + CHILD_OFFSET, y);
   });
 
-  childNodes.forEach(c => drawCurve(active, c));
+  /* ---------- GRANDCHILDREN ---------- */
+  const grandchildNodes = [];
 
+  childNodes.forEach((childNode, i) => {
+    const grandchildren = childNode.children || [];
+    grandchildren.forEach((gc, j) => {
+      const y = childNode.y + (j - (grandchildren.length - 1) / 2) * 24; // very tight
+      const gcNode = measureNode(gc, LEFT_X + GRANDCHILD_OFFSET, y);
+      gcNode._parentVisual = childNode; // for curve drawing
+      grandchildNodes.push(gcNode);
+    });
+  });
+
+  /* ---------- CURVES ---------- */
+  childNodes.forEach(c => drawCurve(active, c, 1));
+  grandchildNodes.forEach(gc => drawCurve(gc._parentVisual, gc, 2));
+
+  /* ---------- NODES ---------- */
   drawNode(active, true);
   childNodes.forEach(c => drawNode(c, false));
+  grandchildNodes.forEach(gc => drawNode(gc, false));
 
   updateViewBox();
 }
@@ -145,17 +164,27 @@ rect.setAttribute("x", n.x);
 }
 
 /* ---------- CURVES ---------- */
-function drawCurve(from, to) {
+/* ---------- CURVES ---------- */
+function drawCurve(from, to, depth = 1) {
   const startX = from.x + from.width;
   const endX = to.x;
 
+  // tighter spacing logic
+  const curveOffset =
+    depth === 1 ? 40 :   // children → reduced spacing
+    depth === 2 ? 10 :   // grandchildren → very tight
+    40;
+
   const path = document.createElementNS(svg.namespaceURI, "path");
+
   path.setAttribute(
     "d",
-    `M ${startX} ${from.y}
-     C ${startX + 80} ${from.y},
-       ${endX - 80} ${to.y},
-       ${endX} ${to.y}`
+    `
+      M ${startX} ${from.y}
+      C ${startX + curveOffset} ${from.y},
+        ${endX - curveOffset} ${to.y},
+        ${endX} ${to.y}
+    `
   );
 
   path.setAttribute("fill", "none");
@@ -164,6 +193,7 @@ function drawCurve(from, to) {
 
   svg.appendChild(path);
 }
+
 
 /* ---------- BREADCRUMB ---------- */
 function renderBreadcrumb() {
