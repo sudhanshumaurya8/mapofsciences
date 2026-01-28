@@ -28,8 +28,9 @@ let SEARCH_INDEX = [];
 fetch("data/tree-textile.json")
   .then(res => res.json())
   .then(tree => {
-    buildSearchIndex(tree);
-    init(tree);
+    const root = tree;
+    buildSearchIndex(root);
+    init(root);
   })
   .catch(err => console.error("Failed to load tree:", err));
 

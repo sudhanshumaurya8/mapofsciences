@@ -11,12 +11,11 @@
   />
 
   <link rel="stylesheet" href="assets/css/style.css?v=2" />
-
 </head>
 
 <body>
 
-  <!-- GLOBAL HEADER -->
+  <!-- ================= HEADER ================= -->
   <header class="site-header">
     <div class="site-title">
       <a href="index.html">Map of Sciences</a>
@@ -29,26 +28,14 @@
         placeholder="Search the entire map…"
         autocomplete="off"
       />
-     <div id="container">
-
-  <div id="map-panel">
-    <svg
-      id="style"
-      viewBox="0 0 1400 900"
-      preserveAspectRatio="xMidYMid meet">
-    </svg>
-  </div>
-
-  <aside id="context"></aside>
-
-</div>
-
+      <div id="search-results"></div>
+    </div>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- ================= MAIN ================= -->
   <main>
 
-    <!-- HERO / STATEMENT -->
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-content">
         <h1>A Structured Map of Scientific Knowledge</h1>
@@ -73,7 +60,7 @@
       </div>
     </section>
 
-    <!-- RATIONALE -->
+    <!-- WHY -->
     <section class="why">
       <h2>Why Map Knowledge This Way?</h2>
 
@@ -82,8 +69,7 @@
           <h3>Explicit Structure</h3>
           <p>
             Concepts are placed within a visible hierarchy, making prerequisite
-            relationships and conceptual dependencies explicit rather than
-            implicit.
+            relationships explicit rather than implicit.
           </p>
         </div>
 
@@ -91,8 +77,7 @@
           <h3>Context Before Detail</h3>
           <p>
             Each topic is approached first through its position in the larger
-            structure, reducing fragmentation and improving long-term
-            understanding.
+            structure, reducing fragmentation and improving long-term understanding.
           </p>
         </div>
 
@@ -106,7 +91,7 @@
       </div>
     </section>
 
-    <!-- DISCIPLINE ENTRY -->
+    <!-- PREVIEW -->
     <section class="preview">
       <h2>Current Pilot Discipline</h2>
 
@@ -134,7 +119,7 @@
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- ================= FOOTER ================= -->
   <footer class="site-footer">
     <p>
       Map of Sciences is an ongoing experiment in structured knowledge
@@ -142,7 +127,7 @@
     </p>
   </footer>
 
-  <!-- GLOBAL SEARCH -->
+  <!-- SEARCH SCRIPT -->
   <script src="assets/js/search.js" defer></script>
 
 </body>
