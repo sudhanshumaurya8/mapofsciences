@@ -408,3 +408,8 @@ main {
   overflow-y: auto;
   background: #ffffff;
 }
+#container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  height: calc(100vh - 52px - 34px); /* header + breadcrumb */
+}
