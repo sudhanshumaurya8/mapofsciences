@@ -66,7 +66,6 @@ function renderMap() {
 
   const LEFT_X = 400;
   const CHILD_OFFSET = 260;
-  const GRANDCHILD_OFFSET = 520;
 
   const children = ACTIVE_NODE.children || [];
 
@@ -74,12 +73,23 @@ function renderMap() {
 
   /* ---------- CHILDREN ---------- */
   const childNodes = children.map((c, i) => {
-    const y = cy + (i - (children.length - 1) / 2) * 70; // reduced spacing
+    const y = cy + (i - (children.length - 1) / 2) * 70;
     return measureNode(c, LEFT_X + CHILD_OFFSET, y);
   });
 
+  /* ---------- CURVES ---------- */
+  childNodes.forEach(c => drawCurve(active, c, 1));
+
+  /* ---------- NODES ---------- */
+  drawNode(active, true);
+  childNodes.forEach(c => drawNode(c, false));
+
+  updateViewBox();
+}
+
+/* ---------- HOVER GRANDCHILDREN ---------- */
 function showGrandchildren(childNode) {
-  clearTransient(); // remove any existing hover nodes
+  clearTransient();
 
   const grandchildren = childNode.children || [];
   if (!grandchildren.length) return;
@@ -98,24 +108,12 @@ function showGrandchildren(childNode) {
     drawNode(gcNode, false, true);
   });
 }
+
 function clearTransient() {
   [...svg.querySelectorAll(".grandchild, .gc-curve")].forEach(el =>
     el.remove()
   );
 }
-
-
-
-  /* ---------- CURVES ---------- */
-  childNodes.forEach(c => drawCurve(active, c, 1));
-  
-
-  /* ---------- NODES ---------- */
-  drawNode(active, true);
-  childNodes.forEach(c => drawNode(c, false));
-  updateViewBox();
-}
-
 
 /* ---------- NODE MEASURE ---------- */
 function measureNode(node, x, y, level = "normal") {
@@ -124,20 +122,24 @@ function measureNode(node, x, y, level = "normal") {
       ? node.title.length * 6 + 36
       : node.title.length * 7.2 + 48;
 
-  const width = Math.min(Math.max(base, level === "grandchild" ? 120 : 160), 360);
+  const width = Math.min(
+    Math.max(base, level === "grandchild" ? 120 : 160),
+    360
+  );
 
   return { ...node, x, y, width, _level: level };
 }
 
-
 /* ---------- NODE DRAW ---------- */
 function drawNode(n, isActive, isGrandchild = false) {
-  if (isGrandchild) g.classList.add("grandchild");
   const g = document.createElementNS(svg.namespaceURI, "g");
   g.style.cursor = "pointer";
 
+  if (isGrandchild) g.classList.add("grandchild");
+
   const rect = document.createElementNS(svg.namespaceURI, "rect");
-rect.setAttribute("x", n.x);
+  rect.setAttribute("x", n.x);
+
   const height = n._level === "grandchild" ? 30 : 44;
   rect.setAttribute("y", n.y - height / 2);
   rect.setAttribute("height", height);
@@ -150,15 +152,13 @@ rect.setAttribute("x", n.x);
   const text = document.createElementNS(svg.namespaceURI, "text");
   text.setAttribute("y", n.y + 5);
   text.setAttribute(
-  "font-size",
-  n._level === "grandchild" ? "11" : "13"
-);
+    "font-size",
+    n._level === "grandchild" ? "11" : "13"
+  );
   text.setAttribute("fill", "#111827");
   text.setAttribute("pointer-events", "none");
-
- text.setAttribute("x", n.x + n.width / 2);
- text.setAttribute("text-anchor", "middle");
-
+  text.setAttribute("x", n.x + n.width / 2);
+  text.setAttribute("text-anchor", "middle");
   text.textContent = n.title;
 
   g.appendChild(rect);
@@ -184,29 +184,28 @@ rect.setAttribute("x", n.x);
   g.addEventListener("mouseleave", () => {
     tooltipEl.style.display = "none";
   });
-if (!isActive && !isGrandchild) {
-  g.addEventListener("mouseenter", () => {
-    showGrandchildren(n);
-  });
 
-  g.addEventListener("mouseleave", () => {
-    clearTransient();
-  });
-}
+  if (!isActive && !isGrandchild) {
+    g.addEventListener("mouseenter", () => {
+      showGrandchildren(n);
+    });
+
+    g.addEventListener("mouseleave", () => {
+      clearTransient();
+    });
+  }
 
   svg.appendChild(g);
 }
 
 /* ---------- CURVES ---------- */
-/* ---------- CURVES ---------- */
 function drawCurve(from, to, depth = 1) {
   const startX = from.x + from.width;
   const endX = to.x;
 
-  // tighter spacing logic
   const curveOffset =
-    depth === 1 ? 40 :   // children → reduced spacing
-    depth === 2 ? 10 :   // grandchildren → very tight
+    depth === 1 ? 40 :
+    depth === 2 ? 10 :
     40;
 
   const path = document.createElementNS(svg.namespaceURI, "path");
@@ -225,9 +224,10 @@ function drawCurve(from, to, depth = 1) {
   path.setAttribute("stroke", "#c7d2fe");
   path.setAttribute("stroke-width", "1.4");
 
+  if (depth === 2) path.classList.add("gc-curve");
+
   svg.appendChild(path);
 }
-
 
 /* ---------- BREADCRUMB ---------- */
 function renderBreadcrumb() {
@@ -252,22 +252,14 @@ function renderBreadcrumb() {
 function renderContext() {
   const ctx = ACTIVE_NODE.context || {};
 
-  let html = `
-    <h3>${ACTIVE_NODE.title}</h3>
-  `;
+  let html = `<h3>${ACTIVE_NODE.title}</h3>`;
 
   if (ctx.definition) {
-    html += `
-      <p><strong>Definition</strong></p>
-      <p>${ctx.definition}</p>
-    `;
+    html += `<p><strong>Definition</strong></p><p>${ctx.definition}</p>`;
   }
 
   if (ctx.role) {
-    html += `
-      <p><strong>Role</strong></p>
-      <p>${ctx.role}</p>
-    `;
+    html += `<p><strong>Role</strong></p><p>${ctx.role}</p>`;
   }
 
   if (Array.isArray(ctx.references) && ctx.references.length > 0) {
@@ -277,11 +269,7 @@ function renderContext() {
         ${ctx.references
           .map(
             r =>
-              `<li>
-                 <a href="${r.url}" target="_blank" rel="noopener noreferrer">
-                   ${r.title}
-                 </a>
-               </li>`
+              `<li><a href="${r.url}" target="_blank" rel="noopener noreferrer">${r.title}</a></li>`
           )
           .join("")}
       </ul>
