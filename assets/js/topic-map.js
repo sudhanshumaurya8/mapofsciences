@@ -65,7 +65,7 @@ function renderMap() {
   const cy = 450;
 
   const LEFT_X = 400;
-  const CHILD_OFFSET = 260;
+  const CHILD_OFFSET = 320;
 
   const children = ACTIVE_NODE.children || [];
 
@@ -94,7 +94,7 @@ function showGrandchildren(childNode) {
   const grandchildren = childNode.children || [];
   if (!grandchildren.length) return;
 
-  const START_X = childNode.x + 260;
+  const START_X = childNode.x + 320;
   const SPACING = 34;
 
   grandchildren.forEach((gc, i) => {
@@ -173,13 +173,22 @@ function drawNode(n, isActive, isGrandchild = false) {
   });
 
   g.addEventListener("mouseenter", e => {
-    const def = n.context?.definition;
-    if (!def) return;
-    tooltipEl.innerHTML = `<strong>${n.title}</strong><br>${def}`;
-    tooltipEl.style.display = "block";
-    tooltipEl.style.left = e.clientX + 12 + "px";
-    tooltipEl.style.top = e.clientY + 12 + "px";
-  });
+  const def = n.context?.definition;
+  if (!def) return;
+
+  tooltipEl.innerHTML = `<strong>${n.title}</strong><br>${def}`;
+  tooltipEl.style.display = "block";
+
+  const tooltipWidth = tooltipEl.offsetWidth || 260;
+
+  // children → left side, others → right side
+  const xOffset = !isActive && !isGrandchild
+    ? e.clientX - tooltipWidth - 16
+    : e.clientX + 12;
+
+  tooltipEl.style.left = xOffset + "px";
+  tooltipEl.style.top = e.clientY + 12 + "px";
+});
 
   g.addEventListener("mouseleave", () => {
     tooltipEl.style.display = "none";
