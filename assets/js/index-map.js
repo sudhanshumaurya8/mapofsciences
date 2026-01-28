@@ -1,11 +1,14 @@
 console.log("index-map.js loaded");
-
 const svg = document.getElementById("mindmap");
 const NS = "http://www.w3.org/2000/svg";
 
-// Main SVG group (for zoom / pan)
-const g = document.createElementNS(NS, "g");
-svg.appendChild(g);
+let g = null;
+
+if (svg) {
+  g = document.createElementNS(NS, "g");
+  svg.appendChild(g);
+}
+
 
 /* =========================
    SIZE HELPERS
@@ -143,7 +146,10 @@ function drawConnection(x1, y1, x2, y2) {
    ZOOM & PAN
 ========================= */
 
-enableZoomPan(svg, g);
+if (svg && g) {
+  enableZoomPan(svg, g);
+}
+
 
 function enableZoomPan(svg, group) {
   let scale = 1;
