@@ -29,15 +29,13 @@ function getSize() {
 let SEARCH_INDEX = [];
 
 fetch("data/tree-textile.json")
+  .then(res => res.json())
   .then(tree => {
-  const root = tree;
-  buildSearchIndex(root);
+    SEARCH_INDEX = [];
+    buildSearchIndex(tree);
+  })
+  .catch(console.error);
 
-  if (svg && g) {
-    init(root);
-  }
-})
-  .catch(err => console.error("Failed to load tree:", err));
 
 /* =========================
    INITIAL DRAW
