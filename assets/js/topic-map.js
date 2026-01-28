@@ -79,17 +79,35 @@ function renderMap() {
   });
 
   /* ---------- GRANDCHILDREN ---------- */
-  const grandchildNodes = [];
+  /* ---------- GRANDCHILDREN ---------- */
+const grandchildNodes = [];
 
-  childNodes.forEach((childNode, i) => {
-    const grandchildren = childNode.children || [];
-    grandchildren.forEach((gc, j) => {
-      const y = childNode.y + (j - (grandchildren.length - 1) / 2) * 24; // very tight
-      const gcNode = measureNode(gc, LEFT_X + GRANDCHILD_OFFSET, y);
-      gcNode._parentVisual = childNode; // for curve drawing
-      grandchildNodes.push(gcNode);
-    });
+let gcIndex = 0;
+const GC_SPACING = 34; // tight but non-overlapping
+
+childNodes.forEach(childNode => {
+  const grandchildren = childNode.children || [];
+
+  grandchildren.forEach(gc => {
+    const y =
+      cy +
+      (gcIndex - (children.length * 2) / 2) * GC_SPACING;
+
+    const gcNode = measureNode(
+      gc,
+      LEFT_X + GRANDCHILD_OFFSET,
+      y,
+      "grandchild"
+    );
+
+    gcNode._parentVisual = childNode;
+    gcNode._isGrandchild = true;
+
+    grandchildNodes.push(gcNode);
+    gcIndex++;
   });
+});
+
 
   /* ---------- CURVES ---------- */
   childNodes.forEach(c => drawCurve(active, c, 1));
@@ -105,10 +123,17 @@ function renderMap() {
 
 
 /* ---------- NODE MEASURE ---------- */
-function measureNode(node, x, y) {
-  const width = Math.min(Math.max(node.title.length * 7.2 + 48, 160), 360);
-  return { ...node, x, y, width };
+function measureNode(node, x, y, level = "normal") {
+  const base =
+    level === "grandchild"
+      ? node.title.length * 6 + 36
+      : node.title.length * 7.2 + 48;
+
+  const width = Math.min(Math.max(base, level === "grandchild" ? 120 : 160), 360);
+
+  return { ...node, x, y, width, _level: level };
 }
+
 
 /* ---------- NODE DRAW ---------- */
 function drawNode(n, isActive) {
@@ -117,9 +142,10 @@ function drawNode(n, isActive) {
 
   const rect = document.createElementNS(svg.namespaceURI, "rect");
 rect.setAttribute("x", n.x);
-  rect.setAttribute("y", n.y - 22);
+  const height = n._level === "grandchild" ? 30 : 44;
+  rect.setAttribute("y", n.y - height / 2);
+  rect.setAttribute("height", height);
   rect.setAttribute("width", n.width);
-  rect.setAttribute("height", 44);
   rect.setAttribute("rx", 6);
   rect.setAttribute("fill", "#fff");
   rect.setAttribute("stroke", isActive ? "#0f172a" : "#64748b");
@@ -127,7 +153,10 @@ rect.setAttribute("x", n.x);
 
   const text = document.createElementNS(svg.namespaceURI, "text");
   text.setAttribute("y", n.y + 5);
-  text.setAttribute("font-size", "13");
+  text.setAttribute(
+  "font-size",
+  n._level === "grandchild" ? "11" : "13"
+);
   text.setAttribute("fill", "#111827");
   text.setAttribute("pointer-events", "none");
 
