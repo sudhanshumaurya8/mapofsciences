@@ -29,12 +29,14 @@ function getSize() {
 let SEARCH_INDEX = [];
 
 fetch("data/tree-textile.json")
-  .then(res => res.json())
   .then(tree => {
-    const root = tree;
-    buildSearchIndex(root);
+  const root = tree;
+  buildSearchIndex(root);
+
+  if (svg && g) {
     init(root);
-  })
+  }
+})
   .catch(err => console.error("Failed to load tree:", err));
 
 /* =========================
@@ -149,7 +151,6 @@ function drawConnection(x1, y1, x2, y2) {
 if (svg && g) {
   enableZoomPan(svg, g);
 }
-
 
 function enableZoomPan(svg, group) {
   let scale = 1;
