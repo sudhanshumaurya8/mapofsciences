@@ -1,12 +1,12 @@
 console.log("index-map.js loaded");
-const svg = document.getElementById("style");
+const searchSvg = document.getElementById("style");
 const NS = "http://www.w3.org/2000/svg";
 
 let g = null;
 
-if (svg) {
+if (searchSvg) {
   g = document.createElementNS(NS, "g");
-  svg.appendChild(g);
+  searchSvg.appendChild(g);
 }
 
 
@@ -15,7 +15,7 @@ if (svg) {
 ========================= */
 
 function getSize() {
-  const rect = svg.getBoundingClientRect();
+  const rect = searchSvg.getBoundingClientRect();
   return {
     width: rect.width,
     height: rect.height
@@ -147,10 +147,10 @@ function drawConnection(x1, y1, x2, y2) {
 ========================= */
 
 if (svg && g) {
-  enableZoomPan(svg, g);
+  enableZoomPan(searchSvg, g);
 }
 
-function enableZoomPan(svg, group) {
+function enableZoomPan(searchSvg, group) {
   let scale = 1;
   let tx = 0;
   let ty = 0;
@@ -201,7 +201,7 @@ function enableZoomPan(svg, group) {
 
 function autoFit() {
   const bbox = g.getBBox();
-  const rect = svg.getBoundingClientRect();
+  const rect = searchSvg.getBoundingClientRect();
 
   const scale = Math.min(
     rect.width / bbox.width,
