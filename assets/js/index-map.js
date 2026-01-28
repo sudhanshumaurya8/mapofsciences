@@ -1,5 +1,5 @@
 console.log("index-map.js loaded");
-const svg = document.getElementById("mindmap");
+const svg = document.getElementById("style");
 const NS = "http://www.w3.org/2000/svg";
 
 let g = null;
