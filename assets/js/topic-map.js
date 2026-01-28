@@ -78,46 +78,41 @@ function renderMap() {
     return measureNode(c, LEFT_X + CHILD_OFFSET, y);
   });
 
-  /* ---------- GRANDCHILDREN ---------- */
-  /* ---------- GRANDCHILDREN ---------- */
-const grandchildNodes = [];
+function showGrandchildren(childNode) {
+  clearTransient(); // remove any existing hover nodes
 
-let gcIndex = 0;
-const GC_SPACING = 34; // tight but non-overlapping
-
-childNodes.forEach(childNode => {
   const grandchildren = childNode.children || [];
+  if (!grandchildren.length) return;
 
-  grandchildren.forEach(gc => {
+  const START_X = childNode.x + 260;
+  const SPACING = 34;
+
+  grandchildren.forEach((gc, i) => {
     const y =
-      cy +
-      (gcIndex - (children.length * 2) / 2) * GC_SPACING;
+      childNode.y +
+      (i - (grandchildren.length - 1) / 2) * SPACING;
 
-    const gcNode = measureNode(
-      gc,
-      LEFT_X + GRANDCHILD_OFFSET,
-      y,
-      "grandchild"
-    );
+    const gcNode = measureNode(gc, START_X, y, "grandchild");
 
-    gcNode._parentVisual = childNode;
-    gcNode._isGrandchild = true;
-
-    grandchildNodes.push(gcNode);
-    gcIndex++;
+    drawCurve(childNode, gcNode, 2);
+    drawNode(gcNode, false, true);
   });
-});
+}
+function clearTransient() {
+  [...svg.querySelectorAll(".grandchild, .gc-curve")].forEach(el =>
+    el.remove()
+  );
+}
+
 
 
   /* ---------- CURVES ---------- */
   childNodes.forEach(c => drawCurve(active, c, 1));
-  grandchildNodes.forEach(gc => drawCurve(gc._parentVisual, gc, 2));
+  
 
   /* ---------- NODES ---------- */
   drawNode(active, true);
   childNodes.forEach(c => drawNode(c, false));
-  grandchildNodes.forEach(gc => drawNode(gc, false));
-
   updateViewBox();
 }
 
@@ -136,7 +131,8 @@ function measureNode(node, x, y, level = "normal") {
 
 
 /* ---------- NODE DRAW ---------- */
-function drawNode(n, isActive) {
+function drawNode(n, isActive, isGrandchild = false) {
+  if (isGrandchild) g.classList.add("grandchild");
   const g = document.createElementNS(svg.namespaceURI, "g");
   g.style.cursor = "pointer";
 
@@ -188,6 +184,15 @@ rect.setAttribute("x", n.x);
   g.addEventListener("mouseleave", () => {
     tooltipEl.style.display = "none";
   });
+if (!isActive && !isGrandchild) {
+  g.addEventListener("mouseenter", () => {
+    showGrandchildren(n);
+  });
+
+  g.addEventListener("mouseleave", () => {
+    clearTransient();
+  });
+}
 
   svg.appendChild(g);
 }
