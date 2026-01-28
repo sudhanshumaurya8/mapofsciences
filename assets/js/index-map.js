@@ -236,8 +236,8 @@ function buildSearchIndex(node, path = []) {
    SEARCH UI
 ========================= */
 
-const searchBox = document.getElementById("searchBox");
-const searchResults = document.getElementById("searchResults");
+const searchBox = document.getElementById("global-search");
+const searchResults = document.getElementById("search-results");
 
 searchBox.addEventListener("input", () => {
   const q = searchBox.value.toLowerCase().trim();
