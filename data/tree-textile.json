@@ -1,9 +1,9 @@
 {
   "id": "textile-engineering",
-  "title": "Textile Engineering",
+  "title": "Textile",
   "type": "domain",
   "context": {
-    "definition": "Textile Engineering is the field concerned with the design, production, properties, and applications of fibres, yarns, fabrics, and textile-based products.",
+    "definition": "Textile is the field concerned with the design, production, properties, and applications of fibres, yarns, fabrics, and textile-based products.",
     "role": "Provides the structural foundation for understanding all textile materials, processes, and applications.",
     "references": [
       {
@@ -18,7 +18,7 @@
   },
   "children": [
     {
-      "id": "textile-fibres",
+      "id": "Fibres",
       "title": "Fibres",
       "type": "core-area",
       "context": {
@@ -31,7 +31,124 @@
           }
         ]
       },
-      "children": []
+      "children": [
+  {
+    "id": "Natural Fibres",
+    "title": "Natural Fibres",
+    "type": "sub-area",
+    "context": {
+      "definition": "Natural fibres are obtained from plant, animal, or mineral sources and are biodegradable in nature.",
+      "role": "They form the earliest and most widely used class of textile fibres."
+    },
+    "children": [
+      {
+        "id": "Plant Fibres",
+        "title": "Plant Fibres",
+        "type": "category",
+        "context": {
+          "definition": "Plant fibres are cellulosic fibres derived from various parts of plants such as seeds, stems, leaves, and fruits."
+        },
+        "children": [
+          {
+            "id": "Cellulosic Introduction",
+            "title": "Cellulosic Introduction",
+            "context": {
+              "definition": "Cellulosic fibres are composed mainly of cellulose, a natural polymer responsible for strength, absorbency, and biodegradability."
+            }
+          },
+          {
+            "id": "Cotton and Plant Structures",
+            "title": "Cotton and Plant Structures",
+            "context": {
+              "definition": "This section explains the structure of cotton fibres and plant anatomy influencing fibre properties."
+            }
+          },
+          {
+            "id": "Bast Fibres",
+            "title": "Bast Fibres (Hemp, Jute, Flax)",
+            "context": {
+              "definition": "Bast fibres are obtained from the stem or phloem of plants such as hemp, jute, and flax."
+            }
+          },
+          {
+            "id": "Leaf Fibres",
+            "title": "Leaf Fibres (Sisal, Banana)",
+            "context": {
+              "definition": "Leaf fibres are extracted from the leaves of plants like sisal and banana and are known for their stiffness and strength."
+            }
+          },
+          {
+            "id": "Fruit Fibres",
+            "title": "Fruit Fibres (Coir)",
+            "context": {
+              "definition": "Fruit fibres are obtained from fruits, with coir extracted from coconut husk being the most common example."
+            }
+          }
+        ]
+      },
+      {
+        "id": "Animal Fibres",
+        "title": "Animal Fibres",
+        "type": "category",
+        "context": {
+          "definition": "Animal fibres are protein-based fibres obtained from animal hair, fur, or secretions."
+        },
+        "children": [
+          {
+            "id": "Wool and Hair",
+            "title": "Wool and Hair",
+            "context": {
+              "definition": "Fibres obtained from animal hair such as sheep wool, goat hair, and camel hair."
+            }
+          },
+          {
+            "id": "Spider Silk",
+            "title": "Spider Silk",
+            "context": {
+              "definition": "A natural protein fibre produced by spiders, known for exceptional strength and elasticity."
+            }
+          },
+          {
+            "id": "Silkworm Silk",
+            "title": "Silkworm Silk",
+            "context": {
+              "definition": "A natural filament fibre produced by silkworms, valued for its smoothness and luster."
+            }
+          }
+        ]
+      },
+      {
+        "id": "Mineral Fibres",
+        "title": "Mineral Fibres",
+        "type": "category",
+        "context": {
+          "definition": "Mineral fibres are inorganic fibres obtained from naturally occurring minerals."
+        },
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": "Regenerated Fibres",
+    "title": "Regenerated Fibres",
+    "type": "sub-area",
+    "context": {
+      "definition": "Regenerated fibres are man-made fibres produced from natural polymers through chemical processing.",
+      "role": "They bridge the gap between natural and synthetic fibres."
+    },
+    "children": []
+  },
+  {
+    "id": "Inorganic and Specialist Fibres",
+    "title": "Inorganic and Specialist Fibres",
+    "type": "sub-area",
+    "context": {
+      "definition": "These fibres include inorganic and high-performance fibres designed for specialised applications."
+    },
+    "children": []
+  }
+]
+
     },
     {
       "id": "yarn-formation",
