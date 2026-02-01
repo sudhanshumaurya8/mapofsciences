@@ -270,6 +270,23 @@ function renderContext() {
   if (ctx.role) {
     html += `<p><strong>Role</strong></p><p>${ctx.role}</p>`;
   }
+if (Array.isArray(ctx.references) && ctx.references.length > 0) {
+  html += `
+    <p><strong>References</strong></p>
+    <ul>
+      ${ctx.references
+        .map(
+          r =>
+            `<li>
+               <a href="${r.url}" target="_blank" rel="noopener noreferrer">
+                 ${r.title}
+               </a>
+             </li>`
+        )
+        .join("")}
+    </ul>
+  `;
+}
 
  if (Array.isArray(ctx.books) && ctx.books.length > 0) {
   html += `
