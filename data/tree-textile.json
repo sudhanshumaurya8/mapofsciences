@@ -145,32 +145,216 @@
   },
   "children": [
   {
-    "id": "Introduction and Sericulture",
-    "title": "Introduction and Sericulture",
-    "type": "topic",
-    "context": {
-      "definition": "This section introduces silk as a natural protein fibre and covers sericulture, the scientific practice of rearing silkworms for silk production.",
-      "role": "Provides foundational understanding of silk origin, lifecycle of silkworms, and primary production stages.",
-      "references": [
+  "id": "Introduction and Sericulture",
+  "title": "Introduction and Sericulture",
+  "type": "topic",
+  "context": {
+    "definition": "This section introduces silk as a natural protein fibre and covers the principles, biology, and practices involved in sericulture.",
+    "role": "Provides foundational understanding of silk origin, silkworm rearing, cocoon production, and technological principles governing silk quality.",
+    "references": [
+      {
+        "title": "NPTEL – Silk Production and Sericulture",
+        "url": "https://nptel.ac.in/courses/116102015"
+      },
+      {
+        "title": "Central Silk Board – Sericulture Practices",
+        "url": "https://www.csb.gov.in"
+      }
+    ],
+    "books": [
+      {
+        "title": "Handbook of Silk Technology",
+        "author": "M. Lewin",
+        "publisher": "CRC Press"
+      },
+      {
+        "title": "Sericulture Manual",
+        "author": "K. Sengupta",
+        "publisher": "Central Silk Board, India"
+      }
+    ]
+  },
+  "children": [
+    {
+      "id": "Principles of Sericulture",
+      "title": "Principles of Sericulture",
+      "type": "topic",
+      "context": {
+        "definition": "Fundamental principles governing silkworm rearing, cocoon production, and silk quality control.",
+        "role": "Acts as the scientific and operational backbone of sericulture practices."
+      },
+      "children": [
         {
-          "title": "NPTEL – Silk Production and Sericulture",
-          "url": "https://nptel.ac.in/courses/116102015"
-        }
-      ],
-      "books": [
-        {
-          "title": "Handbook of Silk Technology",
-          "author": "M. Lewin",
-          "publisher": "CRC Press"
+          "id": "Rotary Mountages",
+          "title": "Rotary Mountages",
+          "type": "topic",
+          "context": {
+            "definition": "Mountages used for cocoon spinning that allow uniform cocoon formation.",
+            "role": "Ensures better cocoon shape, density, and reelability."
+          },
+          "children": [
+            {
+              "id": "Structure",
+              "title": "Structure",
+              "type": "topic",
+              "context": {
+                "definition": "Physical construction and design of rotary mountages.",
+                "role": "Determines efficiency and cocoon uniformity."
+              },
+              "children": [
+                {
+                  "id": "156 slots per board",
+                  "title": "156 slots per board",
+                  "type": "detail",
+                  "context": {
+                    "definition": "Standard slot count for silkworm mounting boards.",
+                    "role": "Optimizes spacing and cocoon formation."
+                  }
+                },
+                {
+                  "id": "10 boards per frame",
+                  "title": "10 boards per frame",
+                  "type": "detail",
+                  "context": {
+                    "definition": "Frame capacity used in rotary mountages.",
+                    "role": "Enhances mounting efficiency."
+                  }
+                }
+              ]
+            },
+            {
+              "id": "Operation",
+              "title": "Operation",
+              "type": "topic",
+              "context": {
+                "definition": "Working principle of rotary mountages during cocooning.",
+                "role": "Ensures even cocoon distribution."
+              },
+              "children": [
+                {
+                  "id": "Negative-geotrophic behavior",
+                  "title": "Negative-geotrophic behavior",
+                  "type": "detail",
+                  "context": {
+                    "definition": "Silkworm tendency to move upward during cocooning.",
+                    "role": "Utilized in mountage design."
+                  }
+                },
+                {
+                  "id": "Weight displacement rotation",
+                  "title": "Weight displacement rotation",
+                  "type": "detail",
+                  "context": {
+                    "definition": "Rotation caused by silkworm movement.",
+                    "role": "Promotes uniform cocoon formation."
+                  }
+                },
+                {
+                  "id": "Larvae distribution",
+                  "title": "Larvae distribution",
+                  "type": "detail",
+                  "context": {
+                    "definition": "Even spread of larvae across mountage.",
+                    "role": "Improves cocoon quality consistency."
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
-          "title": "Sericulture Manual",
-          "author": "K. Sengupta",
-          "publisher": "Central Silk Board, India"
+          "id": "Silkworm Diseases",
+          "title": "Silkworm Diseases",
+          "type": "topic",
+          "context": {
+            "definition": "Diseases affecting silkworm health and cocoon yield.",
+            "role": "Critical for disease prevention and crop protection."
+          },
+          "children": [
+            {
+              "id": "Pebrine",
+              "title": "Pebrine",
+              "type": "topic",
+              "context": {
+                "definition": "Protozoan disease caused by Nosema bombycis.",
+                "role": "Most destructive silkworm disease."
+              },
+              "children": [
+                {
+                  "id": "Protozoan Nosema bombycis",
+                  "title": "Protozoan Nosema bombycis",
+                  "type": "detail",
+                  "context": {
+                    "definition": "Causative organism of Pebrine.",
+                    "role": "Primary disease agent."
+                  }
+                },
+                {
+                  "id": "Pepper-like body spots",
+                  "title": "Pepper-like body spots",
+                  "type": "detail",
+                  "context": {
+                    "definition": "Characteristic symptom of Pebrine.",
+                    "role": "Used for visual diagnosis."
+                  }
+                },
+                {
+                  "id": "Pasteur method prevention",
+                  "title": "Pasteur method prevention",
+                  "type": "detail",
+                  "context": {
+                    "definition": "Microscopic examination of moth eggs.",
+                    "role": "Prevents vertical disease transmission."
+                  }
+                }
+              ]
+            },
+            {
+              "id": "Flacherie",
+              "title": "Flacherie",
+              "type": "topic",
+              "context": {
+                "definition": "Bacterial disease causing gut infection.",
+                "role": "Reduces larval survival."
+              },
+              "children": [
+                {
+                  "id": "Bacterial syndrome",
+                  "title": "Bacterial syndrome",
+                  "type": "detail",
+                  "context": {
+                    "definition": "Group of bacterial infections.",
+                    "role": "Leads to larval death."
+                  }
+                },
+                {
+                  "id": "Vomiting and foul odor",
+                  "title": "Vomiting and foul odor",
+                  "type": "detail",
+                  "context": {
+                    "definition": "Symptoms of advanced Flacherie.",
+                    "role": "Disease identification."
+                  }
+                },
+                {
+                  "id": "Hygiene and leaf quality",
+                  "title": "Hygiene and leaf quality",
+                  "type": "detail",
+                  "context": {
+                    "definition": "Preventive management practices.",
+                    "role": "Reduces disease incidence."
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }
-  },
+  ]
+},
+
+  
   {
     "id": "Types of Silk",
     "title": "Types of Silk",
