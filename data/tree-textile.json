@@ -113,9 +113,126 @@
             "title": "Silkworm Silk",
             "context": {
               "definition": "A natural filament fibre produced by silkworms, valued for its smoothness and luster."
-            }
-          }
-        ]
+            },
+          "children": [
+  {
+    "id": "Introduction and Sericulture",
+    "title": "Introduction and Sericulture",
+    "type": "topic",
+    "context": {
+      "definition": "This section introduces silk as a natural protein fibre and covers sericulture, the scientific practice of rearing silkworms for silk production.",
+      "role": "Provides foundational understanding of silk origin, lifecycle of silkworms, and primary production stages.",
+      "references": [
+        {
+          "title": "NPTEL – Silk Production and Sericulture",
+          "url": "https://nptel.ac.in/courses/116102015"
+        }
+      ],
+      "books": [
+        {
+          "title": "Handbook of Silk Technology",
+          "author": "M. Lewin",
+          "publisher": "CRC Press"
+        },
+        {
+          "title": "Sericulture Manual",
+          "author": "K. Sengupta",
+          "publisher": "Central Silk Board, India"
+        }
+      ]
+    }
+  },
+  {
+    "id": "Types of Silk",
+    "title": "Types of Silk",
+    "type": "topic",
+    "context": {
+      "definition": "Silk can be classified based on silkworm species and geographical origin, including mulberry, tasar, eri, and muga silk.",
+      "role": "Helps distinguish silk varieties based on fibre structure, luster, fineness, and end-use applications.",
+      "references": [
+        {
+          "title": "Central Silk Board – Types of Silk",
+          "url": "https://www.csb.gov.in"
+        }
+      ],
+      "books": [
+        {
+          "title": "Silk: Processing, Properties and Applications",
+          "author": "K. Murugesh Babu",
+          "publisher": "Woodhead Publishing"
+        }
+      ]
+    }
+  },
+  {
+    "id": "Post-Cocoon Technology",
+    "title": "Post-Cocoon Technology",
+    "type": "topic",
+    "context": {
+      "definition": "Post-cocoon technology includes processes such as reeling, throwing, degumming, and dyeing of silk fibres after cocoon formation.",
+      "role": "Transforms raw silk into usable yarns and fabrics while controlling quality and performance characteristics.",
+      "references": [
+        {
+          "title": "NPTEL – Post Cocoon Technology",
+          "url": "https://nptel.ac.in/courses/116102015"
+        }
+      ],
+      "books": [
+        {
+          "title": "Silk Reeling and Processing Technology",
+          "author": "S. K. Dutta",
+          "publisher": "Oxford & IBH"
+        }
+      ]
+    }
+  },
+  {
+    "id": "Structure and Properties",
+    "title": "Structure and Properties",
+    "type": "topic",
+    "context": {
+      "definition": "This section explains the molecular structure of silk fibroin and sericin and their influence on mechanical, thermal, and aesthetic properties.",
+      "role": "Links fibre structure to performance characteristics such as strength, elasticity, luster, and moisture regain.",
+      "references": [
+        {
+          "title": "Structure–Property Relationships in Silk Fibres",
+          "url": "https://www.sciencedirect.com"
+        }
+      ],
+      "books": [
+        {
+          "title": "Physical Properties of Textile Fibres",
+          "author": "W. E. Morton and J. W. S. Hearle",
+          "publisher": "Textile Institute"
+        }
+      ]
+    }
+  },
+  {
+    "id": "Applications",
+    "title": "Applications",
+    "type": "topic",
+    "context": {
+      "definition": "Silk is used in apparel, medical sutures, biomedical textiles, home furnishings, and high-value luxury products.",
+      "role": "Demonstrates the versatility of silk in both traditional and advanced technical applications.",
+      "references": [
+        {
+          "title": "Biomedical Applications of Silk",
+          "url": "https://www.ncbi.nlm.nih.gov"
+        }
+      ],
+      "books": [
+        {
+          "title": "Textiles for Advanced Applications",
+          "author": "R. Anandjiwala",
+          "publisher": "Springer"
+        }
+      ]
+    }
+  }
+]
+
+
       },
       {
         "id": "Mineral Fibres",
