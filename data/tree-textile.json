@@ -109,12 +109,41 @@
             }
           },
           {
-            "id": "Silkworm Silk",
-            "title": "Silkworm Silk",
-            "context": {
-              "definition": "A natural filament fibre produced by silkworms, valued for its smoothness and luster."
-            },
-          "children": [
+  "id": "Silkworm Silk",
+  "title": "Silkworm Silk",
+  "type": "topic",
+  "context": {
+    "definition": "Silkworm silk is a natural filament protein fibre produced by silkworms, prized for its smoothness, luster, strength, and fine handle.",
+    "role": "It is the most commercially important form of natural silk and plays a central role in apparel, luxury textiles, and emerging biomedical applications.",
+    "references": [
+      {
+        "title": "Central Silk Board – Silk Production in India",
+        "url": "https://www.csb.gov.in"
+      },
+      {
+        "title": "NPTEL – Fibre Science and Technology",
+        "url": "https://nptel.ac.in/courses/116102015"
+      }
+    ],
+    "books": [
+      {
+        "title": "Handbook of Silk Technology",
+        "author": "M. Lewin",
+        "publisher": "CRC Press"
+      },
+      {
+        "title": "Silk: Processing, Properties and Applications",
+        "author": "K. Murugesh Babu",
+        "publisher": "Woodhead Publishing"
+      },
+      {
+        "title": "Physical Properties of Textile Fibres",
+        "author": "W. E. Morton and J. W. S. Hearle",
+        "publisher": "Textile Institute"
+      }
+    ]
+  },
+  "children": [
   {
     "id": "Introduction and Sericulture",
     "title": "Introduction and Sericulture",
@@ -232,7 +261,9 @@
   }
 ]
 
+}
 
+        ]
       },
       {
         "id": "Mineral Fibres",
